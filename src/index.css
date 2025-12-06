@@ -31,3 +31,10 @@ h5,
 h6 {
     font-family: 'Inter', sans-serif;
 }
+
+.btn-primary {
+    @apply bg-gradient-to-tl from-primary to-accent text-primary-content rounded-lg font-semibold shadow-lg shadow-primary/30;
+}
+.btn-primary:hover {
+    @apply bg-gradient-to-tr transition-all duration-300 transform hover:scale-105 to-primary from-accent text-secondary ;
+}

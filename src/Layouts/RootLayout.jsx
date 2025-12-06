@@ -1,17 +1,16 @@
 import React from "react";
-import { Outlet } from "react-router";
+import { NavLink, Outlet } from "react-router";
 import Navbar from "../Component/Navbar";
 import Footer from "../Component/Footer";
 import { ThemeProvider } from "../contexts/ThemeContext";
 
 const RootLayout = () => {
+
   return (
     <ThemeProvider>
       <div className="transition-colors duration-300">
-        <nav className="py-2">
-          <Navbar />
-        </nav>
-        <main className="min-h-screen">
+        <Navbar />
+        <main className=" max-w-7xl min-h-screen pt-20 mx-auto px-4 sm:px-6 lg:px-8 ">
           <Outlet />
         </main>
         <footer>

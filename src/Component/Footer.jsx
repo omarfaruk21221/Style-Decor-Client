@@ -4,7 +4,7 @@ import { MdDesignServices } from 'react-icons/md';
 
 const Footer = () => {
     return (
-        <footer className="footer sm:footer-horizontal bg-neutral text-neutral-content p-10">
+        <footer className="footer sm:footer-horizontal bg-primary/80 text-neutral-content p-10">
             <aside>
                 <MdDesignServices className="w-12 h-12 fill-current" />
                 <p>

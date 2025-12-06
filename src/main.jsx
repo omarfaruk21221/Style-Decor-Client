@@ -3,12 +3,12 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./routes/RootRoutes.jsx";
-import { ThemeProvider } from "./contexts/ThemeContext";
+import ErrorBoundary from "./Component/ErrorBoundary.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <ThemeProvider>
+    <ErrorBoundary>
       <RouterProvider router={router} />
-    </ThemeProvider>
+    </ErrorBoundary>
   </StrictMode>
 );
