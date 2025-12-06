@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
+import logo2 from "../../public/assets/logo2.png";
 
 const Navbar = () => {
   const Links = (
@@ -97,8 +98,9 @@ const Navbar = () => {
         </div>
         <Link
           to="/"
-          className="btn btn-ghost text-lg md:text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+          className="btn btn-ghost text-lg md:text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent flex items-center gap-2"
         >
+          <img className="w-12 h-12" src={logo2} alt="company logo" />
           Style Decor
         </Link>
       </div>

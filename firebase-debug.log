@@ -1,0 +1,107 @@
+[debug] [2025-12-06T23:31:13.582Z] ----------------------------------------------------------------------
+[debug] [2025-12-06T23:31:13.588Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\user\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2025-12-06T23:31:13.589Z] CLI Version:   14.27.0
+[debug] [2025-12-06T23:31:13.589Z] Platform:      win32
+[debug] [2025-12-06T23:31:13.589Z] Node Version:  v24.8.0
+[debug] [2025-12-06T23:31:13.589Z] Time:          Sun Dec 07 2025 05:31:13 GMT+0600 (Bangladesh Standard Time)
+[debug] [2025-12-06T23:31:13.590Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-12-06T23:31:13.597Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  F:\Programming-Hero\A11 Style Decor\style-decor-client
+
+[debug] [2025-12-06T23:31:14.274Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2025-12-06T23:31:14.276Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] 
+[info] i  If you want to create a project in a Google Cloud organization or folder, please use "firebase projects:create" instead, and return to this command when you've created the project. 
+[debug] [2025-12-06T23:31:33.422Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-12-06T23:31:33.422Z] > authorizing via signed-in user (omarfaruk.codes69@gmail.com)
+[debug] [2025-12-06T23:32:02.461Z] Checked if tokens are valid: false, expires at: 1764830181705
+[debug] [2025-12-06T23:32:02.461Z] Checked if tokens are valid: false, expires at: 1764830181705
+[debug] [2025-12-06T23:32:02.462Z] > refreshing access token with scopes: []
+[debug] [2025-12-06T23:32:02.463Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-12-06T23:32:02.463Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-12-06T23:32:02.774Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-12-06T23:32:02.775Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-12-06T23:32:02.783Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1/projects:checkProjectId [none]
+[debug] [2025-12-06T23:32:02.783Z] >>> [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"proposedId":"style-decor"}
+[debug] [2025-12-06T23:32:03.721Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1/projects:checkProjectId 200
+[debug] [2025-12-06T23:32:03.721Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"projectIdStatus":"PROJECT_ID_UNAVAILABLE","suggestedProjectId":"style-decor-f97a4"}
+[debug] [2025-12-06T23:32:34.397Z] Checked if tokens are valid: true, expires at: 1765067521775
+[debug] [2025-12-06T23:32:34.397Z] Checked if tokens are valid: true, expires at: 1765067521775
+[debug] [2025-12-06T23:32:34.398Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1/projects:checkProjectId [none]
+[debug] [2025-12-06T23:32:34.398Z] >>> [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"proposedId":"style-decor"}
+[debug] [2025-12-06T23:32:35.325Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1/projects:checkProjectId 200
+[debug] [2025-12-06T23:32:35.325Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"projectIdStatus":"PROJECT_ID_UNAVAILABLE","suggestedProjectId":"style-decor-a6add"}
+[debug] [2025-12-06T23:32:43.059Z] Checked if tokens are valid: true, expires at: 1765067521775
+[debug] [2025-12-06T23:32:43.060Z] Checked if tokens are valid: true, expires at: 1765067521775
+[debug] [2025-12-06T23:32:43.061Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1/projects:checkProjectId [none]
+[debug] [2025-12-06T23:32:43.061Z] >>> [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"proposedId":"style-decor-e37a9"}
+[debug] [2025-12-06T23:32:43.717Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1/projects:checkProjectId 200
+[debug] [2025-12-06T23:32:43.717Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"projectIdStatus":"PROJECT_ID_UNAVAILABLE","suggestedProjectId":"style-decor-e37a9-b1006"}
+[debug] [2025-12-06T23:33:16.720Z] Checked if tokens are valid: true, expires at: 1765067521775
+[debug] [2025-12-06T23:33:16.720Z] Checked if tokens are valid: true, expires at: 1765067521775
+[debug] [2025-12-06T23:33:16.721Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1/projects:checkProjectId [none]
+[debug] [2025-12-06T23:33:16.721Z] >>> [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"proposedId":"style-decor-e37a9"}
+[debug] [2025-12-06T23:33:17.626Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1/projects:checkProjectId 200
+[debug] [2025-12-06T23:33:17.627Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"projectIdStatus":"PROJECT_ID_UNAVAILABLE","suggestedProjectId":"style-decor-e37a9-7ab55"}
+[debug] [2025-12-06T23:33:26.490Z] ExitPromptError: User force closed the prompt with SIGINT
+    at Interface.sigint (C:\Users\user\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\@inquirer\core\dist\commonjs\lib\create-prompt.js:101:37)
+    at Interface.emit (node:events:508:28)
+    at Interface.emit (node:domain:489:12)
+    at [_ttyWrite] [as _ttyWrite] (node:internal/readline/interface:1311:18)
+    at ReadStream.onkeypress (node:internal/readline/interface:284:20)
+    at ReadStream.emit (node:events:520:35)
+    at ReadStream.emit (node:domain:489:12)
+    at emitKeys (node:internal/readline/utils:371:14)
+    at emitKeys.next (<anonymous>)
+    at ReadStream.onData (node:internal/readline/emitKeypressEvents:64:36)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2025-12-06T23:33:37.964Z] ----------------------------------------------------------------------
+[debug] [2025-12-06T23:33:37.969Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\user\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2025-12-06T23:33:37.970Z] CLI Version:   14.27.0
+[debug] [2025-12-06T23:33:37.970Z] Platform:      win32
+[debug] [2025-12-06T23:33:37.970Z] Node Version:  v24.8.0
+[debug] [2025-12-06T23:33:37.970Z] Time:          Sun Dec 07 2025 05:33:37 GMT+0600 (Bangladesh Standard Time)
+[debug] [2025-12-06T23:33:37.970Z] ----------------------------------------------------------------------
+[debug] 
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  F:\Programming-Hero\A11 Style Decor\style-decor-client
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] 
+[info] i  If you want to create a project in a Google Cloud organization or folder, please use "firebase projects:create" instead, and return to this command when you've created the project. 
+[debug] [2025-12-06T23:33:52.135Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-12-06T23:33:52.136Z] > authorizing via signed-in user (omarfaruk.codes69@gmail.com)
+[debug] [2025-12-06T23:33:55.093Z] Checked if tokens are valid: true, expires at: 1765067521775
+[debug] [2025-12-06T23:33:55.094Z] Checked if tokens are valid: true, expires at: 1765067521775
+[debug] [2025-12-06T23:33:55.096Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1/projects:checkProjectId [none]
+[debug] [2025-12-06T23:33:55.096Z] >>> [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"proposedId":"style-decor-e37a9"}
+[debug] [2025-12-06T23:33:55.837Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1/projects:checkProjectId 200
+[debug] [2025-12-06T23:33:55.838Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"projectIdStatus":"PROJECT_ID_UNAVAILABLE","suggestedProjectId":"style-decor-e37a9-eb6f5"}
