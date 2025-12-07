@@ -1,8 +1,9 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 import Logo from "./Logo";
 import NavLinks from "./NavLinks";
+import UserMenu from "./UserMenu";
 
 const Navbar = () => {
   return (
@@ -48,18 +49,10 @@ const Navbar = () => {
         <ThemeToggle />
 
         <div className="flex gap-2">
-          <Link
-            to="/login"
-            className="btn btn-sm md:btn-md btn-outline hover:btn-primary"
-          >
-            Login
+          <Link to="/login" className="btn btn-primary">
+            Log In
           </Link>
-          <Link
-            to="/register"
-            className="btn btn-sm md:btn-md btn-primary hover:btn-primary/90"
-          >
-            Sign Up
-          </Link>
+          <UserMenu />
         </div>
       </div>
     </div>

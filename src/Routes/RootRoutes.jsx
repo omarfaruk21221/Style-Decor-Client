@@ -1,59 +1,133 @@
 import { createBrowserRouter } from "react-router-dom";
-import RootLayout from "../Layouts/RootLayout";
-import HomePage from "../Pages/HomePage/HomePage";
-import Services from "../Pages/ServicePage/ServicesPage";
-import About from "../Pages/AboutPage/AboutPage";
-import ContactPage from "../Pages/ContactPage/ContactPage";
-import ErrorPage from "../Pages/ErrorPage";
-import NotFound from "../Pages/NotFound";
-import LoginPage from "../Pages/AuthPages/LoginPage";
-import RegisterPage from "../Pages/AuthPages/RegisterPage";
-import ForgetPage from "../Pages/AuthPages/ForgetPage";
-import AuthLayout from "../Layouts/AuthLayout";
+import RootLayout from "../Layouts/RootLayout.jsx";
+import DashboardLayout from "../Layouts/DashboardLayout.jsx";
+import HomePage from "../Pages/HomePage/HomePage.jsx";
+import Services from "../Pages/ServicePage/ServicesPage.jsx";
+import About from "../Pages/AboutPage/AboutPage.jsx";
+import ContactPage from "../Pages/ContactPage/ContactPage.jsx";
+import ErrorPage from "../Pages/ErrorPage.jsx";
+import NotFound from "../Pages/NotFound.jsx";
+import LoginPage from "../Pages/AuthPages/LoginPage.jsx";
+import RegisterPage from "../Pages/AuthPages/RegisterPage.jsx";
+import ForgetPage from "../Pages/AuthPages/ForgetPage.jsx";
+import AuthLayout from "../Layouts/AuthLayout.jsx";
+import MyProfile from "../Pages/MyProfile/MyProfile.jsx";
+
 
 export const router = createBrowserRouter([
+  // Main Routes with RootLayout
   {
     path: "/",
     element: <RootLayout />,
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "/",
+        index: true,
         element: <HomePage />,
       },
       {
-        path: "/services",
+        path: "services",
         element: <Services />,
       },
       {
-        path: "/about",
+        path: "about",
         element: <About />,
       },
       {
-        path: "/contact",
+        path: "contact",
         element: <ContactPage />,
       },
     ],
   },
+
+  // Dashboard Routes with DashboardLayout
   {
-    path: "/",
+    path: "/dashboard",
+    element: <DashboardLayout />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
+        element: <DashboardLayout />,
+      },
+      {
+        path: "profile",
+        element: <MyProfile />,
+      },
+      {
+        path: "wishlist",
+        element: (
+          <div className="text-center py-12">
+            <h2 className="text-2xl font-bold text-base-content mb-4">
+              Wishlist
+            </h2>
+            <p className="text-base-content/70">Coming Soon</p>
+          </div>
+        ),
+      },
+      {
+        path: "settings",
+        element: (
+          <div className="text-center py-12">
+            <h2 className="text-2xl font-bold text-base-content mb-4">
+              Settings
+            </h2>
+            <p className="text-base-content/70">Coming Soon</p>
+          </div>
+        ),
+      },
+    ],
+  },
+
+  // Profile Route (direct access)
+  {
+    path: "/profile",
+    element: <RootLayout />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
+        element: <MyProfile />,
+      },
+    ],
+  },
+
+  // Authentication Routes with AuthLayout
+  {
+    path: "/auth",
     element: <AuthLayout />,
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "/login",
+        path: "login",
         element: <LoginPage />,
       },
       {
-        path: "/register",
+        path: "register",
         element: <RegisterPage />,
       },
       {
-        path: "/forgot-password",
+        path: "forgot-password",
         element: <ForgetPage />,
       },
     ],
   },
+
+  // Legacy Auth Routes (direct access)
+  {
+    path: "login",
+    element: <LoginPage />,
+  },
+  {
+    path: "register",
+    element: <RegisterPage />,
+  },
+  {
+    path: "forgot-password",
+    element: <ForgetPage />,
+  },
+
+  // 404 Not Found (must be last)
   {
     path: "*",
     element: <NotFound />,
