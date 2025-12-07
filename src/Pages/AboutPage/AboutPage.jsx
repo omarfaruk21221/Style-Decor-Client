@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaAward, FaUsers, FaHeart, FaCheckCircle } from 'react-icons/fa';
 import { MdDesignServices } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
 const About = () => {
     const stats = [
@@ -45,21 +46,21 @@ const About = () => {
                 {stats.map((stat, index) => (
                     <div
                         key={index}
-                        className="glass-effect p-6 rounded-2xl text-center hover:scale-105 transition-all duration-300"
+                        className="bg-gradient-to-bl from-secondary/80 to-primary/90 p-6 text-base-100 rounded-2xl text-center hover:scale-105 transition-all duration-300"
                     >
                         <div className="flex justify-center text-primary text-4xl mb-4">
                             {stat.icon}
                         </div>
                         <div className="text-3xl font-bold mb-2">{stat.number}</div>
-                        <div className="text-base-content/60">{stat.label}</div>
+                        <div className="text-shadow-primary">{stat.label}</div>
                     </div>
                 ))}
             </div>
 
             {/* Our Story */}
-            <div className="glass-effect p-12 rounded-3xl mb-16">
-                <h2 className="text-4xl font-bold mb-6 text-center">Our Story</h2>
-                <div className="max-w-3xl mx-auto space-y-4 text-base-content/70 text-lg">
+            <div className="shadow-2xl border border-accent/20 p-12 rounded-3xl mb-16">
+                <h2 className="text-4xl font-bold mb-6 text-center text-accent">Our Story</h2>
+                <div className="max-w-3xl mx-auto space-y-4 text-accent-content/50 text-lg">
                     <p>
                         Founded in 2024, Style Decor has been transforming spaces and exceeding client expectations with our innovative interior design solutions. Our journey began with a simple mission: to make beautiful, functional design accessible to everyone.
                     </p>
@@ -73,13 +74,13 @@ const About = () => {
             </div>
 
             {/* Our Values */}
-            <div className="mb-16">
+            <div className="mb-16 ">
                 <h2 className="text-4xl font-bold mb-12 text-center">Our Values</h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-3  gap-8">
                     {values.map((value, index) => (
                         <div
                             key={index}
-                            className="glass-effect p-8 rounded-2xl hover:scale-105 transition-all duration-300"
+                            className=" backdrop-blur-2xl bg-base-100 shadow-2xl border border-primary/30 p-8 rounded-2xl hover:scale-105 transition-all duration-300"
                         >
                             <div className="flex justify-center text-primary mb-4">
                                 {value.icon}
@@ -94,14 +95,14 @@ const About = () => {
             </div>
 
             {/* CTA */}
-            <div className="glass-effect p-12 rounded-3xl text-center">
+            <div className="bg-gradient-to-tr from-secondary/80 to-primary/90 p-12 rounded-3xl text-center">
                 <h2 className="text-4xl font-bold mb-4">Let's Work Together</h2>
                 <p className="text-xl text-base-content/70 mb-8">
                     Ready to transform your space? Get in touch with us today!
                 </p>
-                <button className="btn btn-primary btn-lg">
+                <Link to={'/contact'} className="btn btn-primary btn-lg">
                     Contact Us
-                </button>
+                </Link>
             </div>
         </div>
     );

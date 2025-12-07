@@ -9,7 +9,6 @@ const Navbar = () => {
     { path: "/services", label: "Services" },
     { path: "/about", label: "About" },
     { path: "/contact", label: "Contact" },
-    { path: "/", label: "DashBord" },
   ];
 
   // Navigation Links Component
