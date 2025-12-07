@@ -2,37 +2,9 @@ import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 import Logo from "./Logo";
+import NavLinks from "./NavLinks";
 
 const Navbar = () => {
-  const navLinks = [
-    { path: "/", label: "Home" },
-    { path: "/services", label: "Services" },
-    { path: "/about", label: "About" },
-    { path: "/contact", label: "Contact" },
-  ];
-
-  // Navigation Links Component
-  const Links = (
-    <>
-      {navLinks.map((link) => (
-        <li key={link.path}>
-          <NavLink
-            to={link.path}
-            className={({ isActive }) =>
-              `transition-all duration-300 px-3 py-2 rounded-lg ${
-                isActive
-                  ? "bg-gradient-to-r from-primary to-secondary text-primary-content font-semibold shadow-lg shadow-primary/50"
-                  : "hover:bg-primary/20 hover:text-primary text-base-content hover:shadow-md"
-              }`
-            }
-          >
-            {link.label}
-          </NavLink>
-        </li>
-      ))}
-    </>
-  );
-
   return (
     <div className="navbar fixed top-0 left-0 w-full z-50 px-4 md:px-8 bg-transparent transition-all duration-300 backdrop-blur-xl border-b border-slate-200/50 shadow-primary/50 ">
       {/* Navbar Start - Logo and Mobile Menu */}
@@ -58,7 +30,7 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-transparent  rounded-lg z-[1] mt-3 w-52 p-2 shadow-lg backdrop-blur-sm"
           >
-            {Links}
+            <NavLinks />
           </ul>
         </div>
         <Logo />
@@ -66,7 +38,9 @@ const Navbar = () => {
 
       {/* Navbar Center - Desktop Navigation Links */}
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 gap-2">{Links}</ul>
+        <ul className="menu menu-horizontal px-1 gap-2">
+          <NavLinks />
+        </ul>
       </div>
 
       {/* Navbar End - Theme Toggle and Auth Buttons */}

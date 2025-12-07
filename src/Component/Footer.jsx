@@ -49,94 +49,169 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="footer sm:footer-horizontal bg-primary/80 text-neutral-content p-10">
-      <aside className="flex flex-col md:flex-row items-center gap-6">
-        <img src={bgLogo} className="w-60 h-50 rounded-4xl fill-current" />
-        <section>
-          <h1 className="text-xl">
-            <span className="text-2xl text-secondary"> Style Decor Ltd.</span>
-            <br />
-            <span className="text-sm text-secondary-content ">
-              Providing reliable design services since 2024
-            </span>
-          </h1>
-          <span className="mt-4 ">
-            <p className="text-lg text-secondary">Working Hours:</p>
-            <p className="text-m text-accent">Mon - Fri: 9:00 AM - 6:00 PM</p>
-            <p className="text-md text-warning">Sat - Sun: Closed</p>
-          </span>
-        </section>
-      </aside>
-      <aside className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
-        <h1 className="text-xl font-bold text-secondary mb-6">
-          Contact Details
-        </h1>
-        <div className="space-y-4">
-          <div className="flex items-center gap-3 hover:translate-x-2 transition-transform duration-300">
-            <FaPhone className="w-5 h-5 text-warning flex-shrink-0" />
-            <div>
-              <p className="text-sm text-secondary-content">Phone</p>
+    <footer className="bg-gradient-to-b from-base-300 to-base-200 text-base-content">
+      {/* Main Footer Content */}
+      <div className="max-w-7xl mx-auto px-6 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          {/* Company Info */}
+          <div className="lg:col-span-1">
+            <div className="flex items-center gap-4 mb-6">
+              <img src={bgLogo} alt="Logo" className="w-16 h-16 rounded-xl" />
+              <div>
+                <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                  Style Decor
+                </h3>
+                <p className="text-sm text-base-content/70">Since 2024</p>
+              </div>
+            </div>
+            <p className="text-sm text-base-content/70 mb-4">
+              Professional interior design services to transform your space into
+              a beautiful and functional environment.
+            </p>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h4 className="text-lg font-bold text-primary mb-4">Quick Links</h4>
+            <ul className="space-y-2">
+              <li>
+                <a
+                  href="/"
+                  className="text-base-content/70 hover:text-primary transition-colors"
+                >
+                  Home
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/services"
+                  className="text-base-content/70 hover:text-primary transition-colors"
+                >
+                  Services
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/about"
+                  className="text-base-content/70 hover:text-primary transition-colors"
+                >
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/contact"
+                  className="text-base-content/70 hover:text-primary transition-colors"
+                >
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Working Hours */}
+          <div>
+            <h4 className="text-lg font-bold text-primary mb-4">
+              Working Hours
+            </h4>
+            <div className="space-y-2 text-sm">
+              <div className="flex items-center justify-start gap-3">
+                <span className="text-base-content/70">Mon - Fri:</span>
+                <span className="font-semibold text-accent">
+                  9:00 AM - 6:00 PM
+                </span>
+              </div>
+              <div className="flex items-center justify-start gap-3">
+                <span className="text-base-content/70">Saturday:</span>
+                <span className="font-semibold text-warning">
+                  10:00 AM - 4:00 PM
+                </span>
+              </div>
+              <div className="flex items-center justify-start gap-3">
+                <span className="text-base-content/70">Sunday:</span>
+                <span className="font-semibold text-error">Closed</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Contact Info */}
+          <div className="bg-white/10 backdrop-blur-sm px-5 rounded-xl border border-white/20">
+            <h4 className="text-lg font-bold text-primary mb-4">
+              Get in Touch
+            </h4>
+            <div className="space-y-3">
               <a
                 href="tel:+8801768838715"
-                className="text-lg font-semibold hover:text-warning transition-colors"
+                className="flex items-center gap-3 text-base-content/80 hover:text-primary transition-colors group"
               >
-                +880 1768-838715
+                <FaPhone className="text-warning group-hover:scale-110 transition-transform" />
+                <span className="text-sm">+880 1768-838715</span>
               </a>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3 hover:translate-x-2 transition-transform duration-300">
-            <FaEnvelope className="w-5 h-5 text-accent flex-shrink-0" />
-            <div>
-              <p className="text-sm text-secondary-content">Email</p>
               <a
                 href="mailto:info@styledecor.com"
-                className="text-lg font-semibold hover:text-accent transition-colors"
+                className="flex items-center gap-3 text-base-content/80 hover:text-primary transition-colors group"
               >
-                info@styledecor.com
+                <FaEnvelope className="text-accent group-hover:scale-110 transition-transform" />
+                <span className="text-sm">info@styledecor.com</span>
               </a>
+              <div className="flex items-start gap-3 text-base-content/80 group">
+                <FaMapMarkerAlt className="text-success mt-1" />
+                <span className="text-sm">Banani, Dhaka, Bangladesh</span>
+              </div>
             </div>
           </div>
+        </div>
 
-          <div className="flex items-start gap-3 hover:translate-x-2 transition-transform duration-300">
-            <FaMapMarkerAlt className="w-5 h-5 text-success flex-shrink-0 mt-1" />
-            <div>
-              <p className="text-sm text-secondary-content">Address</p>
-              <a
-                href="#"
-                className="text-lg font-semibold hover:text-success transition-colors"
-              >
-                Banani, Dhaka, Bangladesh
-              </a>
-            </div>
+        {/* Social Links Section */}
+        <div className="border-t border-base-content/20 pt-6 mb-4">
+          <h3 className="text-2xl font-bold text-center text-primary mb-8">
+            Connect With Us
+          </h3>
+          <div className="flex justify-center gap-4 flex-wrap">
+            {socialLinks.map((social, index) => {
+              const IconComponent = social.icon;
+              return (
+                <a
+                  key={index}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={social.label}
+                  className={`p-3 ${social.bgColor} ${social.textColor} ${social.color} hover:text-white rounded-full transition-all duration-300 transform hover:scale-120 shadow-lg hover:shadow-xl`}
+                >
+                  <IconComponent className="text-2xl" />
+                </a>
+              );
+            })}
+          </div>
+          <p className="text-center text-sm text-base-content/60 mt-6">
+            Follow us on social media for latest updates and design inspiration
+          </p>
+        </div>
+      </div>
+
+      {/* Copyright Section */}
+      <div className="bg-base-100/50 border-t border-base-content/10 px-6 py-6">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-sm text-base-content/60">
+            © {new Date().getFullYear()} Style Decor Ltd. All rights reserved.
+          </p>
+          <div className="flex gap-6 text-sm">
+            <a
+              href="#"
+              className="text-base-content/60 hover:text-primary transition-colors"
+            >
+              Privacy Policy
+            </a>
+            <a
+              href="#"
+              className="text-base-content/60 hover:text-primary transition-colors"
+            >
+              Terms of Service
+            </a>
           </div>
         </div>
-      </aside>
-      <aside className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
-        <h2 className="text-xl font-bold text-secondary mb-6">
-          Connect With Us
-        </h2>
-        <div className="flex flex-wrap gap-4">
-          {socialLinks.map((social, index) => {
-            const IconComponent = social.icon;
-            return (
-              <a
-                key={index}
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                title={social.label}
-                className={`p-4 ${social.bgColor} ${social.textColor} ${social.color} hover:text-white rounded-full transition-all duration-300 transform hover:scale-110 shadow-md group flex flex-col items-center`}
-              >
-                <IconComponent className="text-2xl" />
-              </a>
-            );
-          })}
-        </div>
-        <p className="text-sm text-secondary-content mt-4">
-          Follow us on social media for updates and inspiration
-        </p>
-      </aside>
+      </div>
     </footer>
   );
 };
