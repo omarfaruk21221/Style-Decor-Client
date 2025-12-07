@@ -1,58 +1,42 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 import Logo from "./Logo";
 
 const Navbar = () => {
+  const navLinks = [
+    { path: "/", label: "Home" },
+    { path: "/services", label: "Services" },
+    { path: "/about", label: "About" },
+    { path: "/contact", label: "Contact" },
+    { path: "/", label: "DashBord" },
+  ];
+
+  // Navigation Links Component
   const Links = (
     <>
-      <li>
-        <NavLink
-          to="/"
-          className={({ isActive }) =>
-            `transition-all duration-300 px-3 py-2 ${
-              isActive
-                ? "bg-gradient-to-r from-primary to-secondary text-primary-content rounded-lg font-semibold shadow-lg shadow-primary/50"
-                : "hover:bg-primary/20 hover:text-primary rounded-lg text-base-content hover:shadow-md"
-            }`
-          }
-        >
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/Services"
-          className={({ isActive }) =>
-            `transition-all duration-300 px-3 py-2 ${
-              isActive
-                ? "bg-gradient-to-r from-primary to-secondary text-primary-content rounded-lg font-semibold shadow-lg shadow-primary/50"
-                : "hover:bg-primary/20 hover:text-primary rounded-lg text-base-content hover:shadow-md"
-            }`
-          }
-        >
-          Services
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/about"
-          className={({ isActive }) =>
-            `transition-all duration-300 px-3 py-2 ${
-              isActive
-                ? "bg-gradient-to-r from-primary to-secondary text-primary-content rounded-lg font-semibold shadow-lg shadow-primary/50"
-                : "hover:bg-primary/20 hover:text-primary rounded-lg text-base-content hover:shadow-md"
-            }`
-          }
-        >
-          About
-        </NavLink>
-      </li>
+      {navLinks.map((link) => (
+        <li key={link.path}>
+          <NavLink
+            to={link.path}
+            className={({ isActive }) =>
+              `transition-all duration-300 px-3 py-2 rounded-lg ${
+                isActive
+                  ? "bg-gradient-to-r from-primary to-secondary text-primary-content font-semibold shadow-lg shadow-primary/50"
+                  : "hover:bg-primary/20 hover:text-primary text-base-content hover:shadow-md"
+              }`
+            }
+          >
+            {link.label}
+          </NavLink>
+        </li>
+      ))}
     </>
   );
 
   return (
-    <div className="navbar fixed top-0 left-0 w-full z-50 px-4 md:px-8 bg-transparent shadow-lg transition-all duration-300 font-display backdrop-blur-xl border-b border-slate-200/50 shadow-purple-500/5 dark:border-slate-700/20 dark:shadow-purple-500/10">
+    <div className="navbar fixed top-0 left-0 w-full z-50 px-4 md:px-8 bg-transparent transition-all duration-300 backdrop-blur-xl border-b border-slate-200/50 shadow-primary/50 ">
+      {/* Navbar Start - Logo and Mobile Menu */}
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -73,7 +57,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 dark:bg-slate-900 rounded-lg z-[1] mt-3 w-52 p-2 shadow-lg backdrop-blur-sm"
+            className="menu menu-sm dropdown-content bg-transparent  rounded-lg z-[1] mt-3 w-52 p-2 shadow-lg backdrop-blur-sm"
           >
             {Links}
           </ul>
@@ -81,18 +65,29 @@ const Navbar = () => {
         <Logo />
       </div>
 
+      {/* Navbar Center - Desktop Navigation Links */}
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 gap-2">{Links}</ul>
       </div>
 
-      <div className="navbar-end gap-2">
+      {/* Navbar End - Theme Toggle and Auth Buttons */}
+      <div className="navbar-end gap-2 md:gap-4">
         <ThemeToggle />
-        <Link as={NavLink} to="/login" className="btn btn-primary">
-          Login
-        </Link>
-        <Link as={NavLink} to="/logout" className="btn btn-primary">
-          Log Out
-        </Link>
+
+        <div className="flex gap-2">
+          <Link
+            to="/login"
+            className="btn btn-sm md:btn-md btn-outline hover:btn-primary"
+          >
+            Login
+          </Link>
+          <Link
+            to="/register"
+            className="btn btn-sm md:btn-md btn-primary hover:btn-primary/90"
+          >
+            Sign Up
+          </Link>
+        </div>
       </div>
     </div>
   );

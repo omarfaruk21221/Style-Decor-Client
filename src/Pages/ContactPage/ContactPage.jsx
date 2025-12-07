@@ -10,8 +10,8 @@ import {
 } from "react-icons/fa";
 const ContactPage = () => {
   return (
-    <section className="font-display  bg-base-100 dark:bg-base-300 min-h-screen flex items-center justify-center p-4 sm:p-6 lg:p-8">
-      <div className="w-full max-w-6xl mx-auto mt-20">
+    <section className=" min-h-screen flex items-center justify-center p-4 sm:p-6 lg:p-8">
+      <div className="w-full max-w-7xl mx-auto my-10">
         <header className="text-center mb-12 lg:mb-16">
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
@@ -19,7 +19,7 @@ const ContactPage = () => {
             transition={{ duration: 0.5 }}
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-base-content"
           >
-            GET IN <span className="text-primary">TOUCH</span>
+            GET IN <span className="text-primary">CONTACT</span>
           </motion.h1>
           <motion.div
             initial={{ width: 0 }}
@@ -29,13 +29,13 @@ const ContactPage = () => {
           ></motion.div>
         </header>
 
-        <main className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+        <main className="grid grid-cols-1  lg:grid-cols-2 gap-10 lg:gap-16 items-start">
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="space-y-8"
+            className="space-y-8 bg-base-200 p-8 sm:p-10 rounded-2xl  shadow-primary/50 shadow-2xl border border-base-content/10 flex flex-col justify-center h-full"
           >
             <div>
               <h2 className="text-2xl font-semibold text-primary mb-2">
@@ -119,12 +119,12 @@ const ContactPage = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="bg-base-200 p-8 sm:p-10 rounded-2xl shadow-xl border border-base-content/10 flex flex-col justify-center h-full"
+            className="bg-base-200 p-8 sm:p-10 rounded-2xl shadow-2xl shadow-primary/50 border border-base-content/10 flex flex-col justify-center h-full"
           >
-            <h3 className="text-2xl font-bold text-base-content mb-8 border-b border-base-content/10 pb-4">
+            <h3 className="text-2xl font-bold  text-base-content mb-8 border-b border-base-content/10 pb-4">
               Contact Info
             </h3>
-            <ul className="space-y-10">
+            <ul className="space-y-8 ">
               {/* Location (Icon + Text) */}
               <li className="flex items-center space-x-6 group">
                 <div className="flex-shrink-0 p-4 bg-primary/10 rounded-full group-hover:bg-primary/20 transition-colors duration-300">
