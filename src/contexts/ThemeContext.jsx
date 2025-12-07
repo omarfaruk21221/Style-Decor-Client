@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const ThemeContext = createContext();
 
@@ -10,19 +10,26 @@ export const useTheme = () => {
   return context;
 };
 
+// Get initial theme before React renders to prevent flash
+const getInitialTheme = () => {
+  // Check localStorage first
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme) {
+    return savedTheme === "dark";
+  }
+
+  // Fall back to system preference
+  return window.matchMedia("(prefers-color-scheme: dark)").matches;
+};
+
 export const ThemeProvider = ({ children }) => {
-  const [isDark, setIsDark] = useState(false);
+  // Initialize with saved theme to prevent flash
+  const [isDark, setIsDark] = useState(() => getInitialTheme());
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  // Load theme from localStorage on mount
+  // Apply theme immediately on mount
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
-    const isDarkMode = savedTheme ? savedTheme === "dark" : prefersDark;
-    setIsDark(isDarkMode);
-    applyTheme(isDarkMode);
+    applyTheme(isDark);
   }, []);
 
   // Apply theme to document and body
@@ -32,18 +39,21 @@ export const ThemeProvider = ({ children }) => {
 
     if (dark) {
       htmlElement.setAttribute("data-theme", "dark");
+      htmlElement.classList.add("dark");
       bodyElement.classList.add("dark");
       bodyElement.style.backgroundColor = "#020617";
       bodyElement.style.color = "#E5E7EB";
       bodyElement.style.transition = "background-color 0.3s, color 0.3s";
     } else {
       htmlElement.setAttribute("data-theme", "light");
+      htmlElement.classList.remove("dark");
       bodyElement.classList.remove("dark");
       bodyElement.style.backgroundColor = "#FFFFFF";
       bodyElement.style.color = "#1F2937";
       bodyElement.style.transition = "background-color 0.3s, color 0.3s";
     }
 
+    // Save to localStorage
     localStorage.setItem("theme", dark ? "dark" : "light");
   };
 

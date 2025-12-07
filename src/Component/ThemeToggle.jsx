@@ -1,4 +1,3 @@
-import React from "react";
 import { useTheme } from "../contexts/ThemeContext";
 import { HiSun, HiMoon } from "react-icons/hi2";
 

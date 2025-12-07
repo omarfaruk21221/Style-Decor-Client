@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
+import Logo from "./Logo";
 
 const Navbar = () => {
   const Links = (
@@ -77,12 +78,7 @@ const Navbar = () => {
             {Links}
           </ul>
         </div>
-        <a
-          href="/"
-          className="btn btn-ghost text-lg md:text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
-        >
-          Style Decor
-        </a>
+        <Logo />
       </div>
 
       <div className="navbar-center hidden lg:flex">
