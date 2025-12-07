@@ -3,10 +3,11 @@ import { FaPaintBrush, FaCouch, FaLightbulb } from 'react-icons/fa';
 import { MdDesignServices } from 'react-icons/md';
 import { IoSparkles } from 'react-icons/io5';
 import { BiSolidPalette } from 'react-icons/bi';
+import LoaderWithLogo from '../../Component/Spiners/LoaderWithLogo';
 
 const HomePage = () => {
     return (
-        <div className="min-h-screen bg-gradient-to-br from-base-100 to-base-200 transition-colors duration-300">
+        <div className="border bg-gradient-to-br from-base-100 to-base-200 transition-colors duration-300">
             {/* Hero Section */}
             <section className="container mx-auto px-4 py-20">
                 <div className="text-center max-w-4xl mx-auto">

@@ -43,7 +43,7 @@ const Services = () => {
     ];
 
     return (
-        <div className="min-h-screen py-12">
+        <div className="py-12">
             {/* Hero Section */}
             <div className="text-center mb-16">
                 <div className="flex justify-center mb-6">

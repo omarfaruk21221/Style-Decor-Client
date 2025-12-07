@@ -29,7 +29,7 @@ const About = () => {
     ];
 
     return (
-        <div className="min-h-screen py-12">
+        <div className="py-12">
             {/* Hero Section */}
             <div className="text-center mb-16">
                 <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
