@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
-import logo2 from "../../public/assets/logo2.png";
 
 const Navbar = () => {
   const Links = (
@@ -10,60 +9,42 @@ const Navbar = () => {
         <NavLink
           to="/"
           className={({ isActive }) =>
-            `relative transition-all duration-300 px-3 py-2 ${isActive
-              ? "bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent font-bold"
-              : "text-base-content hover:text-primary"
+            `transition-all duration-300 px-3 py-2 ${
+              isActive
+                ? "bg-gradient-to-r from-primary to-secondary text-primary-content rounded-lg font-semibold shadow-lg shadow-primary/50"
+                : "hover:bg-primary/20 hover:text-primary rounded-lg text-base-content hover:shadow-md"
             }`
           }
         >
-          {({ isActive }) => (
-            <>
-              Home
-              {isActive && (
-                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-primary to-accent rounded-full" />
-              )}
-            </>
-          )}
+          Home
         </NavLink>
       </li>
       <li>
         <NavLink
-          to="/services"
+          to="/Services"
           className={({ isActive }) =>
-            `relative transition-all duration-300 px-3 py-2 ${isActive
-              ? "bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent font-bold"
-              : "text-base-content hover:text-primary"
+            `transition-all duration-300 px-3 py-2 ${
+              isActive
+                ? "bg-gradient-to-r from-primary to-secondary text-primary-content rounded-lg font-semibold shadow-lg shadow-primary/50"
+                : "hover:bg-primary/20 hover:text-primary rounded-lg text-base-content hover:shadow-md"
             }`
           }
         >
-          {({ isActive }) => (
-            <>
-              Services
-              {isActive && (
-                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-primary to-accent rounded-full" />
-              )}
-            </>
-          )}
+          Services
         </NavLink>
       </li>
       <li>
         <NavLink
           to="/about"
           className={({ isActive }) =>
-            `relative transition-all duration-300 px-3 py-2 ${isActive
-              ? "bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent font-bold"
-              : "text-base-content hover:text-primary"
+            `transition-all duration-300 px-3 py-2 ${
+              isActive
+                ? "bg-gradient-to-r from-primary to-secondary text-primary-content rounded-lg font-semibold shadow-lg shadow-primary/50"
+                : "hover:bg-primary/20 hover:text-primary rounded-lg text-base-content hover:shadow-md"
             }`
           }
         >
-          {({ isActive }) => (
-            <>
-              About
-              {isActive && (
-                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-primary to-accent rounded-full" />
-              )}
-            </>
-          )}
+          About
         </NavLink>
       </li>
     </>
@@ -96,13 +77,12 @@ const Navbar = () => {
             {Links}
           </ul>
         </div>
-        <Link
-          to="/"
-          className="btn btn-ghost text-lg md:text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent flex items-center gap-2"
+        <a
+          href="/"
+          className="btn btn-ghost text-lg md:text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
         >
-          <img className="w-12 h-12" src={logo2} alt="company logo" />
           Style Decor
-        </Link>
+        </a>
       </div>
 
       <div className="navbar-center hidden lg:flex">
@@ -111,14 +91,12 @@ const Navbar = () => {
 
       <div className="navbar-end gap-2">
         <ThemeToggle />
-        <div className="hidden lg:flex gap-2">
-          <Link to="/login" className="btn btn-primary">
-            Login
-          </Link>
-          <Link to="/register" className="btn btn-primary">
-            Register
-          </Link>
-        </div>
+        <Link as={NavLink} to="/login" className="btn btn-primary">
+          Login
+        </Link>
+        <Link as={NavLink} to="/logout" className="btn btn-primary">
+          Log Out
+        </Link>
       </div>
     </div>
   );
