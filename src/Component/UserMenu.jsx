@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { FaUser, FaCog, FaSignOutAlt, FaHeart } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Avator from "./Avator";
+import useAuth from "../Hooks/useAuth";
+import toast from "daisyui/components/toast";
 
 const UserMenu = () => {
+  const { user, signOutUser } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
-
+  const navigate = useNavigate();
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
@@ -35,6 +38,14 @@ const UserMenu = () => {
     },
   ];
 
+  // =========== logout feature ===========
+  const handleLogOut = () => {
+    closeDropdown();
+    signOutUser();
+    navigate("/");
+    toast.success("Logged out successfully!");
+  };
+
   return (
     <div className="relative">
       {/* Avatar Button */}
@@ -59,13 +70,13 @@ const UserMenu = () => {
           <div className="bg-gradient-to-r from-primary to-secondary p-4 text-white">
             <div className="flex items-center gap-3">
               <img
-                src="https://img.daisyui.com/images/profile/demo/spiderperson@192.webp"
+                src={user.photoURL || "https://i.ibb.co/4pDNDk1/avatar.png"}
                 alt="User"
                 className="w-12 h-12 rounded-full border-2 border-white"
               />
               <div>
-                <p className="font-bold text-sm">User Name</p>
-                <p className="text-xs opacity-90">user@example.com</p>
+                <p className="font-bold text-sm">{user.displayName}</p>
+                <p className="text-xs opacity-90">{user.email}</p>
               </div>
             </div>
           </div>
@@ -97,7 +108,7 @@ const UserMenu = () => {
           {/* Logout Button */}
           <div className="p-2">
             <button
-              onClick={closeDropdown}
+              onClick={handleLogOut}
               className="w-full flex items-center gap-3 bg-error/10 hover:bg-error/20 text-error transition-colors duration-150 px-4 py-2 rounded-lg font-medium text-sm"
             >
               <FaSignOutAlt className="w-4 h-4" />

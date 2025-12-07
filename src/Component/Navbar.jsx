@@ -4,8 +4,11 @@ import ThemeToggle from "./ThemeToggle";
 import Logo from "./Logo";
 import NavLinks from "./NavLinks";
 import UserMenu from "./UserMenu";
+import useAuth from "../Hooks/useAuth";
 
 const Navbar = () => {
+  const { user } = useAuth();
+  console.log("Navbar User:", user);
   return (
     <div className="navbar fixed top-0 left-0 w-full z-50 px-4 md:px-8 bg-transparent transition-all duration-300 backdrop-blur-xl border-b border-slate-200/50 shadow-primary/50 ">
       {/* Navbar Start - Logo and Mobile Menu */}
@@ -49,10 +52,13 @@ const Navbar = () => {
         <ThemeToggle />
 
         <div className="flex gap-2">
-          <Link to="/login" className="btn btn-primary">
-            Log In
-          </Link>
-          <UserMenu />
+          {user ? (
+            <UserMenu />
+          ) : (
+            <Link to="/login" className="btn btn-primary">
+              Log In
+            </Link>
+          )}
         </div>
       </div>
     </div>

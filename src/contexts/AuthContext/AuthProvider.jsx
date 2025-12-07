@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { AuthContext } from "./AuthContext";
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
@@ -10,7 +9,8 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../../Firebase/firebase.config";
-import DotLoading from "../../Components/Spinner/DotLoading";
+import { AuthContext } from "./AuthContext";
+import LoaderWithLogo from "../../Component/Spiners/LoaderWithLogo";
 const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
@@ -55,7 +55,7 @@ const AuthProvider = ({ children }) => {
   }, []);
   //   ---- output ---
   if (loading) {
-    return <DotLoading />;
+    return <LoaderWithLogo />;
   }
   const authInfo = {
     registerUser,
@@ -68,7 +68,10 @@ const AuthProvider = ({ children }) => {
     setLoading,
     updateUserProfile,
   };
-  return <AuthContext value={authInfo}>{children}</AuthContext>;
+
+  return (
+    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+  );
 };
 
 export default AuthProvider;
