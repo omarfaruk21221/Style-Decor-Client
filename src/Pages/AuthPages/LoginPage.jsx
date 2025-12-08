@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import logo3 from "../../../public/assets/logo3.png";
 import Logo from "../../Component/Logo";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -10,8 +10,12 @@ import GoogleSignIn from "./SocialLogIn/GoogleSignIn";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { signInUser, setUser } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
+
+  // Get the route user was trying to access before login
+  const from = location.state?.from?.pathname || "/";
 
   const {
     register,
@@ -31,12 +35,13 @@ const LoginPage = () => {
         const user = result.user;
         setUser(user);
 
-        // Navigate to home page after successful login
+        // Show success toast
+        toast.success("Login successful! Welcome back! 🎉");
+
+        // Navigate to the route user was trying to access, or home page
         setTimeout(() => {
-          navigate("/");
-          // Show success toast
-          toast.success("Login successful! Welcome back! 🎉");
-        }, 1500);
+          navigate(from, { replace: true });
+        }, 1000);
       })
       .catch((error) => {
         console.log("Login error:", error.message);

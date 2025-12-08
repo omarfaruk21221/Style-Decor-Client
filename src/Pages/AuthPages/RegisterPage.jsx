@@ -6,16 +6,20 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import GoogleSignIn from "./SocialLogIn/GoogleSignIn";
-import toast from "daisyui/components/toast";
+import { toast } from "react-toastify";
+import axios from "axios";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
-  const { registerUser } = useAuth();
+  const { registerUser, updateUserProfile } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
   const [imageFile, setImageFile] = useState(null);
   const [imageError, setImageError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
@@ -63,44 +67,91 @@ const RegisterPage = () => {
   };
 
   // ====== Handle Form Submit ======
-  const handleRegister = (data) => {
-    // ==== create user with email and password =====
-    registerUser(data.email, data.password)
-      .then((result) => {
-        const user = result.user;
-        toast.success("Registration successful! Welcome aboard! 🎉");
-        console.log("User Registered:", user);
+  const handleRegister = async (data) => {
+    // Validate image
+    const profileImg = imageFile || data.photo?.[0];
+    if (!profileImg) {
+      toast.error("Please select a profile image");
+      setImageError("Profile image is required");
+      return;
+    }
 
-        // Create FormData to include file
-        const formDataToSend = new FormData();
-        formDataToSend.append("name", data.name);
-        formDataToSend.append("email", data.email);
-        formDataToSend.append("password", data.password);
-        formDataToSend.append("confirmPassword", data.confirmPassword);
+    setIsLoading(true);
+    try {
+      // Step 1: Create Firebase user
+      console.log("Step 1: Creating Firebase user...");
+      const result = await registerUser(data.email, data.password);
+      const user = result.user;
+      console.log(" Firebase user created:", user.uid);
+      toast.success("Registration successful! Welcome aboard! 🎉");
 
-        // Add image file if selected
-        if (imageFile) {
-          formDataToSend.append("imageFile", imageFile);
-        }
+      // Step 2: Upload image to imgBB
+      console.log("Step 2: Uploading image to imgBB...");
+      const formData = new FormData();
+      formData.append("image", profileImg);
 
-        // Print all data to console
-        console.log("=== REGISTER FORM DATA ===");
-        console.log("Name:", data.name);
-        console.log("Email:", data.email);
-        console.log("Password:", data.password);
-        console.log("Image File:", imageFile);
-        console.log("FormData Object:", formDataToSend);
-        console.log("========================");
+      let imageUrl = "";
+      try {
+        const imgbbResponse = await axios.post(
+          `https://api.imgbb.com/1/upload?key=${
+            import.meta.env.VITE_image_host_key
+          }`,
+          formData
+        );
+        imageUrl = imgbbResponse.data.data.display_url;
+        console.log("✅ Image uploaded to imgBB:", imageUrl);
+      } catch (imgbbError) {
+        console.error("❌ Image upload failed:", imgbbError);
+        toast.warning(
+          "Image upload failed, but continuing with registration..."
+        );
+        // Continue without image - use default or empty
+        imageUrl = "";
+      }
 
-        // TODO: Send formDataToSend to API
+      // Step 3: Save user data to backend database
+      console.log("Step 3: Saving user data to backend database...");
+      const userInfo = {
+        UserName: data.name,
+        userEmail: data.email,
+        userImage: imageUrl || "",
+        uid: user.uid, // Firebase UID for reference
+        role: "user", // Default role
+      };
 
-        // Navigate to login page after successful registration
-        console.log("Registration successful! Navigating to login...");
+      console.log("📤 Sending to backend:", userInfo);
+      const dbResponse = await axiosSecure.post("/users", userInfo);
+      console.log("✅ User saved to database:", dbResponse.data);
+
+      // Step 4: Update Firebase profile
+      console.log("Step 4: Updating Firebase profile...");
+      const userProfile = {
+        displayName: data.name,
+        photoURL: imageUrl || "",
+      };
+
+      try {
+        await updateUserProfile(userProfile);
+        console.log("✅ Firebase profile updated successfully");
+      } catch (profileError) {
+        console.warn(
+          "⚠️ Firebase profile update failed:",
+          profileError.message
+        );
+        // Don't block navigation if profile update fails
+      }
+
+      // Step 5: Success - Navigate to login
+      toast.success("Account created successfully! Redirecting to login...");
+      setTimeout(() => {
         navigate("/login");
-      })
-      .catch((error) => {
-        console.log("Registration error:", error.message);
-      });
+      }, 1500);
+    } catch (error) {
+      console.error("❌ Registration error:", error);
+      toast.error(error.message || "Registration failed! Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -188,12 +239,13 @@ const RegisterPage = () => {
             {/* Image File Upload Field (Optional) */}
             <label className="flex flex-col">
               <span className="text-base-content font-medium mb-2">
-                Profile Image (Optional)
+                Profile Image
               </span>
               <input
                 type="file"
                 onChange={handleImageChange}
                 accept="image/*"
+                {...register("photo", { required: "Image is required" })}
                 className={`file-input file-input-bordered w-full ${
                   imageError ? "file-input-error" : ""
                 }`}
@@ -318,8 +370,19 @@ const RegisterPage = () => {
             </label>
 
             {/* Register Button */}
-            <button type="submit" className="btn btn-primary w-full mt-4">
-              Create Account
+            <button
+              type="submit"
+              className="btn btn-primary w-full mt-4"
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <>
+                  <span className="loading loading-spinner loading-sm"></span>
+                  Creating Account...
+                </>
+              ) : (
+                "Create Account"
+              )}
             </button>
             {/* Google Register Button */}
             <GoogleSignIn />

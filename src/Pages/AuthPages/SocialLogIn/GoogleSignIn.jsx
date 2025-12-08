@@ -9,15 +9,18 @@ const GoogleSignIn = () => {
   const location = useLocation();
   // console.log("googole",location)
   const navigate = useNavigate();
-  toast.success("Google Log In Successfully And Save User!!!");
   //   const axiosSecure = useAxiosSecure();
 
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
         // console.log(result.user);
-        toast.success("Sign In Successfully And Save User!!!");
-        navigate(location.state || "/");
+        toast.success("Logged in with Google successfully!");
+
+        // Navigate to the route user was trying to access, or home page
+        const from = location.state?.from?.pathname || "/";
+        navigate(from, { replace: true });
+
         ///create user at the mongodb
         const data = result.user;
         const userInfo = {
@@ -27,10 +30,12 @@ const GoogleSignIn = () => {
         };
         // axiosSecure.post("/users", userInfo).then((res) => {
         //   console.log("user create in the database", res.data);
-        //   navigate(location.state || "/");
         // });
       })
-      .then((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        toast.error("Google sign-in failed. Please try again.");
+      });
   };
   return (
     <button

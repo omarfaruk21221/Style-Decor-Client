@@ -12,7 +12,7 @@ import RegisterPage from "../Pages/AuthPages/RegisterPage.jsx";
 import ForgetPage from "../Pages/AuthPages/ForgetPage.jsx";
 import AuthLayout from "../Layouts/AuthLayout.jsx";
 import MyProfile from "../Pages/MyProfile/MyProfile.jsx";
-
+import PrivetRoutes from "./PrivetRoutes.jsx";
 
 export const router = createBrowserRouter([
   // Main Routes with RootLayout
@@ -31,7 +31,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "about",
-        element: <About />,
+        element: (
+          <PrivetRoutes>
+            <About />
+          </PrivetRoutes>
+        ),
       },
       {
         path: "contact",
@@ -40,10 +44,14 @@ export const router = createBrowserRouter([
     ],
   },
 
-  // Dashboard Routes with DashboardLayout
+  // Dashboard Routes with DashboardLayout (Protected)
   {
     path: "/dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <PrivetRoutes>
+        <DashboardLayout />
+      </PrivetRoutes>
+    ),
     errorElement: <ErrorPage />,
     children: [
       {
@@ -79,7 +87,7 @@ export const router = createBrowserRouter([
     ],
   },
 
-  // Profile Route (direct access)
+  // Profile Route (direct access - Protected)
   {
     path: "/profile",
     element: <RootLayout />,
@@ -87,7 +95,11 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <MyProfile />,
+        element: (
+          <PrivetRoutes>
+            <MyProfile />
+          </PrivetRoutes>
+        ),
       },
     ],
   },
