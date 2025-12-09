@@ -72,7 +72,7 @@ const UserMenu = () => {
               <img
                 src={user.photoURL || "https://i.ibb.co/4pDNDk1/avatar.png"}
                 alt="User"
-                className="w-12 h-12 rounded-full border-2 border-white"
+                className="w-10 h-10 rounded-full border-2 border-white"
               />
               <div>
                 <p className="font-bold text-sm">{user.displayName}</p>

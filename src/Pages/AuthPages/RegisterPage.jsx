@@ -67,8 +67,8 @@ const RegisterPage = () => {
   };
 
   // ====== Handle Form Submit ======
+  // ====== Handle Form Submit ======
   const handleRegister = async (data) => {
-    // Validate image
     const profileImg = imageFile || data.photo?.[0];
     if (!profileImg) {
       toast.error("Please select a profile image");
@@ -77,78 +77,63 @@ const RegisterPage = () => {
     }
 
     setIsLoading(true);
+
     try {
-      // Step 1: Create Firebase user
+      // Step 1: Firebase user create
       console.log("Step 1: Creating Firebase user...");
       const result = await registerUser(data.email, data.password);
       const user = result.user;
       console.log(" Firebase user created:", user.uid);
-      toast.success("Registration successful! Welcome aboard! 🎉");
+      toast.success("Registration successful! Welcome!");
 
       // Step 2: Upload image to imgBB
-      console.log("Step 2: Uploading image to imgBB...");
+      console.log("Step 2: Uploading image...");
       const formData = new FormData();
       formData.append("image", profileImg);
 
       let imageUrl = "";
       try {
-        const imgbbResponse = await axios.post(
+        const res = await axios.post(
           `https://api.imgbb.com/1/upload?key=${
             import.meta.env.VITE_image_host_key
           }`,
           formData
         );
-        imageUrl = imgbbResponse.data.data.display_url;
-        console.log("✅ Image uploaded to imgBB:", imageUrl);
-      } catch (imgbbError) {
-        console.error("❌ Image upload failed:", imgbbError);
-        toast.warning(
-          "Image upload failed, but continuing with registration..."
-        );
-        // Continue without image - use default or empty
+        imageUrl = res.data.data.display_url;
+        console.log(" Image uploaded:", imageUrl);
+      } catch (imgErr) {
+        console.error("Image upload failed:", imgErr);
+        toast.warning("Image upload failed, using empty image.");
         imageUrl = "";
       }
 
-      // Step 3: Save user data to backend database
-      console.log("Step 3: Saving user data to backend database...");
+      // Step 3: Corrected user object for backend
       const userInfo = {
-        UserName: data.name,
-        userEmail: data.email,
-        userImage: imageUrl || "",
-        uid: user.uid, // Firebase UID for reference
-        role: "user", // Default role
+        name: user.name,
+        email: user.email,
+        image: imageUrl,
+        uid: user.uid,
       };
 
-      console.log("📤 Sending to backend:", userInfo);
-      const dbResponse = await axiosSecure.post("/users", userInfo);
-      console.log("✅ User saved to database:", dbResponse.data);
+      console.log("Sending to backend:", userInfo);
 
-      // Step 4: Update Firebase profile
-      console.log("Step 4: Updating Firebase profile...");
-      const userProfile = {
+      const dbRes = await axiosSecure.post("/users", userInfo);
+      console.log(" User saved to DB:", dbRes.data);
+
+      // Step 4: Firebase profile update
+      await updateUserProfile({
         displayName: data.name,
-        photoURL: imageUrl || "",
-      };
+        photoURL: imageUrl,
+      });
 
-      try {
-        await updateUserProfile(userProfile);
-        console.log("✅ Firebase profile updated successfully");
-      } catch (profileError) {
-        console.warn(
-          "⚠️ Firebase profile update failed:",
-          profileError.message
-        );
-        // Don't block navigation if profile update fails
-      }
-
-      // Step 5: Success - Navigate to login
-      toast.success("Account created successfully! Redirecting to login...");
-      setTimeout(() => {
-        navigate("/login");
-      }, 1500);
-    } catch (error) {
-      console.error("❌ Registration error:", error);
-      toast.error(error.message || "Registration failed! Please try again.");
+      // Step 5: success message and redirect
+      toast.success("Account created! Redirecting to login...");
+       navigate("/");
+      // setTimeout(() => {
+      // }, 1500);
+    } catch (err) {
+      console.error("Registration error:", err);
+      toast.error(err.message || "Registration failed!");
     } finally {
       setIsLoading(false);
     }

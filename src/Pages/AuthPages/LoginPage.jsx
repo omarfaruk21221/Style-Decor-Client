@@ -39,9 +39,10 @@ const LoginPage = () => {
         toast.success("Login successful! Welcome back! 🎉");
 
         // Navigate to the route user was trying to access, or home page
-        setTimeout(() => {
-          navigate(from, { replace: true });
-        }, 1000);
+        navigate(from, { replace: true });
+        // setTimeout(() => {
+        //  ;
+        // }, 1000);
       })
       .catch((error) => {
         console.log("Login error:", error.message);

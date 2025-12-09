@@ -13,6 +13,9 @@ import ForgetPage from "../Pages/AuthPages/ForgetPage.jsx";
 import AuthLayout from "../Layouts/AuthLayout.jsx";
 import MyProfile from "../Pages/MyProfile/MyProfile.jsx";
 import PrivetRoutes from "./PrivetRoutes.jsx";
+import Dashboard from "../Pages/Dashbaord/Dashboard.jsx";
+import UserServices from "../Pages/Dashbaord/UserPages/UserServices.jsx";
+import PaymentHistory from "../Pages/Dashbaord/UserPages/PaymentHistory.jsx";
 
 export const router = createBrowserRouter([
   // Main Routes with RootLayout
@@ -56,11 +59,25 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <DashboardLayout />,
+        element: <Dashboard/>,
       },
+      // admin routes
+       {
+        path: "profile",
+        element: <MyProfile />,
+      },
+      // user routes
       {
         path: "profile",
         element: <MyProfile />,
+      },
+      {
+        path: "my-services",
+        element: <UserServices/>,
+      },
+      {
+        path: "payment-history",
+        element: <PaymentHistory/>,
       },
       {
         path: "wishlist",
@@ -82,23 +99,6 @@ export const router = createBrowserRouter([
             </h2>
             <p className="text-base-content/70">Coming Soon</p>
           </div>
-        ),
-      },
-    ],
-  },
-
-  // Profile Route (direct access - Protected)
-  {
-    path: "/profile",
-    element: <RootLayout />,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        index: true,
-        element: (
-          <PrivetRoutes>
-            <MyProfile />
-          </PrivetRoutes>
         ),
       },
     ],

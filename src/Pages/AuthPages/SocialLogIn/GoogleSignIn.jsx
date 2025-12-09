@@ -2,40 +2,36 @@ import React from "react";
 import useAuth from "../../../Hooks/useAuth";
 import { useLocation, useNavigate } from "react-router";
 import { toast } from "react-toastify";
-// import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const GoogleSignIn = () => {
   const { googleSignIn } = useAuth();
   const location = useLocation();
   // console.log("googole",location)
   const navigate = useNavigate();
-  //   const axiosSecure = useAxiosSecure();
+  const axiosSecure = useAxiosSecure();
 
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
         // console.log(result.user);
-        toast.success("Logged in with Google successfully!");
-
-        // Navigate to the route user was trying to access, or home page
-        const from = location.state?.from?.pathname || "/";
-        navigate(from, { replace: true });
+        toast.success("Sign In Successfully And Save User!!!");
 
         ///create user at the mongodb
         const data = result.user;
+
         const userInfo = {
-          displayName: data.name,
-          photoURL: data.photoURL,
+          name: data.name,
           email: data.email,
+          image: data.photoURL,
+          uid: data.uid,
         };
-        // axiosSecure.post("/users", userInfo).then((res) => {
-        //   console.log("user create in the database", res.data);
-        // });
+        axiosSecure.post("/users", userInfo).then((res) => {
+          console.log("user create in the database", res.data);
+          navigate(location.state || "/");
+        });
       })
-      .catch((error) => {
-        console.log(error);
-        toast.error("Google sign-in failed. Please try again.");
-      });
+      .then((error) => console.log(error));
   };
   return (
     <button
