@@ -16,6 +16,7 @@ import PrivetRoutes from "./PrivetRoutes.jsx";
 import Dashboard from "../Pages/Dashbaord/Dashboard.jsx";
 import UserServices from "../Pages/Dashbaord/UserPages/UserServices.jsx";
 import PaymentHistory from "../Pages/Dashbaord/UserPages/PaymentHistory.jsx";
+import ManageUsers from "../Pages/Dashbaord/AminPages/ManageUsers.jsx";
 
 export const router = createBrowserRouter([
   // Main Routes with RootLayout
@@ -101,6 +102,11 @@ export const router = createBrowserRouter([
           </div>
         ),
       },
+      // Admin routes (you can add more admin-specific routes here)
+      {
+        path: "manage-users",
+        element:<ManageUsers/>,
+      }
     ],
   },
 

@@ -8,13 +8,14 @@ import {
 } from "react-icons/md";
 import { FaArrowAltCircleLeft, FaHome, FaUser } from "react-icons/fa";
 import useRole from "../Hooks/useRole";
-import RoundedLoader from "../Component/Spiners/RoundedLoader";
+import { FaUsersBetweenLines } from "react-icons/fa6";
+import LoaderWithLogo from "../Component/Spiners/LoaderWithLogo";
 
 const DashboardLayout = () => {
   const { role, roleLoading } = useRole();
 
   if (roleLoading) {
-    return <RoundedLoader />;
+    return <LoaderWithLogo />;
   }
   const DashboardLinks = (
     <>
@@ -48,7 +49,16 @@ const DashboardLayout = () => {
           <span className="is-drawer-close:hidden"> My Profile</span>
         </NavLink>
       </li>
-
+      <li>
+        <NavLink
+          to="manage-users"
+          className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+          data-tip="Manage Users"
+        >
+          <FaUsersBetweenLines className="my-1.5 inline-block size-4" />
+          <span className="is-drawer-close:hidden">Manage Users</span>
+        </NavLink>
+      </li>
       {/* --- my -link --  */}
       <li>
         <NavLink
