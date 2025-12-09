@@ -17,6 +17,10 @@ import Dashboard from "../Pages/Dashbaord/Dashboard.jsx";
 import UserServices from "../Pages/Dashbaord/UserPages/UserServices.jsx";
 import PaymentHistory from "../Pages/Dashbaord/UserPages/PaymentHistory.jsx";
 import ManageUsers from "../Pages/Dashbaord/AminPages/ManageUsers.jsx";
+import ServiceManage from "../Pages/Dashbaord/AminPages/ServiceManage.jsx";
+import ManageBookings from "../Pages/Dashbaord/AminPages/ManageBookings.jsx";
+import AddService from "../Pages/Dashbaord/AminPages/AddService.jsx";
+import AdminRoutes from "./AdminRoutes.jsx";
 
 export const router = createBrowserRouter([
   // Main Routes with RootLayout
@@ -36,9 +40,9 @@ export const router = createBrowserRouter([
       {
         path: "about",
         element: (
-          <PrivetRoutes>
-            <About />
-          </PrivetRoutes>
+
+          <About />
+
         ),
       },
       {
@@ -60,10 +64,10 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Dashboard/>,
+        element: <Dashboard />,
       },
       // admin routes
-       {
+      {
         path: "profile",
         element: <MyProfile />,
       },
@@ -74,11 +78,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "my-services",
-        element: <UserServices/>,
+        element: <UserServices />,
       },
       {
         path: "payment-history",
-        element: <PaymentHistory/>,
+        element: <PaymentHistory />,
       },
       {
         path: "wishlist",
@@ -102,11 +106,47 @@ export const router = createBrowserRouter([
           </div>
         ),
       },
-      // Admin routes (you can add more admin-specific routes here)
+      // Admin routes - protected with AdminRoutes
       {
         path: "manage-users",
-        element:<ManageUsers/>,
-      }
+        element: (
+          <AdminRoutes>
+            <ManageUsers />
+          </AdminRoutes>
+        ),
+      },
+      {
+        path: "manage-service",
+        element: (
+          <AdminRoutes>
+            <ServiceManage />
+          </AdminRoutes>
+        ),
+      },
+      {
+        path: "add-service",
+        element: (
+          <AdminRoutes>
+            <AddService  />
+          </AdminRoutes>
+        ),
+      },
+      {
+        path: "manage-bookings",
+        element: (
+          <AdminRoutes>
+            <ManageBookings />
+          </AdminRoutes>
+        ),
+      },
+      {
+        path: "add-service",
+        element: (
+          <AdminRoutes>
+            <AddService />
+          </AdminRoutes>
+        ),
+      },
     ],
   },
 

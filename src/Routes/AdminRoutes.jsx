@@ -1,19 +1,32 @@
 import React from "react";
+import { Navigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
-import RoundLoader from "../Components/Spinner/RoundLoader";
 import useRole from "../Hooks/useRole";
+import LoaderWithLogo from "../Component/Spiners/LoaderWithLogo";
+import { toast } from "react-toastify";
 
 const AdminRoutes = ({ children }) => {
-  const {  loading } = useAuth();
+  const { user, loading } = useAuth();
   const { role, roleLoading } = useRole();
 
+  // Show loader while checking authentication and role
   if (loading || roleLoading) {
-    return <RoundLoader />;
-  }
-  if (role !== "admin") {
-    return <p>unKnown admin </p>;
+    return <LoaderWithLogo />;
   }
 
+  // Redirect to login if not authenticated
+  if (!user) {
+    toast.error("Please login to access this page");
+    return <Navigate to="/login" replace />;
+  }
+
+  // Redirect to home if not admin
+  if (role !== "admin") {
+    toast.error("Access denied. Admin privileges required.");
+    return <Navigate to="/" replace />;
+  }
+
+  // User is authenticated and is admin
   return children;
 };
 

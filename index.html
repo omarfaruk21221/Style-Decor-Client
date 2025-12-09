@@ -9,7 +9,7 @@
 
   <!-- Prevent theme flash on page load -->
   <script>
-    (function() {
+    (function () {
       const savedTheme = localStorage.getItem('theme');
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       const isDark = savedTheme ? savedTheme === 'dark' : prefersDark;

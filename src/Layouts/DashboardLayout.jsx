@@ -3,13 +3,16 @@ import { NavLink, Outlet } from "react-router-dom";
 import DashboardLinks from "../Pages/Dashbaord/DashboardLinks";
 import {
   MdHistoryEdu,
+  MdMedicalServices,
+  MdOutlineAddCircleOutline,
   MdOutlineMedicalServices,
   MdProductionQuantityLimits,
 } from "react-icons/md";
-import { FaArrowAltCircleLeft, FaHome, FaUser } from "react-icons/fa";
+import { FaArrowAltCircleLeft, FaHome, FaPlus, FaUser } from "react-icons/fa";
 import useRole from "../Hooks/useRole";
 import { FaUsersBetweenLines } from "react-icons/fa6";
 import LoaderWithLogo from "../Component/Spiners/LoaderWithLogo";
+import { MdOutlineAddCircle } from "react-icons/md";
 
 const DashboardLayout = () => {
   const { role, roleLoading } = useRole();
@@ -49,16 +52,7 @@ const DashboardLayout = () => {
           <span className="is-drawer-close:hidden"> My Profile</span>
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="manage-users"
-          className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-          data-tip="Manage Users"
-        >
-          <FaUsersBetweenLines className="my-1.5 inline-block size-4" />
-          <span className="is-drawer-close:hidden">Manage Users</span>
-        </NavLink>
-      </li>
+
       {/* --- my -link --  */}
       <li>
         <NavLink
@@ -66,7 +60,7 @@ const DashboardLayout = () => {
           className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
           data-tip="My Services"
         >
-          <MdProductionQuantityLimits className="my-1.5 inline-block size-4" />
+          <FaPlus className="my-1.5 inline-block size-4" />
           <span className="is-drawer-close:hidden"> My Services</span>
         </NavLink>
       </li>
@@ -82,51 +76,52 @@ const DashboardLayout = () => {
         </NavLink>
       </li>
 
+
       {/*  Admin Links */}
       {role === "admin" && (
         <>
-          {/* ===================== Create Service ============= */}
+          {/* ==== manage service add delete updadete  === */}
           <li>
             <NavLink
-              to="/create-service"
+              to="manage-service"
               className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-              data-tip="Create Service"
+              data-tip="Manage-Service"
             >
-              <MdOutlineMedicalServices className="inline-block size-4" />
-              <span className="is-drawer-close:hidden">Create Service</span>
+              <MdOutlineAddCircleOutline className="my-1.5 inline-block size-4" />
+              <span className="is-drawer-close:hidden">Manage Service</span>
             </NavLink>
           </li>
-          {/* ===================== Aprrove riders============= */}
+          {/* ===== manage user set role and delete role user  ===   */}
           <li>
             <NavLink
-              to="/approve-riders"
+              to="manage-users"
               className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-              data-tip="Approve Riders"
+              data-tip="Manage Users"
             >
-              <FaMotorcycle className="inline-block size-4" />
-              <span className="is-drawer-close:hidden">Approve Riders</span>
+              <FaUsersBetweenLines className="my-1.5 inline-block size-4" />
+              <span className="is-drawer-close:hidden">Manage Users</span>
             </NavLink>
           </li>
-          {/* ======== asign riders=============== */}
+          {/* ===== manage bookings  ===   */}
           <li>
             <NavLink
-              to="/dashboard/asign-riders"
+              to="manage-bookings"
               className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-              data-tip="Asign Riders"
+              data-tip="Manage Bookings"
             >
-              <MdBikeScooter className="inline-block size-4" />
-              <span className="is-drawer-close:hidden">Asign Riders</span>
+              <FaUsersBetweenLines className="my-1.5 inline-block size-4" />
+              <span className="is-drawer-close:hidden">Manage Bookings</span>
             </NavLink>
           </li>
-          {/* =============== user management ======== */}
+          {/* ===== add service  ===   */}
           <li>
             <NavLink
-              to="/dashboard/users-Management"
+              to="add-service"
               className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-              data-tip="Users Management"
+              data-tip="Add Service"
             >
-              <FaUser className="inline-block size-4" />
-              <span className="is-drawer-close:hidden">Users Management</span>
+              <MdOutlineAddCircle className="my-1.5 inline-block size-4" />
+              <span className="is-drawer-close:hidden">Add Service</span>
             </NavLink>
           </li>
         </>
@@ -135,11 +130,11 @@ const DashboardLayout = () => {
   );
 
   return (
-    <div className="drawer lg:drawer-open">
+    <div className="drawer lg:drawer-open bg-primary/10 min-h-screen">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
         {/* Navbar */}
-        <nav className="navbar w-full bg-base-300">
+        <nav className="navbar w-full">
           <label
             htmlFor="my-drawer-4"
             aria-label="open sidebar"
@@ -164,7 +159,9 @@ const DashboardLayout = () => {
           <div className="px-4">Navbar Title</div>
         </nav>
         {/* Page content here */}
-        <Outlet />
+        <main className="bg-secondary-content/50 p-6 min-h-[calc(100vh-64px)]">
+          <Outlet />
+        </main>
       </div>
 
       <div className="drawer-side is-drawer-close:overflow-visible">
@@ -173,7 +170,7 @@ const DashboardLayout = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
+        <div className="flex min-h-full flex-col items-start is-drawer-close:w-14 is-drawer-open:w-64">
           {/* Sidebar content here */}
           <ul className="menu w-full grow">
             {DashboardLinks}

@@ -1,197 +1,232 @@
+# Style Decor - Interior Design Service Platform
 
-## 🛠️ Getting Started
+A modern, full-featured interior design service platform built with React, Firebase, and Tailwind CSS.
 
-### Prerequisites
+## 🚀 Features
 
-- Node.js 16.x or higher
+### User Features
+- User authentication (Email/Password & Google Sign-in)
+- Browse decoration services
+- Book services
+- View booking history
+- Manage profile
+
+### Admin Features
+- User management (view, promote to admin, delete)
+- Service management (create, update, delete)
+- Booking management
+- Dashboard analytics
+
+## 🛠️ Tech Stack
+
+- **Frontend**: React 18 + Vite
+- **Styling**: Tailwind CSS + DaisyUI
+- **Authentication**: Firebase Auth
+- **State Management**: TanStack React Query
+- **Routing**: React Router DOM
+- **Forms**: React Hook Form
+- **Notifications**: React Toastify + SweetAlert2
+- **HTTP Client**: Axios
+- **Image Upload**: imgBB API
+
+## 📋 Prerequisites
+
+- Node.js (v16 or higher)
 - npm or yarn
-- Firebase project (for authentication)
+- Firebase project
+- imgBB API key
+- Backend server running
 
-### Installation
-ash
-# Install dependencies
+## 🔧 Installation
+
+### 1. Clone the repository
+```bash
+git clone <repository-url>
+cd style-decor-client
+```
+
+### 2. Install dependencies
+```bash
 npm install
+```
 
-# Start development server
+### 3. Configure environment variables
+```bash
+# Copy the example file
+cp .env.example .env
+
+# Edit .env and add your actual values
+```
+
+### 4. Environment Variables Setup
+
+Create a `.env` file in the root directory with the following variables:
+
+```env
+# Firebase Configuration
+VITE_apiKey=your_firebase_api_key
+VITE_authDomain=your_project.firebaseapp.com
+VITE_projectId=your_project_id
+VITE_storageBucket=your_project.appspot.com
+VITE_messagingSenderId=your_sender_id
+VITE_appId=your_app_id
+
+# Image Upload
+VITE_image_host_key=your_imgbb_api_key
+
+# Backend API
+VITE_API_URL=http://localhost:3000
+```
+
+#### Getting Firebase Credentials:
+1. Go to [Firebase Console](https://console.firebase.google.com/)
+2. Create a new project or select existing
+3. Go to Project Settings > General
+4. Scroll to "Your apps" section
+5. Click on Web app (</>)
+6. Copy the configuration values
+
+#### Getting imgBB API Key:
+1. Go to [imgBB API](https://api.imgbb.com/)
+2. Sign up or login
+3. Go to "Get API Key"
+4. Copy your API key
+
+## 🚀 Running the Application
+
+### Development Mode
+```bash
 npm run dev
+```
+The application will start at `http://localhost:5173`
 
-# Build for production
+### Build for Production
+```bash
 npm run build
+```
 
-# Preview production build
+### Preview Production Build
+```bash
 npm run preview
+```
 
-# Run linter
-npm run lint## 🌐 Development
+## 📁 Project Structure
 
-The application runs on `http://localhost:5173` (default Vite port).
+```
+style-decor-client/
+├── public/              # Static assets
+├── src/
+│   ├── Component/       # Reusable components
+│   ├── contexts/        # React contexts (Auth)
+│   ├── Hooks/          # Custom hooks
+│   ├── Layouts/        # Layout components
+│   ├── Pages/          # Page components
+│   │   ├── AuthPages/  # Login, Register, Forgot Password
+│   │   ├── Dashbaord/  # Dashboard pages
+│   │   │   ├── AminPages/   # Admin-only pages
+│   │   │   └── UserPages/   # User pages
+│   │   └── ...
+│   ├── routes/         # Route configuration
+│   ├── main.jsx        # App entry point
+│   └── index.css       # Global styles
+├── .env.example        # Environment variables template
+├── .gitignore
+├── package.json
+├── tailwind.config.js
+├── vite.config.js
+└── README.md
+```
 
-### Key Features Implementation
+## 🔐 Admin Setup
 
-#### Authentication
-- **Firebase Auth** - Email/password and Google authentication
-- **Auth Context** - Global authentication state management
-- **Protected Routes** - Route guards for authenticated pages
-- **Session Persistence** - Automatic login state restoration
+### Creating the First Admin User
 
-#### Theme Management
-- **Theme Context** - Global theme state management
-- **System Preference** - Automatic theme detection
-- **LocalStorage** - Theme preference persistence
-- **Smooth Transitions** - Animated theme switching
+1. Register a new user through the application
+2. Connect to your MongoDB database
+3. Find the user document and update the role:
 
-#### Form Handling
-- **React Hook Form** - Efficient form validation and handling
-- **Form Validation** - Client-side validation rules
-- **Error Messages** - User-friendly validation feedback
+```javascript
+db.users.updateOne(
+  { email: "admin@example.com" },
+  { $set: { role: "admin" } }
+)
+```
 
-#### Animations
-- **Framer Motion** - Page transitions and component animations
-- **GSAP** - Advanced animation capabilities
-- **Service Cards** - Animated service card interactions
+### Admin Routes
+- `/dashboard/manage-users` - User management
+- `/dashboard/manage-service` - Service management
+- `/dashboard/manage-bookings` - Booking management
+- `/dashboard/add-service` - Create new service
 
-## 🗺️ Routes
+## 🔒 Security Features
 
-### Public Routes
-- `/` - Home page
-- `/services` - Services showcase
-- `/about` - About page
-- `/contact` - Contact page
-- `/auth/login` - Login page
-- `/auth/register` - Registration page
-- `/auth/forgot-password` - Password recovery
+- Firebase Authentication
+- Protected routes (Private & Admin)
+- JWT token verification
+- Role-based access control
+- Secure API calls with Axios interceptors
 
-### Protected Routes (Requires Authentication)
-- `/dashboard` - User dashboard
-- `/dashboard/profile` - User profile
-- `/dashboard/wishlist` - Wishlist (Coming Soon)
-- `/dashboard/settings` - Settings (Coming Soon)
-- `/profile` - Profile page (alternative route)
+## 📦 Key Dependencies
 
-### Error Routes
-- `*` - 404 Not Found page
-- Error boundaries for route errors
-
-## 🚀 Deployment
-
-### Vercel Deployment
-
-This project is configured for easy deployment on Vercel:
-
-# Deploy to Vercel
-vercelConfiguration is in `vercel.json`:
-- Build command: `npm run build`
-- Output directory: `dist`
-- Framework: Vite
-
-### Environment Variables
-
-Create a `.env.local` file for environment-specific variables:
-
-VITE_FIREBASE_API_KEY=your_firebase_api_key
-VITE_FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
-VITE_FIREBASE_PROJECT_ID=your_firebase_project_id
-VITE_FIREBASE_STORAGE_BUCKET=your_firebase_storage_bucket
-VITE_FIREBASE_MESSAGING_SENDER_ID=your_firebase_messaging_sender_id
-VITE_FIREBASE_APP_ID=your_firebase_app_id## 📝 Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build locally
-- `npm run lint` - Run ESLint
+```json
+{
+  "react": "^18.3.1",
+  "react-router-dom": "^7.1.1",
+  "firebase": "^11.1.0",
+  "@tanstack/react-query": "^5.62.11",
+  "axios": "^1.7.9",
+  "tailwindcss": "^3.4.17",
+  "daisyui": "^4.12.22"
+}
+```
 
 ## 🎨 Styling
 
-The project uses:
-- **TailwindCSS** - Utility-first CSS framework
-- **DaisyUI** - Component library built on Tailwind
-- **Custom CSS** - Global styles in `index.css`
-- **Theme System** - Dark/Light mode with DaisyUI themes
+This project uses:
+- **Tailwind CSS** for utility-first styling
+- **DaisyUI** for pre-built components
+- **Custom CSS** for specific designs
+- **Responsive design** for all screen sizes
 
-## 🔧 Configuration Files
+## 🐛 Troubleshooting
 
-- `vite.config.js` - Vite configuration
-- `tailwind.config.js` - Tailwind CSS configuration
-- `eslint.config.js` - ESLint configuration
-- `vercel.json` - Vercel deployment configuration
-- `package.json` - Project dependencies and scripts
-- `firebase.config.js` - Firebase configuration
+### Backend Connection Issues
+- Ensure backend server is running
+- Check `VITE_API_URL` in `.env`
+- Verify CORS is configured on backend
 
-## 🔑 Key Components
+### Firebase Authentication Issues
+- Verify Firebase credentials in `.env`
+- Check Firebase project settings
+- Ensure authentication methods are enabled
 
-### Authentication Components
-- **AuthProvider** - Authentication context provider
-- **AuthNav** - Navigation for authenticated users
-- **GoogleSignIn** - Google authentication button
-- **UserMenu** - User dropdown menu
+### Image Upload Issues
+- Verify imgBB API key
+- Check image size (max 5MB)
+- Ensure image format is supported
 
-### Layout Components
-- **RootLayout** - Main application layout with Navbar and Footer
-- **AuthLayout** - Authentication pages layout
-- **DashboardLayout** - Dashboard layout with sidebar
+## 📝 Available Scripts
 
-### UI Components
-- **ThemeToggle** - Dark/Light theme switcher
-- **ErrorBoundary** - Error boundary wrapper
-- **Loaders** - Custom loading components
-- **ServiceCard** - Animated service card component
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
 
-## 📦 Dependencies
+## 🤝 Support
 
-### Main Dependencies
-- `react` & `react-dom` - React framework
-- `react-router-dom` - Routing
-- `firebase` - Authentication and backend services
-- `react-hook-form` - Form handling
-- `framer-motion` - Animations
-- `gsap` - Animation library
-- `react-toastify` - Toast notifications
-- `sweetalert2` - Alert dialogs
-- `react-icons` - Icon library
-- `tailwindcss` & `daisyui` - Styling
-
-### Dev Dependencies
-- `@vitejs/plugin-react` - Vite React plugin
-- `vite` - Build tool
-- `eslint` - Linting
-- `@types/react` & `@types/react-dom` - TypeScript types
-
-## 🎯 Features in Detail
-
-### Authentication Flow
-1. User can register with email/password or Google
-2. Login state is persisted across page refreshes
-3. Protected routes require authentication
-4. User profile can be updated
-5. Password recovery available
-
-### Theme System
-1. Detects system preference on first visit
-2. Saves preference to localStorage
-3. Smooth transitions between themes
-4. Theme persists across sessions
-
-### Service Display
-1. Services loaded from JSON data
-2. Animated service cards
-3. Responsive grid layout
-4. Loading states during data fetch
-
-### Error Handling
-1. Error boundaries catch React errors
-2. 404 page for unknown routes
-3. Error page for route errors
-4. Toast notifications for user feedback
+For issues and questions:
+1. Check the documentation in `.agent/` folder
+2. Review error logs in browser console
+3. Verify environment variables
+4. Ensure backend server is running
 
 ## 📄 License
 
-This project is private and part of the Programming Hero A11 course.
+This project is private and confidential.
 
-## 👤 Author
+## 🙏 Acknowledgments
 
-**Omar Faruk**
-- GitHub: [@omarfaruk21221](https://github.com/omarfaruk21221)
-
----
-
-**Happy Coding! 🎉**
+- React Team
+- Firebase Team
+- Tailwind CSS Team
+- DaisyUI Team
