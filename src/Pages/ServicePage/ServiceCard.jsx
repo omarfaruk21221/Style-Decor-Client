@@ -1,86 +1,71 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  FaGithub,
-  FaExternalLinkAlt,
-  FaTimes,
-  FaCalendarAlt,
-  FaLayerGroup,
-} from "react-icons/fa";
+import { FaExternalLinkAlt, FaTimes, FaCalendarAlt, FaLayerGroup, FaTags, FaPhoneAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
-// Fallback stock images
 const STOCK_IMAGES = [
   "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=600&auto=format&fit=crop",
   "https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1607799275518-d58665d099db?q=80&w=600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1517134191118-9d595e4c8c2b?q=80&w=600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1550439062-609e1531270e?q=80&w=600&auto=format&fit=crop",
 ];
 
-export default function ServiceCard({ service = {} }) {
+export default function ServiceCard({ service }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  // Improved data structure with defaults
+  // Destructure service data with defaults to prevent crashes
   const {
-    id = Date.now(),
-    title = "Untitled Service",
-    image = null,
+    service_name = "Untitled Service",
+    image,
     description = "No description available.",
-    fullDescription = null,
-    features = [],
-    technologies = [],
-    category = "Service",
-    status = "Active",
-    date = new Date().getFullYear().toString(),
-    links = {
-      demo: "#",
-      code: "#",
-    },
-    rating = null,
-    testimonial = null,
-  } = service;
+    service_category = "General",
+    cost = 0,
+    included_items = "", // Expecting string "item1, item2" or array
+    createdByName = "Service Provider",
+    createdByPhoto,
+    createdAt
+  } = service || {};
 
-  // Helper to convert Google Drive links
-  const getGoogleDriveImage = (url) => {
-    if (!url) return null;
-    if (url.includes("drive.google.com") && url.includes("/view")) {
-      const idMatch = url.match(/\/d\/(.+?)\//);
-      if (idMatch && idMatch[1]) {
-        return `https://drive.google.com/uc?export=view&id=${idMatch[1]}`;
-      }
-    }
-    return url;
-  };
+  // Handle included_items: Convert string (comma separated) to array if needed
+  const features = typeof included_items === 'string'
+    ? included_items.split(',').map(item => item.trim()).filter(item => item)
+    : Array.isArray(included_items) ? included_items : [];
 
-  // Determine image
-  const stockImageIndex =
-    (title.length + (technologies.length || 0)) % STOCK_IMAGES.length;
-  const finalImage =
-    getGoogleDriveImage(image) || STOCK_IMAGES[stockImageIndex];
+  // Fallback image logic
+  const finalImage = image || STOCK_IMAGES[0];
 
   return (
     <>
+      {/* Service Card */}
       <motion.div
         layout
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         whileHover={{ y: -10 }}
         transition={{ duration: 0.3 }}
-        className="group relative bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-primary/20 border border-slate-200 dark:border-slate-700 flex flex-col h-full"
+        className="group relative bg-white dark:bg-base-200 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-primary/20 border border-base-200 dark:border-base-300 flex flex-col h-full"
       >
         {/* Image Thumbnail */}
-        <div className="relative h-48 bg-slate-100 dark:bg-slate-900 overflow-hidden">
+        <div
+          className="relative h-48 bg-base-200 overflow-hidden cursor-pointer"
+          onClick={() => setIsOpen(true)}
+        >
           <img
             src={finalImage}
-            alt={title}
+            alt={service_name}
             className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300" />
+
+          {/* Category Badge */}
           <div className="absolute top-4 right-4 z-20">
-            <span className="px-3 py-1 text-xs font-bold bg-white/90 dark:bg-slate-900/90 backdrop-blur rounded-full text-primary shadow-sm border border-primary/20">
-              {category}
+            <span className="px-3 py-1 text-xs font-bold bg-white/90 backdrop-blur rounded-full text-primary shadow-sm border border-primary/20 uppercase tracking-wide">
+              {service_category}
+            </span>
+          </div>
+
+          {/* Price Tag */}
+          <div className="absolute bottom-4 left-4 z-20">
+            <span className="px-3 py-1 text-sm font-bold bg-primary/90 text-white backdrop-blur rounded-lg shadow-sm">
+              ৳ {cost}
             </span>
           </div>
         </div>
@@ -88,28 +73,29 @@ export default function ServiceCard({ service = {} }) {
         {/* Card Content */}
         <div className="p-6 flex flex-col flex-grow">
           <h3
-            className="text-xl font-bold text-slate-800 dark:text-white mb-2 line-clamp-1"
-            title={title}
+            className="text-xl font-bold text-base-content mb-2 line-clamp-1 cursor-pointer hover:text-primary transition-colors"
+            title={service_name}
+            onClick={() => setIsOpen(true)}
           >
-            {title}
+            {service_name}
           </h3>
-          <p className="text-slate-600 dark:text-slate-400 text-sm mb-6 line-clamp-2 flex-grow">
+          <p className="text-base-content/70 text-sm mb-6 line-clamp-2 flex-grow">
             {description}
           </p>
 
-          {/* Technology Tags */}
+          {/* Features Preview */}
           <div className="flex flex-wrap gap-2 mb-6">
-            {technologies.slice(0, 3).map((tech, i) => (
+            {features.slice(0, 3).map((feature, i) => (
               <span
                 key={i}
-                className="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded-md text-slate-600 dark:text-slate-300 font-medium"
+                className="text-xs px-2 py-1 bg-base-200 rounded-md text-base-content/70 font-medium"
               >
-                {tech}
+                {feature}
               </span>
             ))}
-            {technologies.length > 3 && (
-              <span className="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded-md text-slate-500 dark:text-slate-400">
-                +{technologies.length - 3}
+            {features.length > 3 && (
+              <span className="text-xs px-2 py-1 bg-base-200 rounded-md text-base-content/50">
+                +{features.length - 3}
               </span>
             )}
           </div>
@@ -122,25 +108,14 @@ export default function ServiceCard({ service = {} }) {
             >
               View Details
             </button>
-            {links.demo !== "#" && (
-              <a
-                href={links.demo}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2.5 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-xl hover:bg-emerald-500 hover:text-white transition-all duration-300"
-                title="Live Demo"
-              >
-                <FaExternalLinkAlt />
-              </a>
-            )}
           </div>
         </div>
       </motion.div>
 
-      {/* Service Details Modal */}
+      {/* Service Details Modal (Internal) */}
       <AnimatePresence>
         {isOpen && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
+          <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6">
             {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
@@ -155,59 +130,65 @@ export default function ServiceCard({ service = {} }) {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-4xl bg-white dark:bg-slate-900 rounded-3xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col"
+              className="relative w-full max-w-4xl bg-base-100 rounded-3xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col"
             >
               {/* Modal Header with Background Image */}
-              <div className="relative h-40 sm:h-56 bg-gradient-to-r from-slate-900 to-slate-800 flex items-center justify-center shrink-0 overflow-hidden">
+              <div className="relative h-40 sm:h-56 bg-slate-900 flex items-center justify-center shrink-0 overflow-hidden">
                 <img
                   src={finalImage}
-                  alt={title}
-                  className="absolute inset-0 w-full h-full object-cover opacity-30"
+                  alt={service_name}
+                  className="absolute inset-0 w-full h-full object-cover opacity-40"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+
                 {/* Close Button */}
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="absolute top-4 right-4 p-2 bg-white/10 hover:bg-white/20 text-white rounded-full transition-colors z-50"
+                  className="absolute top-4 right-4 p-2 bg-white/10 hover:bg-white/20 text-white rounded-full transition-colors z-50 border border-white/20"
                 >
                   <FaTimes className="text-xl" />
                 </button>
+
                 {/* Title Section */}
-                <div className="relative z-10 text-center px-6">
-                  <h2 className="text-3xl sm:text-4xl font-black text-white mb-2 shadow-sm">
-                    {title}
+                <div className="relative z-10 text-center px-6 text-white w-full">
+                  <div className="badge badge-secondary mb-3 uppercase font-bold tracking-wider shadow-lg">
+                    {service_category}
+                  </div>
+                  <h2 className="text-3xl sm:text-4xl font-black mb-2 shadow-sm drop-shadow-md">
+                    {service_name}
                   </h2>
-                  <p className="text-slate-100 font-medium">{category}</p>
+                  <p className="text-2xl font-bold text-primary-content">৳ {cost}</p>
                 </div>
               </div>
 
               {/* Modal Content - Scrollable */}
-              <div className="p-8 overflow-y-auto">
+              <div className="p-8 overflow-y-auto custom-scrollbar bg-base-100 h-full">
                 <div className="grid md:grid-cols-3 gap-8 md:gap-12">
                   {/* Left Column: Description & Features */}
                   <div className="md:col-span-2 space-y-8">
                     {/* Overview Section */}
                     <div>
-                      <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
+                      <h3 className="text-xl font-bold text-base-content mb-4 flex items-center gap-2">
                         <span className="w-1 h-6 bg-primary rounded-full" />
                         Overview
                       </h3>
-                      <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-lg">
-                        {fullDescription || description}
+                      <p className="text-base-content/70 leading-relaxed text-lg text-justify">
+                        {description}
                       </p>
                     </div>
 
                     {/* Features Section */}
                     {features.length > 0 && (
                       <div>
-                        <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
+                        <h3 className="text-xl font-bold text-base-content mb-4 flex items-center gap-2">
                           <span className="w-1 h-6 bg-secondary rounded-full" />
-                          Key Features
+                          What's Included
                         </h3>
                         <ul className="grid sm:grid-cols-2 gap-3">
                           {features.map((feature, i) => (
                             <li
                               key={i}
-                              className="flex items-start gap-2 text-slate-600 dark:text-slate-300"
+                              className="flex items-start gap-2 text-base-content/80"
                             >
                               <span className="text-primary mt-1">✓</span>
                               {feature}
@@ -218,71 +199,56 @@ export default function ServiceCard({ service = {} }) {
                     )}
                   </div>
 
-                  {/* Right Column: Meta Information & Links */}
+                  {/* Right Column: Meta Information */}
                   <div className="space-y-8">
                     {/* Service Info Box */}
-                    <div className="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-2xl border border-slate-200 dark:border-slate-700">
-                      <h4 className="font-bold text-slate-800 dark:text-white mb-4">
-                        Service Info
+                    <div className="bg-base-200/50 p-6 rounded-2xl border border-base-200">
+                      <h4 className="font-bold text-base-content mb-4">
+                        Service Details
                       </h4>
                       <div className="space-y-4">
-                        <div className="flex items-center gap-3 text-slate-600 dark:text-slate-400">
+                        <div className="flex items-center gap-3 text-base-content/70">
                           <FaLayerGroup className="text-primary" />
-                          <span className="font-medium">{status}</span>
+                          <span className="capitalize font-medium">{service_category}</span>
                         </div>
-                        <div className="flex items-center gap-3 text-slate-600 dark:text-slate-400">
-                          <FaCalendarAlt className="text-primary" />
-                          <span className="font-medium">{date}</span>
+                        <div className="flex items-center gap-3 text-base-content/70">
+                          <FaTags className="text-primary" />
+                          <span className="font-medium">৳ {cost}</span>
                         </div>
-                        {rating && (
-                          <div className="flex items-center gap-3 text-slate-600 dark:text-slate-400">
-                            <span className="text-yellow-500 text-lg">★</span>
-                            <span className="font-medium">{rating}</span>
+                        {createdAt && (
+                          <div className="flex items-center gap-3 text-base-content/70">
+                            <FaCalendarAlt className="text-primary" />
+                            <span className="font-medium">{new Date(createdAt).toLocaleDateString()}</span>
                           </div>
                         )}
                       </div>
                     </div>
 
-                    {/* Technologies Section */}
-                    <div>
-                      <h4 className="font-bold text-slate-800 dark:text-white mb-4">
-                        Technologies
+                    {/* Provider Info */}
+                    <div className="bg-base-200/50 p-6 rounded-2xl border border-base-200">
+                      <h4 className="font-bold text-base-content mb-4">
+                        Provider Info
                       </h4>
-                      <div className="flex flex-wrap gap-2">
-                        {technologies.map((tech, i) => (
-                          <span
-                            key={i}
-                            className="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-lg text-sm font-medium border border-slate-200 dark:border-slate-700"
-                          >
-                            {tech}
-                          </span>
-                        ))}
+                      <div className="flex items-center gap-4">
+                        <div className="avatar">
+                          <div className="w-12 h-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                            <img src={createdByPhoto || "https://i.ibb.co/84hPCXq/user.png"} alt={createdByName} />
+                          </div>
+                        </div>
+                        <div>
+                          <p className="font-bold text-base-content">{createdByName}</p>
+                          <p className="text-xs text-base-content/60">Verified Provider</p>
+                        </div>
                       </div>
                     </div>
 
-                    {/* Action Links */}
-                    <div className="flex flex-col gap-3 pt-4 border-t border-slate-200 dark:border-slate-700">
-                      {links.demo !== "#" && (
-                        <a
-                          href={links.demo}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="w-full py-3 bg-primary hover:bg-primary-focus text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-1"
-                        >
-                          <FaExternalLinkAlt /> Live Demo
-                        </a>
-                      )}
-                      {links.code !== "#" && (
-                        <a
-                          href={links.code}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="w-full py-3 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-all hover:-translate-y-1"
-                        >
-                          <FaGithub /> Source Code
-                        </a>
-                      )}
+                    {/* Action Buttons */}
+                    <div className="pt-4 border-t border-base-200">
+                      <button className="w-full py-3 bg-primary hover:bg-primary-focus text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-primary/40 hover:-translate-y-1">
+                        <FaPhoneAlt /> Book Now
+                      </button>
                     </div>
+
                   </div>
                 </div>
               </div>

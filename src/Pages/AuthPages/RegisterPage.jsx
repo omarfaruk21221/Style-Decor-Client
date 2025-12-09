@@ -106,10 +106,9 @@ const RegisterPage = () => {
         imageUrl = "";
       }
 
-      // Step 3: Prepare user object for backend
       const userInfo = {
-        name: data.name, // Use form data, not Firebase user
-        email: user.email, // Firebase user email
+        name: data.name,
+        email: user.email,
         image: imageUrl,
         uid: user.uid,
       };
