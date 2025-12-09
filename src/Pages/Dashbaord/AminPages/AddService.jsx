@@ -219,15 +219,8 @@ const AddService = () => {
               <span className="text-error text-sm">{errors.image.message}</span>
             )}
           </label>
+          <label> </label>
 
-          {/* Submit */}
-          <button
-            type="submit"
-            className="btn btn-primary w-full mt-4 btn-lg"
-            disabled={loading}
-          >
-            {loading ? "Creating Service..." : "Create Service"}
-          </button>
 
           {/* Back */}
           <button
@@ -237,6 +230,16 @@ const AddService = () => {
           >
             <FaBackspace /> Back
           </button>
+          {/* Submit */}
+          <button
+            type="submit"
+            className="btn btn-primary w-full mt-4 btn-lg"
+            disabled={loading}
+          >
+            {loading ? "Creating Service..." : "Create Service"}
+          </button>
+
+
         </form>
       </main>
     </div>

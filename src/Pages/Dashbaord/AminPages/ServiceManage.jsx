@@ -1,30 +1,33 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MdOutlineAddCircle, MdOutlineArrowBack, MdOutlineArrowForward, MdOutlineDelete, MdOutlineDetails, MdOutlineEdit } from "react-icons/md";
 import { Link } from "react-router-dom";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
-import ServiceModal from "../../ServiceModal";
+import ServiceModal from "../../Modals/ServiceModal";
+import ServiceEditModal from "../../Modals/ServiceEditModal";
+import Swal from "sweetalert2";
 
 const ServiceManage = () => {
   const [searchText, setSearchText] = useState("");
   const axiosSecure = useAxiosSecure();
   const [services, setServices] = useState([]);
-  const riderModalRef = useRef();
 
-  useEffect(() => {
+  const fetchServices = () => {
     axiosSecure.get("/services").then((res) => {
       setServices(res.data);
     });
-  }, []);
-  console.log(services);
-  // Filter & Sort State
-  const [filterCategory, setFilterCategory] = useState("");
-  const [sortOrder, setSortOrder] = useState(""); // "asc" or "desc"
+  };
 
-  // Pagination
+  useEffect(() => {
+    fetchServices();
+  }, []);
+
+  console.log(services);
+  const [filterCategory, setFilterCategory] = useState("");
+  const [sortOrder, setSortOrder] = useState("");
+
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 25;
 
-  // Logic: Filter -> Sort -> Paginate
   const filteredServices = services
     .filter((service) => {
       const searchLower = searchText.toLowerCase();
@@ -54,14 +57,53 @@ const ServiceManage = () => {
 
   // ===== handle handleShowDetails===
   const [selectedService, setSelectedService] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
+  // ============== servicr Details Modal =============
   const handleShowDetails = (service) => {
     setSelectedService(service);
-    riderModalRef.current.showModal();
+    setIsModalOpen(true);
+  };
+  // =========service edit modal========
+  const handleShowEdit = (service) => {
+    setSelectedService(service);
+    setIsEditModalOpen(true);
+  };
+  // ========= handle delete service========
+  const handleDeleteService = (id) => {
+    Swal.fire({
+      title: "Reject Rider",
+      text: "You wont to reject rider application",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Confirm Reject",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/services/${id}`).then((res) => {
+          console.log(res.data);
+          if (res.data.deletedCount) {
+            Swal.fire({
+              title: "Confirm!",
+              text: "Service has been deleted.",
+              icon: "success",
+            });
+            fetchServices();
+          }
+        });
+      }
+    });
+  };
+  // ====== close modal ======
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setTimeout(() => setSelectedService(null), 300);
   };
 
-  const handleCloseModal = () => {
-    setSelectedService(null);
+  const handleCloseEditModal = () => {
+    setIsEditModalOpen(false);
+    setTimeout(() => setSelectedService(null), 300);
   };
 
   return (
@@ -157,8 +199,10 @@ const ServiceManage = () => {
                   <button className="btn btn-primary btn-xs" onClick={() => handleShowDetails(service)}>
                     <MdOutlineDetails />Details
                   </button>
-                  <button className="btn btn-primary btn-xs"> <MdOutlineEdit />Edit</button>
-                  <button className="btn btn-error btn-xs"> <MdOutlineDelete />Delete</button>
+                  <button className="btn btn-accent btn-xs" onClick={() => handleShowEdit(service)}>
+                    <MdOutlineEdit />Edit
+                  </button>
+                  <button onClick={() => handleDeleteService(service._id)} className="btn btn-error btn-xs"> <MdOutlineDelete />Delete</button>
                 </td>
               </tr>
             ))}
@@ -197,8 +241,17 @@ const ServiceManage = () => {
       {/* Service Details Modal */}
 
 
-      {/* You can open the modal using document.getElementById('ID').showModal() method */}
-      <ServiceModal ref={riderModalRef} service={selectedService} onClose={handleCloseModal} />
+      {/* ================ service dtails modals ================== */}
+      <ServiceModal isOpen={isModalOpen} service={selectedService} onClose={handleCloseModal} />
+
+      {/* ================ service edit modals ================== */}
+      <ServiceEditModal
+        isOpen={isEditModalOpen}
+        service={selectedService}
+        onClose={handleCloseEditModal}
+        refetch={fetchServices}
+      />
+
     </div>
   );
 };
