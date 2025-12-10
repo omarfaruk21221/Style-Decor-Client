@@ -53,18 +53,20 @@ const DashboardLayout = () => {
         </NavLink>
       </li>
 
-      {/* --- my -link --  */}
-      <li>
-        <NavLink
-          to="my-services"
-          className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-          data-tip="My Services"
-        >
-          <FaPlus className="my-1.5 inline-block size-4" />
-          <span className="is-drawer-close:hidden"> My Services</span>
-        </NavLink>
-      </li>
-      {/* ---Payment History --  */}
+      {
+        role === "user" && (
+       <>
+       <li>
+            <NavLink
+              to="book-services"
+              className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+              data-tip="Book Services"
+            >
+              <MdOutlineAddCircleOutline className="my-1.5 inline-block size-4" />
+              <span className="is-drawer-close:hidden">Book Services</span>
+            </NavLink>
+          </li>
+
       <li>
         <NavLink
           to="payment-history"
@@ -75,6 +77,9 @@ const DashboardLayout = () => {
           <span className="is-drawer-close:hidden">Payment History</span>
         </NavLink>
       </li>
+       </>
+        )
+      }
 
 
       {/*  Admin Links */}

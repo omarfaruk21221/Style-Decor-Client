@@ -14,13 +14,14 @@ import AuthLayout from "../Layouts/AuthLayout.jsx";
 import MyProfile from "../Pages/MyProfile/MyProfile.jsx";
 import PrivetRoutes from "./PrivetRoutes.jsx";
 import Dashboard from "../Pages/Dashbaord/Dashboard.jsx";
-import UserServices from "../Pages/Dashbaord/UserPages/UserServices.jsx";
+import BookServices from "../Pages/Dashbaord/UserPages/BookServices.jsx";
 import PaymentHistory from "../Pages/Dashbaord/UserPages/PaymentHistory.jsx";
 import ManageUsers from "../Pages/Dashbaord/AminPages/ManageUsers.jsx";
 import ServiceManage from "../Pages/Dashbaord/AminPages/ServiceManage.jsx";
 import ManageBookings from "../Pages/Dashbaord/AminPages/ManageBookings.jsx";
 import AddService from "../Pages/Dashbaord/AminPages/AddService.jsx";
 import AdminRoutes from "./AdminRoutes.jsx";
+import UserRoutes from "./UserRoutes.jsx";
 
 export const router = createBrowserRouter([
   // Main Routes with RootLayout
@@ -77,12 +78,12 @@ export const router = createBrowserRouter([
         element: <MyProfile />,
       },
       {
-        path: "my-services",
-        element: <UserServices />,
+        path: "book-services",
+        element: <UserRoutes><BookServices /></UserRoutes>,
       },
       {
         path: "payment-history",
-        element: <PaymentHistory />,
+        element: <UserRoutes><PaymentHistory /></UserRoutes>,
       },
       {
         path: "wishlist",
