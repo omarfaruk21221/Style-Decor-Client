@@ -17,6 +17,7 @@ const useRole = () => {
     queryFn: async () => {
       try {
         const res = await axiosSecure.get(`/users/${user.email}`);
+        // console.log( "useRole",res.data.role)
         return res.data.role || "user";
       } catch (error) {
         // Return default role on error

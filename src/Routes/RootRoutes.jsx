@@ -22,6 +22,7 @@ import ManageBookings from "../Pages/Dashbaord/AminPages/ManageBookings.jsx";
 import AddService from "../Pages/Dashbaord/AminPages/AddService.jsx";
 import AdminRoutes from "./AdminRoutes.jsx";
 import UserRoutes from "./UserRoutes.jsx";
+import ProfilePage from "../Pages/Dashbaord/ProfilePage.jsx";
 
 export const router = createBrowserRouter([
   // Main Routes with RootLayout
@@ -70,7 +71,7 @@ export const router = createBrowserRouter([
       // admin routes
       {
         path: "profile",
-        element: <MyProfile />,
+        element: <ProfilePage />,
       },
       // user routes
       {
