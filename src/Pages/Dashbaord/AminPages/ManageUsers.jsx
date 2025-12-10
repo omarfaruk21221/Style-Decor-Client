@@ -39,78 +39,73 @@ const ManageUsers = () => {
   });
 
   // ================ Make Admin Function =================
-  const handleMakeAdmin = async (user) => {
+  const handleMakeDecorator = async (user) => {
+    if (user.role === "decorator") {
+      toast.info("User is already a decorator");
+      return;
+    }
+
     // Confirm action
     const result = await Swal.fire({
-      title: "Make Admin?",
-      text: `Are you sure you want to make ${user.name} an admin?`,
+      title: "Make Decorator?",
+      text: `Are you sure you want to make ${user.name} a decorator?`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, make admin!",
+      confirmButtonText: "Yes, make decorator!",
+    });
+
+    if (!result.isConfirmed) return;
+    try {
+      const res = await axiosSecure.patch(`/users/${user._id}/role`, {
+        role: "decorator",
+      });
+
+      if (res.data.modifiedCount > 0) {
+        toast.success(`${user.name} is now a decorator!`);
+        refetch();
+      } else {
+        toast.info("User is already a decorator");
+      }
+    } catch (error) {
+      console.error("Error making decorator:", error);
+    }
+  };
+
+  // ================ Remove Decorator Function =================
+  const handleRemoveDecorator = async (user) => {
+    // Prevent removing own admin role
+    if (user.role !== "decorator") {
+      toast.info("User is not a decorator");
+      return;
+    }
+
+    const result = await Swal.fire({
+      title: "Remove Decorator Role?",
+      text: `Are you sure you want to remove decorator role from ${user.name}?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, remove decorator!",
     });
 
     if (!result.isConfirmed) return;
 
     try {
       const res = await axiosSecure.patch(`/users/${user._id}/role`, {
-        role: "admin",
+        role: "user",
       });
 
       if (res.data.modifiedCount > 0) {
-        toast.success(`${user.name} is now an admin!`);
+        toast.success(`${user.name} is now a regular user`);
         refetch();
       } else {
-        toast.info("User is already an admin");
+        toast.info("User is already a regular user");
       }
     } catch (error) {
-      console.error("Error making admin:", error);
-      const message =
-        error?.response?.data?.massage ||
-        error?.response?.data?.message ||
-        "Failed to update user role";
-      toast.error(message);
-    }
-  };
-
-  // ================ Remove Admin Function =================
-  const handleRemoveAdmin = async (user) => {
-    // Prevent removing own admin role
-    if (user.role === "admin") {
-      const result = await Swal.fire({
-        title: "Remove Admin Role?",
-        text: `Are you sure you want to remove admin role from ${user.name}?`,
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, remove admin!",
-      });
-
-      if (!result.isConfirmed) return;
-
-      try {
-        const res = await axiosSecure.patch(`/users/${user._id}/role`, {
-          role: "user",
-        });
-
-        if (res.data.modifiedCount > 0) {
-          toast.success(`${user.name} is now a regular user`);
-          refetch();
-        } else {
-          toast.info("User is already a regular user");
-        }
-      } catch (error) {
-        console.error("Error removing admin:", error);
-        const message =
-          error?.response?.data?.massage ||
-          error?.response?.data?.message ||
-          "Failed to update user role";
-        toast.error(message);
-      }
-    } else {
-      toast.info(`${user.name} is not an admin`);
+      console.error("Error removing decorator:", error);
     }
   };
 
@@ -122,7 +117,7 @@ const ManageUsers = () => {
       icon: "error",
       showCancelButton: true,
       confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete user!",
     });
 
@@ -137,11 +132,6 @@ const ManageUsers = () => {
       }
     } catch (error) {
       console.error("Error deleting user:", error);
-      const message =
-        error?.response?.data?.massage ||
-        error?.response?.data?.message ||
-        "Failed to delete user";
-      toast.error(message);
     }
   };
 
@@ -285,8 +275,8 @@ const ManageUsers = () => {
                   <td>
                     <span
                       className={`badge ${user.role === "admin"
-                          ? "badge-primary"
-                          : "badge-secondary"
+                        ? "badge-primary"
+                        : "badge-secondary"
                         }`}
                     >
                       {user.role}
@@ -302,20 +292,20 @@ const ManageUsers = () => {
                     {/* Make Admin Button */}
                     {user.role !== "admin" && (
                       <button
-                        onClick={() => handleMakeAdmin(user)}
+                        onClick={() => handleMakeDecorator(user)}
                         className="btn btn-success btn-xs text-xl px-2 py-4"
-                        title="Make Admin"
+                        title="Make Decorator."
                       >
                         <FaUserPlus />
                       </button>
                     )}
 
                     {/* Remove Admin Button */}
-                    {user.role === "admin" && (
+                    {user.role === "decorator" && (
                       <button
-                        onClick={() => handleRemoveAdmin(user)}
+                        onClick={() => handleRemoveDecorator(user)}
                         className="btn btn-warning btn-xs text-xl px-2 py-4"
-                        title="Remove Admin"
+                        title="Remove Decorator"
                       >
                         <FaUserMinus />
                       </button>

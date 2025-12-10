@@ -19,7 +19,6 @@ const useRole = () => {
         const res = await axiosSecure.get(`/users/${user.email}`);
         return res.data.role || "user";
       } catch (error) {
-        console.error("Error fetching user role:", error);
         // Return default role on error
         return "user";
       }

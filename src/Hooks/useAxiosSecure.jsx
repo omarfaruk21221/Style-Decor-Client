@@ -42,9 +42,18 @@ const useAxiosSecure = () => {
       (response) => response,
       async (error) => {
         const status = error?.response?.status;
-        const message = error?.response?.data?.massage || error?.response?.data?.message;
+        const message =
+          error?.response?.data?.massage ||
+          error?.response?.data?.message ||
+          error?.message;
 
-        console.error("Axios Secure Error:", {
+        // Custom handling for Network Errors
+        if (error.code === "ERR_NETWORK") {
+          toast.error("Network Error: Please check your internet connection or server status.");
+          return Promise.reject(error);
+        }
+
+        console.error("Axios Error Details:", {
           status,
           message,
           url: error?.config?.url,
@@ -64,10 +73,13 @@ const useAxiosSecure = () => {
         }
 
         // Handle other errors
-        if (status === 404) {
-          toast.error("Resource not found");
+        else if (status === 404) {
+          toast.error(message || "Resource not found");
         } else if (status >= 500) {
-          toast.error("Server error. Please try again later.");
+          toast.error(message || "Server error. Please try again later.");
+        } else {
+          // Handle generic errors
+          toast.error(message || "Something went wrong. Please try again.");
         }
 
         return Promise.reject(error);

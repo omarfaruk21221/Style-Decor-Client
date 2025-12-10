@@ -1,25 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MdOutlineAddCircle, MdOutlineArrowBack, MdOutlineArrowForward, MdOutlineDelete, MdOutlineDetails, MdOutlineEdit } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import ServiceModal from "../../Modals/ServiceModal";
 import ServiceEditModal from "../../Modals/ServiceEditModal";
+import LoaderWithLogo from "../../../Component/Spiners/LoaderWithLogo";
 import Swal from "sweetalert2";
 
 const ServiceManage = () => {
   const [searchText, setSearchText] = useState("");
   const axiosSecure = useAxiosSecure();
-  const [services, setServices] = useState([]);
 
-  const fetchServices = () => {
-    axiosSecure.get("/services").then((res) => {
-      setServices(res.data);
-    });
-  };
-
-  useEffect(() => {
-    fetchServices();
-  }, []);
+  const { data: services = [], isLoading, error, refetch } = useQuery({
+    queryKey: ["services"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/services");
+      return res.data;
+    },
+  });
 
   console.log(services);
   const [filterCategory, setFilterCategory] = useState("");
@@ -89,7 +88,7 @@ const ServiceManage = () => {
               text: "Service has been deleted.",
               icon: "success",
             });
-            fetchServices();
+            refetch();
           }
         });
       }
@@ -105,6 +104,25 @@ const ServiceManage = () => {
     setIsEditModalOpen(false);
     setTimeout(() => setSelectedService(null), 300);
   };
+
+  if (isLoading) {
+    return <LoaderWithLogo />;
+  }
+
+  if (error) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4">
+        <div className="text-error text-6xl">⚠️</div>
+        <h2 className="text-2xl font-bold text-error">Error Loading Services</h2>
+        <p className="text-base-content/70">
+          {error?.message || "Something went wrong"}
+        </p>
+        <button onClick={() => refetch()} className="btn btn-primary">
+          Try Again
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="px-20  ">
@@ -249,7 +267,7 @@ const ServiceManage = () => {
         isOpen={isEditModalOpen}
         service={selectedService}
         onClose={handleCloseEditModal}
-        refetch={fetchServices}
+        refetch={refetch}
       />
 
     </div>
