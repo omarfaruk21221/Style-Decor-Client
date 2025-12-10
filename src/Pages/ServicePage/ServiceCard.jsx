@@ -79,16 +79,13 @@ export default function ServiceCard({ service }) {
           >
             {service_name}
           </h3>
-          <p className="text-base-content/70 text-sm mb-6 line-clamp-2 flex-grow">
-            {description}
-          </p>
 
           {/* Features Preview */}
           <div className="flex flex-wrap gap-2 mb-6">
             {features.slice(0, 3).map((feature, i) => (
               <span
                 key={i}
-                className="text-xs px-2 py-1 bg-base-200 rounded-md text-base-content/70 font-medium"
+                className="text-xs px-2 py-1 bg-secondary/10 rounded-md text-base-content/70 font-medium"
               >
                 {feature}
               </span>
