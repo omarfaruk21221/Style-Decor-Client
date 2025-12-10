@@ -22,8 +22,8 @@ const useAxiosSecure = () => {
           const currentUser = auth.currentUser;
 
           if (currentUser) {
-            // Get fresh token for each request
-            const token = await currentUser.getIdToken(true);
+            // Get cached token (refresh if expired)
+            const token = await currentUser.getIdToken();
             config.headers.Authorization = `Bearer ${token}`;
           }
         } catch (error) {

@@ -101,7 +101,7 @@ const ServiceEditModal = ({ isOpen, onClose, service, refetch }) => {
         }
     };
 
-    
+
 
     return (
         <AnimatePresence>
