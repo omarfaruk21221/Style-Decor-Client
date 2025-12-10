@@ -23,7 +23,10 @@ const ServiceModal = ({ isOpen, onClose, service }) => {
 
     const features = Array.isArray(included_items) ? included_items : [];
     const finalImage = image || STOCK_IMAGES[0];
-
+const handleBooking = () => {
+    console.log("Booking service:", service);
+    onClose();
+}
     return (
         <AnimatePresence>
             {isOpen && (
@@ -111,7 +114,8 @@ const ServiceModal = ({ isOpen, onClose, service }) => {
                                     )}
                                     {/* Action Buttons */}
                                     <div className="pt-4 border-t border-base-200">
-                                        <button className="w-full py-3 bg-primary hover:bg-primary-focus text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-primary/40 hover:-translate-y-1">
+                                        <button  onClick={handleBooking}
+                                        className="w-full py-3 bg-primary hover:bg-primary-focus text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-primary/40 hover:-translate-y-1">
                                             <FaPhoneAlt /> Book Now
                                         </button>
                                     </div>
