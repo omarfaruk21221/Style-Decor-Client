@@ -67,7 +67,6 @@ const RegisterPage = () => {
   };
 
   // ====== Handle Form Submit ======
-  // ====== Handle Form Submit ======
   const handleRegister = async (data) => {
     const profileImg = imageFile || data.photo?.[0];
     if (!profileImg) {
