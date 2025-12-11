@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 import { FaTimes, FaCalendarAlt, FaLayerGroup, FaTags, FaPhoneAlt } from "react-icons/fa";
 import BookingModal from "./BookingModal";
+import useAuth from "../../Hooks/useAuth";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const STOCK_IMAGES = [
     "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=600&auto=format&fit=crop",
@@ -10,6 +12,9 @@ const STOCK_IMAGES = [
 
 const ServiceModal = ({ isOpen, onClose, service }) => {
     const [isBookingOpen, setIsBookingOpen] = useState(false);
+    const { user } = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const {
         service_name = "Untitled Service",
@@ -28,7 +33,11 @@ const ServiceModal = ({ isOpen, onClose, service }) => {
     const finalImage = image || STOCK_IMAGES[0];
 
     const handleBooking = () => {
-        setIsBookingOpen(true);
+        if (user) {
+            setIsBookingOpen(true);
+        } else {
+            navigate('/auth/login', { state: { from: location } });
+        }
     }
 
     return (

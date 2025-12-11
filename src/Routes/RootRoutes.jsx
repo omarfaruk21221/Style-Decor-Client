@@ -23,6 +23,7 @@ import AddService from "../Pages/Dashbaord/AminPages/AddService.jsx";
 import AdminRoutes from "./AdminRoutes.jsx";
 import UserRoutes from "./UserRoutes.jsx";
 import ProfilePage from "../Pages/Dashbaord/ProfilePage.jsx";
+import BookingModal from "../Pages/Modals/BookingModal.jsx";
 
 export const router = createBrowserRouter([
   // Main Routes with RootLayout
@@ -75,10 +76,6 @@ export const router = createBrowserRouter([
       },
       // user routes
       {
-        path: "profile",
-        element: <MyProfile />,
-      },
-      {
         path: "book-services",
         element: <UserRoutes><BookServices /></UserRoutes>,
       },
@@ -129,7 +126,7 @@ export const router = createBrowserRouter([
         path: "add-service",
         element: (
           <AdminRoutes>
-            <AddService  />
+            <AddService />
           </AdminRoutes>
         ),
       },
