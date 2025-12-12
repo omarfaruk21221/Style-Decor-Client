@@ -32,7 +32,7 @@ const PaymentHistory = () => {
       return res.data;
     },
   });
-
+  console.log(payments);
   if (isLoading) {
     return <RoundedLoader />;
   }
@@ -87,14 +87,13 @@ const PaymentHistory = () => {
             {/* head */}
             <thead className="bg-gradient-to-r from-primary/10 to-secondary/10 text-base-content uppercase text-xs font-extrabold tracking-wider">
               <tr>
-                <th className="py-5 pl-8">Service</th>
+                <th className="py-5 pl-8">Service Name</th>
                 <th>Transaction ID</th>
+                <th>Tracking ID</th>
                 <th>Amount</th>
                 <th>Payment Method</th>
                 <th>Payment Date</th>
-                <th>Service Date</th>
                 <th>Status</th>
-                <th className="pr-8">Card</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-base-200/50">
@@ -103,6 +102,7 @@ const PaymentHistory = () => {
                   key={payment._id}
                   className="hover:bg-base-200/40 transition-colors duration-300 group"
                 >
+                  {/* --service image and Name-- */}
                   <td className="pl-8 py-4">
                     <div className="flex items-center gap-5">
                       <div className="avatar">
@@ -120,25 +120,29 @@ const PaymentHistory = () => {
                         <div className="font-bold text-lg text-base-content group-hover:text-primary transition-colors">
                           {payment.serviceName}
                         </div>
-                        <div className="text-sm opacity-60 flex items-center gap-1 mt-1">
-                          <FaMapMarkerAlt className="text-xs text-secondary" />
-                          {payment.address?.substring(0, 30)}
-                          {payment.address?.length > 30 && "..."}
-                        </div>
                       </div>
                     </div>
                   </td>
+                  {/* --transaction id-- */}
                   <td>
                     <div className="font-mono text-xs text-base-content/70">
-                      {payment.transactionId}
+                      {payment.transactionalId}
                     </div>
                   </td>
+                  {/* --tracking id-- */}
+                  <td>
+                    <div className="font-mono text-xs text-base-content/70">
+                      {payment.trackingId}
+                    </div>
+                  </td>
+                  {/* --amount-- */}
                   <td>
                     <div className="flex items-center gap-1 font-bold text-lg text-success">
                       <FaDollarSign className="text-sm" />
                       {payment.amount}
                     </div>
                   </td>
+                  {/* --payment method-- */}
                   <td>
                     <div className="flex items-center gap-2">
                       <FaCreditCard className="text-primary" />
@@ -151,20 +155,14 @@ const PaymentHistory = () => {
                     <div className="flex flex-col gap-1">
                       <div className="flex items-center gap-2 text-sm font-semibold text-base-content/80">
                         <FaCalendarAlt className="text-primary" />
-                        {new Date(payment.paymentDate).toLocaleDateString()}
+                        {payment.paidAt}
                       </div>
                       <div className="text-xs opacity-50 font-mono">
-                        {new Date(payment.paymentDate).toLocaleTimeString()}
+                        {new Date(payment.paidAt).toLocaleTimeString()}
                       </div>
                     </div>
                   </td>
-                  <td>
-                    <div className="text-sm font-semibold">
-                      {payment.serviceDate
-                        ? new Date(payment.serviceDate).toLocaleDateString()
-                        : "N/A"}
-                    </div>
-                  </td>
+                  {/* --payment status-- */}
                   <td>
                     {payment.paymentStatus === "paid" ? (
                       <div className="badge badge-lg gap-2 badge-success text-white font-bold shadow-sm">
@@ -176,18 +174,6 @@ const PaymentHistory = () => {
                         <FaTimesCircle />
                         Failed
                       </div>
-                    )}
-                  </td>
-                  <td className="pr-8">
-                    {payment.cardLast4 ? (
-                      <div className="flex items-center gap-2">
-                        <FaCreditCard className="text-base-content/40" />
-                        <span className="text-sm font-mono">
-                          **** {payment.cardLast4}
-                        </span>
-                      </div>
-                    ) : (
-                      <span className="text-sm text-base-content/50">N/A</span>
                     )}
                   </td>
                 </tr>
@@ -203,33 +189,33 @@ const PaymentHistory = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="mt-8 glass-effect rounded-3xl p-6"
+          className="mt-8 bg-accent/70 rounded-3xl p-6"
         >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center md:text-left">
-              <p className="text-sm text-base-content/60 mb-1">
+              <p className="text-sm text-center text-base-content/60 mb-1">
                 Total Payments
               </p>
-              <p className="text-2xl font-bold text-primary">
+              <p className="text-2xl text-center font-bold text-primary">
                 {payments.length}
               </p>
             </div>
             <div className="text-center md:text-left">
-              <p className="text-sm text-base-content/60 mb-1">
+              <p className="text-sm text-center text-base-content/60 mb-1">
                 Total Amount
               </p>
-              <p className="text-2xl font-bold text-success">
+              <p className="text-2xl text-center font-bold text-primary">
                 $
                 {payments
                   .reduce((sum, payment) => sum + parseFloat(payment.amount || 0), 0)
                   .toFixed(2)}
               </p>
             </div>
-            <div className="text-center md:text-left">
-              <p className="text-sm text-base-content/60 mb-1">
+            <div className="text-center md:text-left ">
+              <p className="text-sm text-center text-base-content/60 mb-1">
                 Successful Payments
               </p>
-              <p className="text-2xl font-bold text-success">
+              <p className="text-2xl text-center font-bold text-primary">
                 {payments.filter((p) => p.paymentStatus === "paid").length}
               </p>
             </div>

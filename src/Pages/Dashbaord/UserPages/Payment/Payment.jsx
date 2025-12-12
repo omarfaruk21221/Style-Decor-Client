@@ -52,7 +52,9 @@ console.log(booking);
       bookingId: booking._id,
       serviceId: booking.serviceId,
       serviceName: booking.serviceName,
+      serviceImage: booking.serviceImage,
       userEmail: booking.userEmail,
+
     };
 
     try {

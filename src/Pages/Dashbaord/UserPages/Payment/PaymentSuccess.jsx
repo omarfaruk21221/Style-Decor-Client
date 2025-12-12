@@ -33,6 +33,7 @@ const PaymentSuccess = () => {
           setPaymentInfo({
             transactionalId: res.data.transactionalId,
             trackingId: res.data.trackingId,
+            paymentDate: new Date().toLocaleDateString(),
           });
         });
     }
@@ -88,7 +89,7 @@ const PaymentSuccess = () => {
               </span>
               <br />
               <span>
-               Tracking ID: {paymentInfo.trackingId}
+                Tracking ID: {paymentInfo.trackingId}
               </span>
             </motion.p>
           )}
