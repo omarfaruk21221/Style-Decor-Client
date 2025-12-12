@@ -61,7 +61,6 @@ const RegisterPage = () => {
       setImagePreview(reader.result);
     };
     reader.readAsDataURL(file);
-
     setImageFile(file);
     setImageError("");
   };
@@ -93,7 +92,8 @@ const RegisterPage = () => {
       let imageUrl = "";
       try {
         const res = await axios.post(
-          `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_host_key
+          `https://api.imgbb.com/1/upload?key=${
+            import.meta.env.VITE_image_host_key
           }`,
           formData
         );
@@ -206,8 +206,9 @@ const RegisterPage = () => {
                     message: "Name must be at least 3 characters",
                   },
                 })}
-                className={`input input-bordered w-full ${errors.name ? "input-error" : ""
-                  }`}
+                className={`input input-bordered w-full ${
+                  errors.name ? "input-error" : ""
+                }`}
                 placeholder="Enter your full name"
               />
               {errors.name && (
@@ -227,8 +228,9 @@ const RegisterPage = () => {
                 onChange={handleImageChange}
                 accept="image/*"
                 {...register("photo", { required: "Image is required" })}
-                className={`file-input file-input-bordered w-full ${imageError ? "file-input-error" : ""
-                  }`}
+                className={`file-input file-input-bordered w-full ${
+                  imageError ? "file-input-error" : ""
+                }`}
               />
               <span className="text-xs text-base-content/50 mt-1">
                 Accepted formats: PNG, JPG, GIF (Max 5MB)
@@ -252,8 +254,9 @@ const RegisterPage = () => {
                     message: "Please enter a valid email",
                   },
                 })}
-                className={`input input-bordered w-full ${errors.email ? "input-error" : ""
-                  }`}
+                className={`input input-bordered w-full ${
+                  errors.email ? "input-error" : ""
+                }`}
                 placeholder="Enter your email"
               />
               {errors.email && (
@@ -283,8 +286,9 @@ const RegisterPage = () => {
                         "Password must contain at least one uppercase letter",
                     },
                   })}
-                  className={`input input-bordered w-full pr-12 ${errors.password ? "input-error" : ""
-                    }`}
+                  className={`input input-bordered w-full pr-12 ${
+                    errors.password ? "input-error" : ""
+                  }`}
                   placeholder="Create a password (min 6 characters)"
                 />
                 <button
@@ -320,8 +324,9 @@ const RegisterPage = () => {
                     validate: (value) =>
                       value === watchPassword || "Passwords do not match",
                   })}
-                  className={`input input-bordered w-full pr-12 ${errors.confirmPassword ? "input-error" : ""
-                    }`}
+                  className={`input input-bordered w-full pr-12 ${
+                    errors.confirmPassword ? "input-error" : ""
+                  }`}
                   placeholder="Confirm your password"
                 />
                 <button

@@ -15,7 +15,6 @@ import MyProfile from "../Pages/MyProfile/MyProfile.jsx";
 import PrivetRoutes from "./PrivetRoutes.jsx";
 import Dashboard from "../Pages/Dashbaord/Dashboard.jsx";
 import BookServices from "../Pages/Dashbaord/UserPages/BookServices.jsx";
-import PaymentHistory from "../Pages/Dashbaord/UserPages/PaymentHistory.jsx";
 import ManageUsers from "../Pages/Dashbaord/AminPages/ManageUsers.jsx";
 import ServiceManage from "../Pages/Dashbaord/AminPages/ServiceManage.jsx";
 import ManageBookings from "../Pages/Dashbaord/AminPages/ManageBookings.jsx";
@@ -24,7 +23,10 @@ import AdminRoutes from "./AdminRoutes.jsx";
 import UserRoutes from "./UserRoutes.jsx";
 import ProfilePage from "../Pages/Dashbaord/ProfilePage.jsx";
 import BookingModal from "../Pages/Modals/BookingModal.jsx";
-
+import Payment from "../Pages/Dashbaord/UserPages/Payment/Payment.jsx";
+import PaymentHistory from "../Pages/Dashbaord/UserPages/Payment/PaymentHistory.jsx";
+import PaymentSuccess from "../Pages/Dashbaord/UserPages/Payment/PaymentSuccess.jsx";
+import PaymentCancle from "../Pages/Dashbaord/UserPages/Payment/PaymantCancle.jsx";
 export const router = createBrowserRouter([
   // Main Routes with RootLayout
   {
@@ -42,11 +44,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "about",
-        element: (
-
-          <About />
-
-        ),
+        element: <About />,
       },
       {
         path: "contact",
@@ -77,11 +75,43 @@ export const router = createBrowserRouter([
       // user routes
       {
         path: "book-services",
-        element: <UserRoutes><BookServices /></UserRoutes>,
+        element: (
+          <UserRoutes>
+            <BookServices />
+          </UserRoutes>
+        ),
+      },
+      {
+        path: "payment/:id",
+        element: (
+          <UserRoutes>
+            <Payment />
+          </UserRoutes>
+        ),
       },
       {
         path: "payment-history",
-        element: <UserRoutes><PaymentHistory /></UserRoutes>,
+        element: (
+          <UserRoutes>
+            <PaymentHistory></PaymentHistory>
+          </UserRoutes>
+        ),
+      },
+      {
+        path: "payment-success",
+        element: (
+          <UserRoutes>
+            <PaymentSuccess />
+          </UserRoutes>
+        ),
+      },
+      {
+        path: "payment-cancel",
+        element: (
+          <UserRoutes>
+            <PaymentCancle />
+          </UserRoutes>
+        ),
       },
       {
         path: "wishlist",

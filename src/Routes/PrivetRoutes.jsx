@@ -6,7 +6,7 @@ import RoundedLoader from "../Component/Spiners/RoundedLoader";
 const PrivetRoutes = ({ children }) => {
   const { user, loading } = useAuth();
   const location = useLocation();
-  console.log("location", location);
+  // console.log("location", location);
   // console.log({loading,user})
   if (loading) {
     return <RoundedLoader />;
