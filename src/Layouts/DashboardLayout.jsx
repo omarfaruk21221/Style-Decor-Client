@@ -6,6 +6,7 @@ import {
   MdMedicalServices,
   MdOutlineAddCircleOutline,
   MdOutlineMedicalServices,
+  MdOutlineProductionQuantityLimits,
   MdProductionQuantityLimits,
   MdSpaceDashboard,
 } from "react-icons/md";
@@ -66,7 +67,7 @@ const DashboardLayout = () => {
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="Book Services"
               >
-                <MdOutlineAddCircleOutline className="my-1.5 inline-block size-4" />
+                <MdOutlineProductionQuantityLimits className="my-1.5 inline-block size-4" />
                 <span className="is-drawer-close:hidden">Book Services</span>
               </NavLink>
             </li>
@@ -94,7 +95,7 @@ const DashboardLayout = () => {
               className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
               data-tip="Manage-Service"
             >
-              <MdOutlineAddCircleOutline className="my-1.5 inline-block size-4" />
+              <MdOutlineProductionQuantityLimits className="my-1.5 inline-block size-4" />
               <span className="is-drawer-close:hidden">Manage Service</span>
             </NavLink>
           </li>
@@ -133,7 +134,8 @@ const DashboardLayout = () => {
           </li>
         </>
       )}
-      {role === 'decorator' && <>
+      {role === 'decorator' &&
+       <>
       {/* ---- earnings summary ---------- */}
       <li>
         <NavLink
