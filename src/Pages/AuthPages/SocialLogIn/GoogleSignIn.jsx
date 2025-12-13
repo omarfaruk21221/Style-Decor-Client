@@ -28,7 +28,8 @@ const GoogleSignIn = () => {
         };
         axiosSecure.post("/users", userInfo).then((res) => {
           console.log("user create in the database", res.data);
-          navigate(location.state || "/");
+          // Navigate to the page they came from, or home. Replace history to prevent going back to login.
+          navigate(location.state?.from || "/", { replace: true });
         });
       })
       .then((error) => console.log(error));

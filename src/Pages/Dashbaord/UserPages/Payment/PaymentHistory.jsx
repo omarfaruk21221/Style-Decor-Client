@@ -32,7 +32,7 @@ const PaymentHistory = () => {
       return res.data;
     },
   });
-  console.log(payments);
+  console.log(user.email, payments);
   if (isLoading) {
     return <RoundedLoader />;
   }
@@ -158,7 +158,7 @@ const PaymentHistory = () => {
                         {payment.paidAt}
                       </div>
                       <div className="text-xs opacity-50 font-mono">
-                        {new Date(payment.paidAt).toLocaleTimeString()}
+                        {payment.paidAt}
                       </div>
                     </div>
                   </td>

@@ -6,9 +6,11 @@ import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { toast } from "react-toastify";
 import Swal from 'sweetalert2';
+import { useNavigate } from "react-router";
 
 const BookingModal = ({ isOpen, onClose, service }) => {
     const { user } = useAuth();
+    const navigate = useNavigate();
     const axiosSecure = useAxiosSecure();
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -67,6 +69,7 @@ const BookingModal = ({ isOpen, onClose, service }) => {
                         setIsBooking(true);
                         reset();
                         onClose();
+                        navigator("/payment")
                     }
                 } catch (error) {
                     console.error("Booking Error:", error);

@@ -3,7 +3,7 @@ import { FaUser, FaCog, FaSignOutAlt, FaHeart } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import Avator from "./Avator";
 import useAuth from "../Hooks/useAuth";
-import toast from "daisyui/components/toast";
+import { toast } from "react-toastify";
 
 const UserMenu = () => {
   const { user, signOutUser } = useAuth();
@@ -22,7 +22,7 @@ const UserMenu = () => {
       label: "My Profile",
       icon: FaUser,
       action: () => closeDropdown(),
-      link: "/profile",
+      link: "/dashboard/profile",
     },
     {
       label: "Dashboard",
@@ -36,7 +36,7 @@ const UserMenu = () => {
       action: () => closeDropdown(),
       link: "/settings",
     },
-  ];
+  ]
 
   // =========== logout feature ===========
   const handleLogOut = () => {
@@ -59,11 +59,10 @@ const UserMenu = () => {
 
       {/* Dropdown Menu with Smooth Animation */}
       <div
-        className={`absolute right-0 top-full mt-3 transition-all duration-200 origin-top z-50 ${
-          isOpen
+        className={`absolute right-0 top-full mt-3 transition-all duration-200 origin-top z-50 ${isOpen
             ? "opacity-100 scale-y-100 visible"
             : "opacity-0 scale-y-95 invisible"
-        }`}
+          }`}
       >
         <div className="bg-base-100 rounded-xl shadow-lg border border-base-300 overflow-hidden w-64">
           {/* User Info Header */}

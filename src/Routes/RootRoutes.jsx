@@ -27,6 +27,11 @@ import Payment from "../Pages/Dashbaord/UserPages/Payment/Payment.jsx";
 import PaymentHistory from "../Pages/Dashbaord/UserPages/Payment/PaymentHistory.jsx";
 import PaymentSuccess from "../Pages/Dashbaord/UserPages/Payment/PaymentSuccess.jsx";
 import PaymentCancle from "../Pages/Dashbaord/UserPages/Payment/PaymantCancle.jsx";
+import EarningsSummary from "../Pages/Dashbaord/DecoretorPage/EarningsSummary.jsx";
+import SchedulePage from "../Pages/Dashbaord/DecoretorPage/SchedulePage.jsx";
+import DecoretorRoutes from "./DecoratorRoutes.jsx";
+import ApproveService from "../Pages/Dashbaord/DecoretorPage/ApproveService.jsx";
+
 export const router = createBrowserRouter([
   // Main Routes with RootLayout
   {
@@ -67,12 +72,11 @@ export const router = createBrowserRouter([
         index: true,
         element: <Dashboard />,
       },
-      // admin routes
       {
         path: "profile",
         element: <ProfilePage />,
       },
-      // user routes
+      // ============ user routes ============
       {
         path: "book-services",
         element: (
@@ -113,26 +117,29 @@ export const router = createBrowserRouter([
           </UserRoutes>
         ),
       },
+      //  ============ Decoretor Routes ============
       {
-        path: "wishlist",
+        path: "earnings-summary",
         element: (
-          <div className="text-center py-12">
-            <h2 className="text-2xl font-bold text-base-content mb-4">
-              Wishlist
-            </h2>
-            <p className="text-base-content/70">Coming Soon</p>
-          </div>
+          <DecoretorRoutes>
+            <EarningsSummary />
+          </DecoretorRoutes>
         ),
       },
       {
-        path: "settings",
+        path: "approve-service",
         element: (
-          <div className="text-center py-12">
-            <h2 className="text-2xl font-bold text-base-content mb-4">
-              Settings
-            </h2>
-            <p className="text-base-content/70">Coming Soon</p>
-          </div>
+          <DecoretorRoutes>
+            <ApproveService />
+          </DecoretorRoutes>
+        ),
+      },
+      {
+        path: "schedule",
+        element: (
+          <DecoretorRoutes>
+            <SchedulePage />
+          </DecoretorRoutes>
         ),
       },
       // Admin routes - protected with AdminRoutes
@@ -168,14 +175,7 @@ export const router = createBrowserRouter([
           </AdminRoutes>
         ),
       },
-      {
-        path: "add-service",
-        element: (
-          <AdminRoutes>
-            <AddService />
-          </AdminRoutes>
-        ),
-      },
+
     ],
   },
 

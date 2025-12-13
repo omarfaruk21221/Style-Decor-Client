@@ -7,10 +7,11 @@ import {
   MdOutlineAddCircleOutline,
   MdOutlineMedicalServices,
   MdProductionQuantityLimits,
+  MdSpaceDashboard,
 } from "react-icons/md";
-import { FaArrowAltCircleLeft, FaHome, FaPlus, FaUser } from "react-icons/fa";
+import { FaArrowAltCircleLeft, FaCalendarAlt, FaCheckCircle, FaHome, FaPlus, FaUser } from "react-icons/fa";
 import useRole from "../Hooks/useRole";
-import { FaUsersBetweenLines } from "react-icons/fa6";
+import { FaMoneyBill1Wave, FaUsersBetweenLines } from "react-icons/fa6";
 import LoaderWithLogo from "../Component/Spiners/LoaderWithLogo";
 import { MdOutlineAddCircle } from "react-icons/md";
 
@@ -22,6 +23,7 @@ const DashboardLayout = () => {
   }
   const DashboardLinks = (
     <>
+      {/* ---- back to home ---------- */}
       <li>
         <NavLink
           to="/"
@@ -32,16 +34,18 @@ const DashboardLayout = () => {
           <span className="is-drawer-close:hidden"> Back to Home</span>
         </NavLink>
       </li>
+      {/* ---- dashboard ---------- */}
       <li>
         <NavLink
           to="/dashboard"
           className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
           data-tip="dashboard"
         >
-          <FaHome className="my-1.5 inline-block size-4" />
+          <MdSpaceDashboard className="my-1.5 inline-block size-4" />
           <span className="is-drawer-close:hidden"> Dashboard</span>
         </NavLink>
       </li>
+      {/* ---- profile ---------- */}
       <li>
         <NavLink
           to="profile"
@@ -52,36 +56,34 @@ const DashboardLayout = () => {
           <span className="is-drawer-close:hidden"> My Profile</span>
         </NavLink>
       </li>
-
+      {/* -------------user routes ----------------- */}
       {
         role === "user" && (
-       <>
-       <li>
-            <NavLink
-              to="book-services"
-              className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-              data-tip="Book Services"
-            >
-              <MdOutlineAddCircleOutline className="my-1.5 inline-block size-4" />
-              <span className="is-drawer-close:hidden">Book Services</span>
-            </NavLink>
-          </li>
+          <>
+            <li>
+              <NavLink
+                to="book-services"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="Book Services"
+              >
+                <MdOutlineAddCircleOutline className="my-1.5 inline-block size-4" />
+                <span className="is-drawer-close:hidden">Book Services</span>
+              </NavLink>
+            </li>
 
-      <li>
-        <NavLink
-          to="payment-history"
-          className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-          data-tip=" Payment History"
-        >
-          <MdHistoryEdu className="my-1.5 inline-block size-4" />
-          <span className="is-drawer-close:hidden">Payment History</span>
-        </NavLink>
-      </li>
-       </>
+            <li>
+              <NavLink
+                to="payment-history"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip=" Payment History"
+              >
+                <MdHistoryEdu className="my-1.5 inline-block size-4" />
+                <span className="is-drawer-close:hidden">Payment History</span>
+              </NavLink>
+            </li>
+          </>
         )
       }
-
-
       {/*  Admin Links */}
       {role === "admin" && (
         <>
@@ -131,6 +133,41 @@ const DashboardLayout = () => {
           </li>
         </>
       )}
+      {role === 'decorator' && <>
+      {/* ---- earnings summary ---------- */}
+      <li>
+        <NavLink
+          to="/dashboard/earnings-summary"
+          className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+          data-tip="Earnings Summary"
+        >
+          <FaMoneyBill1Wave className="my-1.5 inline-block size-4" />
+          <span className="is-drawer-close:hidden"> Earnings Summary</span>
+        </NavLink>
+      </li>
+      {/* ---- approve service ---------- */}
+      <li>
+        <NavLink
+          to="/dashboard/approve-service"
+          className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+          data-tip="Approve Service"
+        >
+          <FaCheckCircle className="my-1.5 inline-block size-4" />
+          <span className="is-drawer-close:hidden"> Approve Service</span>
+        </NavLink>
+      </li>
+      {/* ---- schedule ---------- */}
+      <li>
+        <NavLink
+          to="/dashboard/schedule"
+          className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+          data-tip="Schedule"
+        >
+          <FaCalendarAlt className="my-1.5 inline-block size-4" />
+          <span className="is-drawer-close:hidden"> Schedule</span>
+        </NavLink>
+      </li>
+      </>}
     </>
   );
 

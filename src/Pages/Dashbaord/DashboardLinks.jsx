@@ -93,6 +93,47 @@ const DashboardLinks = () => {
           </li>
         </>
       )}
+
+      {/* decoretor links */}
+        {role === "decorator" && (
+        <>
+          {/* ===================== earnings summary============= */}
+          <li>
+            <NavLink
+              to="/dashboard/earnings-summary"
+              className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+              data-tip="Earnings Summary"
+            >
+              <FaMotorcycle className="inline-block size-4" />
+              <span className="is-drawer-close:hidden">Earnings Summary</span>
+              </NavLink>
+            </li>
+          {/* ===================== Approve service============= */}
+          <li>
+            <NavLink
+              to="/dashboard/approve-service"
+              className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+              data-tip="Approve Service"
+            >
+              <FaMotorcycle className="inline-block size-4" />
+              <span className="is-drawer-close:hidden">Approve Service</span>
+            </NavLink>
+          </li>
+          {/* ===================== Schedule============= */}
+          <li>
+            <NavLink
+              to="/dashboard/schedule"
+              className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+              data-tip="Schedule"
+            >
+              <FaMotorcycle className="inline-block size-4" />
+              <span className="is-drawer-close:hidden">Schedule</span>
+            </NavLink>
+          </li>
+
+
+        </>
+      )}
     </>
   );
   return (
