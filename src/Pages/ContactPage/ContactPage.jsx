@@ -61,7 +61,7 @@ const ContactPage = () => {
               <input
                 type="hidden"
                 name="_next"
-                value="http://localhost:3000/contact"
+                value="https://style-decor-client.vercel.app/contact"
               />
 
               <div>
