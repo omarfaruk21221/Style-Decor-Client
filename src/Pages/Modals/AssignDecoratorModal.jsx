@@ -8,7 +8,6 @@ import { toast } from 'react-toastify';
 
 const AssignDecoratorModal = ({ isOpen, onClose, booking, refetch }) => {
     const axiosSecure = useAxiosSecure();
-
     // Fetch potential decorators (users with role 'decorator')
     const { data: decorators = [], isLoading } = useQuery({
         queryKey: ['users'],
@@ -18,10 +17,6 @@ const AssignDecoratorModal = ({ isOpen, onClose, booking, refetch }) => {
             return res.data;
         }
     });
-
-
-
-
     const [isAssigning, setIsAssigning] = useState(false);
 
     const handleAssign = async (decorator) => {
@@ -31,11 +26,12 @@ const AssignDecoratorModal = ({ isOpen, onClose, booking, refetch }) => {
                 decoratorId: decorator._id,
                 decoratorName: decorator.name,
                 decoratorEmail: decorator.email,
-                deliveryStatus: 'assigned'
+                deliveryStatus: 'assigned',
             };
 
-            const res = await axiosSecure.patch(`/bookings/${booking._id}`, updateData);
-
+            // Using generic PATCH endpoint assuming backend supports it, or specific if configured
+            const res = await axiosSecure.patch(`/bookings/${booking._id}/assign-decorator`, updateData)
+            console.log(res.data.result)
             if (res.data.modifiedCount > 0) {
                 toast.success(`Assigned ${decorator.name} to this booking!`);
                 refetch();
@@ -76,9 +72,9 @@ const AssignDecoratorModal = ({ isOpen, onClose, booking, refetch }) => {
                                     <FaUserTie className="text-primary" />
                                     Assign Decorator
                                 </h3>
-                                <p className="text-base-content/60 text-sm mt-1">
+                                {/* <p className="text-base-content/60 text-sm mt-1">
                                     Select a decorator for <strong>{booking?.serviceName}</strong>
-                                </p>
+                                </p> */}
                             </div>
                             <button
                                 onClick={onClose}
@@ -118,7 +114,7 @@ const AssignDecoratorModal = ({ isOpen, onClose, booking, refetch }) => {
                                                             </div>
                                                             <div>
                                                                 <div className="font-bold">{decorator.name}</div>
-                                                                <div className="text-xs opacity-50">Active</div>
+                                                                <div className="text-xs opacity-50">{decorator.status}</div>
                                                             </div>
                                                         </div>
                                                     </td>

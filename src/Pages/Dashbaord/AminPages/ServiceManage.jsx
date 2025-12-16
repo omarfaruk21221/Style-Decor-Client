@@ -90,6 +90,13 @@ const ServiceManage = () => {
             });
             refetch();
           }
+        }).catch((err) => {
+          console.error(err);
+          Swal.fire({
+            title: "Error!",
+            text: "Failed to delete service. Please try again.",
+            icon: "error",
+          });
         });
       }
     });

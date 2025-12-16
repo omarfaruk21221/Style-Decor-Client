@@ -46,7 +46,6 @@ console.log(booking);
   // Handle Stripe payment
   const handlePayment = async () => {
     setIsProcessing(true);
-
     const paymentInfo = {
       price: booking.price,
       bookingId: booking._id,
@@ -54,7 +53,6 @@ console.log(booking);
       serviceName: booking.serviceName,
       serviceImage: booking.serviceImage,
       userEmail: booking.userEmail,
-
     };
 
     try {
