@@ -11,7 +11,6 @@ import LoaderWithLogo from "../../../Component/Spiners/LoaderWithLogo";
 import { MdCloudDone } from "react-icons/md";
 
 const ApproveService = () => {
-    const [filter, setFilter] = useState("all");
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
 
