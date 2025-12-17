@@ -19,7 +19,6 @@ import NotFound from "../../NotFound";
 const EarningsSummary = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
-
   const { data: bookings = [], isLoading, isError } = useQuery({
     queryKey: ["completedBookings", user?.email],
     enabled: !!user?.email,
@@ -28,7 +27,6 @@ const EarningsSummary = () => {
       return res.data;
     },
   });
-
   if (isLoading) return <RoundedLoader/>;
   if (isError) return <NotFound/> ;
 

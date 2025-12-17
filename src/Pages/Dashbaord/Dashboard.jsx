@@ -15,6 +15,7 @@ import {
 import useAuth from "../../Hooks/useAuth";
 import useRole from "../../Hooks/useRole";
 import LoaderWithLogo from "../../Component/Spiners/LoaderWithLogo";
+import RevenueMonitoring from "./AminPages/RevenueMonitoring";
 
 const Dashboard = () => {
   const { user } = useAuth();
@@ -29,6 +30,7 @@ const Dashboard = () => {
     switch (role) {
       case "admin":
         return (
+         <>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <DashboardCard
               title="Manage Users"
@@ -52,6 +54,8 @@ const Dashboard = () => {
               color="bg-accent/10 text-accent"
             />
           </div>
+          <RevenueMonitoring/>
+         </>
         );
       case "decorator":
         return (
