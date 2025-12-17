@@ -6,7 +6,7 @@ import { getAuth } from "firebase/auth";
 import { toast } from "react-toastify";
 
 const axiosSecure = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "https://style-decor-server-five.vercel.app",
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:3000",
 });
 
 const useAxiosSecure = () => {
