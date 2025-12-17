@@ -1,232 +1,104 @@
-# Style Decor - Interior Design Service Platform
+# ✨ Style Decor - Premium Interior Design Platform
 
-A modern, full-featured interior design service platform built with React, Firebase, and Tailwind CSS.
+[![Vercel Deployment](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=flat-square&logo=vercel)](https://style-decor-client.vercel.app/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react)](https://react.dev/)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind-4.0-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
+[![Firebase](https://img.shields.io/badge/Firebase-Auth-FFCA28?style=flat-square&logo=firebase)](https://firebase.google.com/)
 
-## 🚀 Features
+A sophisticated, high-performance interior design service marketplace. Style Decor connects visionary designers with clients seeking premium home and office aesthetics through a seamless, data-driven experience.
 
-### User Features
-- User authentication (Email/Password & Google Sign-in)
-- Browse decoration services
-- Book services
-- View booking history
-- Manage profile
+---
 
-### Admin Features
-- User management (view, promote to admin, delete)
-- Service management (create, update, delete)
-- Booking management
-- Dashboard analytics
+## 🌟 Exclusive Features
 
-## 🛠️ Tech Stack
+### 🛠️ Advanced Admin Ecosystem
+- **Revenue Monitoring Dashboard**: Real-time financial insights with dynamic charts showing Total Sales, Decorator Costs, and Net Profit.
+- **Service Demand Analytics**: Histogram-based visualization of service popularity to drive business decisions.
+- **Dynamic User Management**: Role-based access control (RBAC) to manage users, admins, and decorators.
+- **Service Orchestration**: Full CRUD capabilities for luxury design packages with high-resolution image hosting.
 
-- **Frontend**: React 18 + Vite
-- **Styling**: Tailwind CSS + DaisyUI
-- **Authentication**: Firebase Auth
-- **State Management**: TanStack React Query
-- **Routing**: React Router DOM
-- **Forms**: React Hook Form
-- **Notifications**: React Toastify + SweetAlert2
-- **HTTP Client**: Axios
-- **Image Upload**: imgBB API
+### 🎨 Decorator Specialized Tools
+- **Earnings Dashboard**: Personalized financial summary with monthly growth tracking and unique customer metrics.
+- **Interactive Schedule**: Date-specific task management system. View "Today's Tasks" at a glance or browse the complete schedule in a horizontal grid.
+- **Service Fulfillment**: Streamlined workflow to accept, track, and complete assigned decoration projects.
 
-## 📋 Prerequisites
+### 👤 Premium User Experience
+- **Lush UI/UX**: Built with Framer Motion and GSAP for buttery-smooth animations and glassmorphic design.
+- **Secure Booking**: Integrated with Stripe for trusted, encrypted payment processing.
+- **Personalized Dashboard**: Track booking statuses from "Pending" to "Lush Completion" in real-time.
 
-- Node.js (v16 or higher)
-- npm or yarn
-- Firebase project
-- imgBB API key
-- Backend server running
+---
 
-## 🔧 Installation
+## 🚀 Tech Stack
 
-### 1. Clone the repository
+| Layer | Technology |
+| :--- | :--- |
+| **Foundation** | React 19 (Vite), JavaScript (ES6+) |
+| **Design System** | Tailwind CSS v4, DaisyUI v5 (Premium Components) |
+| **Animation** | Framer Motion, GSAP |
+| **Data Engine** | TanStack React Query v5 (Auto-refetching & Caching) |
+| **Security** | Firebase Auth + JWT (JSON Web Tokens) |
+| **Visuals** | Recharts (Data Viz), React Icons, Swiper.js |
+| **Infrastructure** | Axios (Interceptors), React Hook Form, SweetAlert2 |
+
+---
+
+## 🔧 Installation & Setup
+
+### 1. Clone & Install
 ```bash
-git clone <repository-url>
+git clone https://github.com/omarfaruk21221/Style-Decor-Client.git
 cd style-decor-client
-```
-
-### 2. Install dependencies
-```bash
 npm install
 ```
 
-### 3. Configure environment variables
-```bash
-# Copy the example file
-cp .env.example .env
-
-# Edit .env and add your actual values
-```
-
-### 4. Environment Variables Setup
-
-Create a `.env` file in the root directory with the following variables:
-
+### 2. Environment Configuration
+Create a `.env` in the root and populate:
 ```env
-# Firebase Configuration
-VITE_apiKey=your_firebase_api_key
+VITE_apiKey=your_firebase_key
 VITE_authDomain=your_project.firebaseapp.com
 VITE_projectId=your_project_id
 VITE_storageBucket=your_project.appspot.com
 VITE_messagingSenderId=your_sender_id
 VITE_appId=your_app_id
 
-# Image Upload
-VITE_image_host_key=your_imgbb_api_key
-
-# Backend API
-VITE_API_URL=http://localhost:3000
+VITE_image_host_key=your_imgbb_key
+VITE_API_URL=https://your-server-url.vercel.app
 ```
 
-#### Getting Firebase Credentials:
-1. Go to [Firebase Console](https://console.firebase.google.com/)
-2. Create a new project or select existing
-3. Go to Project Settings > General
-4. Scroll to "Your apps" section
-5. Click on Web app (</>)
-6. Copy the configuration values
-
-#### Getting imgBB API Key:
-1. Go to [imgBB API](https://api.imgbb.com/)
-2. Sign up or login
-3. Go to "Get API Key"
-4. Copy your API key
-
-## 🚀 Running the Application
-
-### Development Mode
+### 3. Launch Development
 ```bash
 npm run dev
 ```
-The application will start at `http://localhost:5173`
 
-### Build for Production
-```bash
-npm run build
+---
+
+## 📁 System Architecture
+```
+src/
+├── Pages/
+│   ├── Dashbaord/
+│   │   ├── AminPages/      # High-level Revenue & Audit tools
+│   │   ├── DecoretorPage/  # Earnings & Schedule visualization
+│   │   └── UserPages/      # Booking & History
+├── Hooks/                  # useAxiosSecure, useAuth, etc.
+├── Component/
+│   └── Spiners/            # Custom RoundedLoader, LogoLoaders
+└── routes/                 # RootRoutes with RBAC Guards
 ```
 
-### Preview Production Build
-```bash
-npm run preview
-```
+---
 
-## 📁 Project Structure
+## 📈 Roadmap & Innovation
+- [x] Revenue histograms and monthly earnings tracking.
+- [x] Date-specific horizontal schedule grid.
+- [x] Stripe Payment gateway integration.
+- [ ] AI-powered interior design recommendations (Coming Soon).
+- [ ] Live chat between Customer and Decorator.
 
-```
-style-decor-client/
-├── public/              # Static assets
-├── src/
-│   ├── Component/       # Reusable components
-│   ├── contexts/        # React contexts (Auth)
-│   ├── Hooks/          # Custom hooks
-│   ├── Layouts/        # Layout components
-│   ├── Pages/          # Page components
-│   │   ├── AuthPages/  # Login, Register, Forgot Password
-│   │   ├── Dashbaord/  # Dashboard pages
-│   │   │   ├── AminPages/   # Admin-only pages
-│   │   │   └── UserPages/   # User pages
-│   │   └── ...
-│   ├── routes/         # Route configuration
-│   ├── main.jsx        # App entry point
-│   └── index.css       # Global styles
-├── .env.example        # Environment variables template
-├── .gitignore
-├── package.json
-├── tailwind.config.js
-├── vite.config.js
-└── README.md
-```
+---
 
-## 🔐 Admin Setup
+## 🤝 Support & Contribution
+Built with ❤️ by the Style Decor Team. For critical issues or feature requests, please open an issue in the repository.
 
-### Creating the First Admin User
-
-1. Register a new user through the application
-2. Connect to your MongoDB database
-3. Find the user document and update the role:
-
-```javascript
-db.users.updateOne(
-  { email: "admin@example.com" },
-  { $set: { role: "admin" } }
-)
-```
-
-### Admin Routes
-- `/dashboard/manage-users` - User management
-- `/dashboard/manage-service` - Service management
-- `/dashboard/manage-bookings` - Booking management
-- `/dashboard/add-service` - Create new service
-
-## 🔒 Security Features
-
-- Firebase Authentication
-- Protected routes (Private & Admin)
-- JWT token verification
-- Role-based access control
-- Secure API calls with Axios interceptors
-
-## 📦 Key Dependencies
-
-```json
-{
-  "react": "^18.3.1",
-  "react-router-dom": "^7.1.1",
-  "firebase": "^11.1.0",
-  "@tanstack/react-query": "^5.62.11",
-  "axios": "^1.7.9",
-  "tailwindcss": "^3.4.17",
-  "daisyui": "^4.12.22"
-}
-```
-
-## 🎨 Styling
-
-This project uses:
-- **Tailwind CSS** for utility-first styling
-- **DaisyUI** for pre-built components
-- **Custom CSS** for specific designs
-- **Responsive design** for all screen sizes
-
-## 🐛 Troubleshooting
-
-### Backend Connection Issues
-- Ensure backend server is running
-- Check `VITE_API_URL` in `.env`
-- Verify CORS is configured on backend
-
-### Firebase Authentication Issues
-- Verify Firebase credentials in `.env`
-- Check Firebase project settings
-- Ensure authentication methods are enabled
-
-### Image Upload Issues
-- Verify imgBB API key
-- Check image size (max 5MB)
-- Ensure image format is supported
-
-## 📝 Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
-
-## 🤝 Support
-
-For issues and questions:
-1. Check the documentation in `.agent/` folder
-2. Review error logs in browser console
-3. Verify environment variables
-4. Ensure backend server is running
-
-## 📄 License
-
-This project is private and confidential.
-
-## 🙏 Acknowledgments
-
-- React Team
-- Firebase Team
-- Tailwind CSS Team
-- DaisyUI Team
+**Style Decor** - *Enhancing your lifestyle, one space at a time.*

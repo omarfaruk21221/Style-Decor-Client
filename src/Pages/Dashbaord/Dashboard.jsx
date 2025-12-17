@@ -30,32 +30,32 @@ const Dashboard = () => {
     switch (role) {
       case "admin":
         return (
-         <>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <DashboardCard
-              title="Manage Users"
-              description="View and manage all registered users."
-              icon={FaUsers}
-              link="/dashboard/manage-users"
-              color="bg-primary/10 text-primary"
-            />
-            <DashboardCard
-              title="Manage Services"
-              description="Add, edit, or remove services."
-              icon={FaTools}
-              link="/dashboard/manage-service"
-              color="bg-secondary/10 text-secondary"
-            />
-            <DashboardCard
-              title="Manage Bookings"
-              description="Oversee all customer bookings."
-              icon={FaClipboardList}
-              link="/dashboard/manage-bookings"
-              color="bg-accent/10 text-accent"
-            />
-          </div>
-          <RevenueMonitoring/>
-         </>
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <DashboardCard
+                title="Manage Users"
+                description="View and manage all registered users."
+                icon={FaUsers}
+                link="/dashboard/manage-users"
+                color="bg-primary/10 text-primary"
+              />
+              <DashboardCard
+                title="Manage Services"
+                description="Add, edit, or remove services."
+                icon={FaTools}
+                link="/dashboard/manage-service"
+                color="bg-secondary/10 text-secondary"
+              />
+              <DashboardCard
+                title="Manage Bookings"
+                description="Oversee all customer bookings."
+                icon={FaClipboardList}
+                link="/dashboard/manage-bookings"
+                color="bg-accent/10 text-accent"
+              />
+            </div>
+            <RevenueMonitoring />
+          </>
         );
       case "decorator":
         return (
@@ -123,12 +123,16 @@ const Dashboard = () => {
         <div className="flex flex-col md:flex-row items-center gap-6">
           <div className="avatar">
             <div className="w-24 h-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-              <img src={user?.photoURL || "https://via.placeholder.com/150"} alt="Profile" />
+              <img
+                src={user?.photoURL || "https://via.placeholder.com/150"}
+                alt="Profile"
+              />
             </div>
           </div>
           <div className="text-center md:text-left">
             <h1 className="text-3xl font-extrabold text-base-content">
-              Welcome back, <span className="text-primary">{user?.displayName}!</span>
+              Welcome back,{" "}
+              <span className="text-primary">{user?.displayName}!</span>
             </h1>
             <p className="text-base-content/60 mt-2">
               Here's what's happening with your account today.
@@ -161,19 +165,21 @@ const DashboardCard = ({ title, description, icon: Icon, link, color }) => (
   <Link to={link} className="block group">
     <motion.div
       whileHover={{ y: -5 }}
-      className="h-full p-6 bg-base-100 rounded-3xl border border-base-200 shadow-lg hover:shadow-xl transition-all duration-300"
+      className=" flex gap-4 h-full p-6 bg-base-100 rounded-3xl border border-base-200 shadow-lg hover:shadow-xl transition-all duration-300"
     >
-      <div className={`w-14 h-14 rounded-2xl ${color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+      <div
+        className={`w-14 h-14 rounded-2xl ${color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
+      >
         <Icon className="text-2xl" />
       </div>
-      <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
-        {title}
-      </h3>
-      <p className="text-base-content/60 text-sm">
-        {description}
-      </p>
-      <div className="mt-4 flex items-center gap-2 text-primary font-semibold text-sm opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300">
-        Go Now <FaArrowRight />
+      <div>
+        <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+          {title}
+        </h3>
+        <p className="text-base-content/60 text-sm">{description}</p>
+        <div className="mt-4 flex items-center gap-2 text-primary font-semibold text-sm opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300">
+          Go Now <FaArrowRight />
+        </div>
       </div>
     </motion.div>
   </Link>

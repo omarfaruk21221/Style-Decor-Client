@@ -5,6 +5,7 @@ import {
   MdHistoryEdu,
   MdMedicalServices,
   MdOutlineAddCircleOutline,
+  MdOutlineManageHistory,
   MdOutlineMedicalServices,
   MdOutlineProductionQuantityLimits,
   MdProductionQuantityLimits,
@@ -15,6 +16,8 @@ import useRole from "../Hooks/useRole";
 import { FaMoneyBill1Wave, FaUsersBetweenLines } from "react-icons/fa6";
 import LoaderWithLogo from "../Component/Spiners/LoaderWithLogo";
 import { MdOutlineAddCircle } from "react-icons/md";
+import Logo from "../Component/Logo";
+import UserMenu from "../Component/UserMenu";
 
 const DashboardLayout = () => {
   const { role, roleLoading } = useRole();
@@ -117,7 +120,7 @@ const DashboardLayout = () => {
               className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
               data-tip="Manage Bookings"
             >
-              <FaUsersBetweenLines className="my-1.5 inline-block size-4" />
+              <MdOutlineManageHistory className="my-1.5 inline-block size-4" />
               <span className="is-drawer-close:hidden">Manage Bookings</span>
             </NavLink>
           </li>
@@ -179,7 +182,7 @@ const DashboardLayout = () => {
       <div className="drawer-content">
         {/* Navbar */}
         <nav className="navbar w-full">
-          <label
+           <label
             htmlFor="my-drawer-4"
             aria-label="open sidebar"
             className="btn btn-square btn-ghost"
@@ -200,7 +203,8 @@ const DashboardLayout = () => {
               <path d="M14 10l2 2l-2 2"></path>
             </svg>
           </label>
-          <div className="px-4">Navbar Title</div>
+          <div className="px-5 flex justify-between items-center w-full"><Logo/> <UserMenu/></div>
+
         </nav>
         {/* Page content here */}
         <main className="bg-secondary-content/50 p-6 min-h-[calc(100vh-64px)]">
@@ -218,31 +222,6 @@ const DashboardLayout = () => {
           {/* Sidebar content here */}
           <ul className="menu w-full grow">
             {DashboardLinks}
-
-            <li>
-              <button
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Settings"
-              >
-                {/* Settings icon */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                  strokeWidth="2"
-                  fill="none"
-                  stroke="currentColor"
-                  className="my-1.5 inline-block size-4"
-                >
-                  <path d="M20 7h-9"></path>
-                  <path d="M14 17H5"></path>
-                  <circle cx="17" cy="17" r="3"></circle>
-                  <circle cx="7" cy="7" r="3"></circle>
-                </svg>
-                <span className="is-drawer-close:hidden">Settings</span>
-              </button>
-            </li>
           </ul>
         </div>
       </div>
