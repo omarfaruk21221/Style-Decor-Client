@@ -9,12 +9,10 @@ import Swal from "sweetalert2";
 const ManageBookings = ({ user }) => {
     const [searchText, setSearchText] = useState("");
     const axiosSecure = useAxiosSecure();
-
     const [filterCategory, setFilterCategory] = useState("");
     const [sortOrder, setSortOrder] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 25;
-
     // selected booking for modal
     const [selectedBooking, setSelectedBooking] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,16 +21,16 @@ const ManageBookings = ({ user }) => {
     const { data: bookingsData = [], isLoading, error, refetch } = useQuery({
         queryKey: ["bookings", user?.email],
         queryFn: async () => {
-            const res = await axiosSecure.get("/bookings", {
+            const res = await axiosSecure.get("bookings", {
                 params: {
                     paymentStatus: "paid",
-                    deliveryStatus: true,
+                    deliveryStatus: "pending-pickup",
                 },
             });
             return res.data;
         },
     });
-
+    console.log(bookingsData);
     // ===== filter & sort on frontend =====
     const filteredBookings = bookingsData
         .filter((booking) => {

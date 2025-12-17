@@ -4,12 +4,14 @@ import { FaTimes, FaUserTie } from "react-icons/fa";
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import LoaderWithLogo from "../../Component/Spiners/LoaderWithLogo";
-import { toast } from 'react-toastify';
+import Swal from "sweetalert2";
+import { useNavigate } from 'react-router-dom';
 
 const AssignDecoratorModal = ({ isOpen, onClose, booking, refetch }) => {
     const axiosSecure = useAxiosSecure();
+    const navigate = useNavigate();
     // Fetch potential decorators (users with role 'decorator')
-    const { data: decorators = [], isLoading } = useQuery({
+    const { data: decorators = [], isLoading, isError, error, refetch: refetchDecorators } = useQuery({
         queryKey: ['users'],
         enabled: isOpen, // Only fetch when modal is open
         queryFn: async () => {
@@ -20,29 +22,86 @@ const AssignDecoratorModal = ({ isOpen, onClose, booking, refetch }) => {
     const [isAssigning, setIsAssigning] = useState(false);
 
     const handleAssign = async (decorator) => {
-        setIsAssigning(true);
-        try {
-            const updateData = {
-                decoratorId: decorator._id,
-                decoratorName: decorator.name,
-                decoratorEmail: decorator.email,
-                deliveryStatus: 'assigned',
-            };
-
-            // Using generic PATCH endpoint assuming backend supports it, or specific if configured
-            const res = await axiosSecure.patch(`/bookings/${booking._id}/assign-decorator`, updateData)
-            console.log(res.data.result)
-            if (res.data.modifiedCount > 0) {
-                toast.success(`Assigned ${decorator.name} to this booking!`);
-                refetch();
-                onClose();
+        Swal.fire({
+            title: "Assign Decorator?",
+            text: `Are you sure you want to assign ${decorator.name} to this booking?`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#000",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Assign",
+            didOpen: () => {
+                const container = Swal.getContainer();
+                if (container) container.style.zIndex = '20000';
             }
-        } catch (error) {
-            console.error("Failed to assign decorator:", error);
-            toast.error("Failed to assign decorator. Please try again.");
-        } finally {
-            setIsAssigning(false);
-        }
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                setIsAssigning(true);
+                Swal.fire({
+                    title: 'Assigning...',
+                    text: 'Please wait while we assign the decorator.',
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                        const container = Swal.getContainer();
+                        if (container) container.style.zIndex = '20000';
+                    }
+                });
+                try {
+                    const updateData = {
+                        decoratorId: decorator._id,
+                        decoratorName: decorator.name,
+                        decoratorEmail: decorator.email,
+                        deliveryStatus: 'assigned',
+                    };
+                    const res = await axiosSecure.patch(`/bookings/${booking._id}/assign-decorator`, updateData);
+                    const isSuccess = res.data.modifiedCount > 0 ||
+                        (res.data.result && res.data.result.modifiedCount > 0) ||
+                        res.data.matchedCount > 0 ||
+                        (res.data.result && res.data.result.matchedCount > 0);
+                    if (isSuccess) {
+                        onClose();
+                        refetch();
+                        navigate('/dashboard/manage-service');
+                        Swal.fire({
+                            title: "Assigned!",
+                            text: `${decorator.name} has been successfully assigned.`,
+                            icon: "success",
+                            confirmButtonColor: "#000",
+                            didOpen: () => {
+                                const container = Swal.getContainer();
+                                if (container) container.style.zIndex = '20000';
+                            }
+                        });
+                    } else {
+                        Swal.fire({
+                            title: "Info",
+                            text: "Booking status unchanged.",
+                            icon: "info",
+                            didOpen: () => {
+                                const container = Swal.getContainer();
+                                if (container) container.style.zIndex = '20000';
+                            }
+                        });
+                    }
+                } catch (error) {
+                    const errorMessage = error.response?.data?.message || "Failed to assign decorator. Please try again.";
+                    Swal.fire({
+                        title: "Error!",
+                        text: errorMessage,
+                        icon: "error",
+                        confirmButtonText: "Okay",
+                        confirmButtonColor: "#000",
+                        didOpen: () => {
+                            const container = Swal.getContainer();
+                            if (container) container.style.zIndex = '20000';
+                        }
+                    });
+                } finally {
+                    setIsAssigning(false);
+                }
+            }
+        });
     };
 
     return (
@@ -72,9 +131,6 @@ const AssignDecoratorModal = ({ isOpen, onClose, booking, refetch }) => {
                                     <FaUserTie className="text-primary" />
                                     Assign Decorator
                                 </h3>
-                                {/* <p className="text-base-content/60 text-sm mt-1">
-                                    Select a decorator for <strong>{booking?.serviceName}</strong>
-                                </p> */}
                             </div>
                             <button
                                 onClick={onClose}
@@ -88,6 +144,18 @@ const AssignDecoratorModal = ({ isOpen, onClose, booking, refetch }) => {
                         <div className="p-6 overflow-y-auto custom-scrollbar flex-1">
                             {isLoading ? (
                                 <LoaderWithLogo />
+                            ) : isError ? (
+                                <div className="text-center py-10 text-error flex flex-col items-center gap-2">
+                                    <div className="text-4xl">⚠️</div>
+                                    <h3 className="font-bold">Failed to load decorators</h3>
+                                    <p className="text-sm opacity-70">{error?.message || "Something went wrong"}</p>
+                                    <button
+                                        onClick={() => refetchDecorators()}
+                                        className="btn btn-sm btn-outline btn-error mt-2"
+                                    >
+                                        Try Again
+                                    </button>
+                                </div>
                             ) : decorators.length === 0 ? (
                                 <div className="text-center py-10 text-base-content/60">
                                     <p>No active decorators found.</p>

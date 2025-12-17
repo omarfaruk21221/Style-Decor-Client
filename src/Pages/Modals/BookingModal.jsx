@@ -21,7 +21,6 @@ const BookingModal = ({ isOpen, onClose, service }) => {
             toast.error("Please login to book a service");
             return;
         }
-
         const bookingData = {
             serviceId: service._id,
             serviceName: service.service_name,
@@ -33,7 +32,7 @@ const BookingModal = ({ isOpen, onClose, service }) => {
             serviceDate: data.serviceDate,
             address: data.address,
             price: service.cost,
-            status: 'pending',
+            deliveryStatus: 'pending',
             paymentStatus: 'unpaid',
             bookingDate: new Date().toISOString(),
             instructions: data.instructions || ""
@@ -69,7 +68,7 @@ const BookingModal = ({ isOpen, onClose, service }) => {
                         setIsBooking(true);
                         reset();
                         onClose();
-                        navigator("/payment")
+                        navigate('/dashboard/book-services')
                     }
                 } catch (error) {
                     console.error("Booking Error:", error);
