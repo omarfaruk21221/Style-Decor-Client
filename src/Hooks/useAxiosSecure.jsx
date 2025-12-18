@@ -6,7 +6,7 @@ import { getAuth } from "firebase/auth";
 import { toast } from "react-toastify";
 
 const axiosSecure = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:3000",
 });
 
 const useAxiosSecure = () => {
@@ -14,17 +14,19 @@ const useAxiosSecure = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const reqInterceptor = axiosSecure.interceptors.request.use(async (config) => {
-      const auth = getAuth();
-      const currentUser = auth.currentUser;
+    const reqInterceptor = axiosSecure.interceptors.request.use(
+      async (config) => {
+        const auth = getAuth();
+        const currentUser = auth.currentUser;
 
-      if (currentUser) {
-        const token = await currentUser.getIdToken();
-        config.headers.Authorization = `Bearer ${token}`;
+        if (currentUser) {
+          const token = await currentUser.getIdToken();
+          config.headers.Authorization = `Bearer ${token}`;
+        }
+
+        return config;
       }
-
-      return config;
-    });
+    );
 
     const resInterceptor = axiosSecure.interceptors.response.use(
       (response) => response,
