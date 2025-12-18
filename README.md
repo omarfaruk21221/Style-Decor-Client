@@ -102,3 +102,10 @@ src/
 Built with ❤️ by the Style Decor Team. For critical issues or feature requests, please open an issue in the repository.
 
 **Style Decor** - *Enhancing your lifestyle, one space at a time.*
+
+**Project Links--**
+Admin Email:admin@gmail.com
+Admin Password:Aa1234
+Live Client URL: https://style-decor-client.vercel.app/
+GitHub (Client): https://github.com/omarfaruk21221/Style-Decor-Client
+GitHub (Server): https://github.com/omarfaruk21221/Style-Decor-Server
