@@ -1,111 +1,140 @@
-# ✨ Style Decor - Premium Interior Design Platform
+# <p align="center">✨ Style Decor ✨</p>
 
-[![Vercel Deployment](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=flat-square&logo=vercel)](https://style-decor-client.vercel.app/)
-[![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react)](https://react.dev/)
-[![TailwindCSS](https://img.shields.io/badge/Tailwind-4.0-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
-[![Firebase](https://img.shields.io/badge/Firebase-Auth-FFCA28?style=flat-square&logo=firebase)](https://firebase.google.com/)
+<p align="center">
+  <strong>Premium & Sophisticated Interior Design Marketplace</strong>
+</p>
 
-A sophisticated, high-performance interior design service marketplace. Style Decor connects visionary designers with clients seeking premium home and office aesthetics through a seamless, data-driven experience.
+<p align="center">
+  <img src="./public/assets/banner.png" alt="Style Decor Banner" width="100%" />
+</p>
+
+<p align="center">
+  <a href="https://style-decor-client.vercel.app/">
+    <img src="https://img.shields.io/badge/Live%20Demo-Vercel-black?style=for-the-badge&logo=vercel" alt="Live Demo" />
+  </a>
+  <a href="https://github.com/omarfaruk21221/Style-Decor-Client">
+    <img src="https://img.shields.io/badge/Frontend-GitHub-blue?style=for-the-badge&logo=github" alt="Frontend Repo" />
+  </a>
+  <a href="https://github.com/omarfaruk21221/Style-Decor-Server">
+    <img src="https://img.shields.io/badge/Backend-GitHub-green?style=for-the-badge&logo=github" alt="Backend Repo" />
+  </a>
+</p>
 
 ---
 
-## 🌟 Exclusive Features
+## 📖 Introduction
 
-### 🛠️ Advanced Admin Ecosystem
-- **Revenue Monitoring Dashboard**: Real-time financial insights with dynamic charts showing Total Sales, Decorator Costs, and Net Profit.
-- **Service Demand Analytics**: Histogram-based visualization of service popularity to drive business decisions.
-- **Dynamic User Management**: Role-based access control (RBAC) to manage users, admins, and decorators.
-- **Service Orchestration**: Full CRUD capabilities for luxury design packages with high-resolution image hosting.
+**Style Decor** is a visionary marketplace designed to connect luxury interior designers (Decorators) with clients seeking high-end home and office aesthetics. Built with a focus on performance, data-driven insights, and a lush user experience, Style Decor transforms the way interior design projects are managed and delivered.
+
+---
+
+## 💎 Exclusive Role-Based Features
+
+### 👑 Admin Power Suite
+- **Comprehensive Analytics**: Real-time monitoring of revenue, profit margins, and service demand using interactive Recharts.
+- **Service Orchestration**: Full CRUD control over premium decoration packages with automatic image hosting integration.
+- **User Governance**: Advanced Role-Based Access Control (RBAC) to manage the entire ecosystem of clients, admins, and designers.
 
 ### 🎨 Decorator Specialized Tools
-- **Earnings Dashboard**: Personalized financial summary with monthly growth tracking and unique customer metrics.
-- **Interactive Schedule**: Date-specific task management system. View "Today's Tasks" at a glance or browse the complete schedule in a horizontal grid.
-- **Service Fulfillment**: Streamlined workflow to accept, track, and complete assigned decoration projects.
+- **Earnings Hub**: Dynamic financial summaries showing monthly growth, completed projects, and customer acquisition metrics.
+- **Smart Schedule**: A date-specific task management system featuring a horizontal grid for easy project navigation.
+- **Project Lifecycle**: Streamlined workflow for accepting, managing, and completing assigned decoration tasks.
 
-### 👤 Premium User Experience
-- **Lush UI/UX**: Built with Framer Motion and GSAP for buttery-smooth animations and glassmorphic design.
-- **Secure Booking**: Integrated with Stripe for trusted, encrypted payment processing.
-- **Personalized Dashboard**: Track booking statuses from "Pending" to "Lush Completion" in real-time.
+### 👤 Premium Client Experience
+- **Cinematic UI/UX**: Buttery-smooth transitions powered by **Framer Motion** and **GSAP**, featuring a modern glassmorphic design system.
+- **Seamless Booking**: Integrated **Stripe** payment gateway for secure, one-click checkout.
+- **Live Status Tracking**: Real-time updates on project progress from "Pending" to "Lush Completion".
 
 ---
 
-## 🚀 Tech Stack
+## 🛠️ Technology Stack
 
-| Layer | Technology |
+| Architecture | Technologies |
 | :--- | :--- |
-| **Foundation** | React 19 (Vite), JavaScript (ES6+) |
-| **Design System** | Tailwind CSS v4, DaisyUI v5 (Premium Components) |
-| **Animation** | Framer Motion, GSAP |
-| **Data Engine** | TanStack React Query v5 (Auto-refetching & Caching) |
-| **Security** | Firebase Auth + JWT (JSON Web Tokens) |
-| **Visuals** | Recharts (Data Viz), React Icons, Swiper.js |
-| **Infrastructure** | Axios (Interceptors), React Hook Form, SweetAlert2 |
+| **Frontend Core** | React 19, Vite, JavaScript (ES6+) |
+| **Styling** | Tailwind CSS v4, DaisyUI v5 (Glassmorphism & Custom Themes) |
+| **Animations** | Framer Motion, GSAP (ScrollTrigger & Timeline) |
+| **State & Data** | TanStack React Query v5 (Caching & Syncing), Axios (Interceptors) |
+| **Authentication** | Firebase Auth + JWT (Security Interceptors) |
+| **Visualization** | Recharts (Financial Histograms), Leaflet (Location Maps) |
+| **UI Components** | Swiper.js, SweetAlert2, React Hook Form, React Icons |
 
 ---
 
-## 🔧 Installation & Setup
+## 🚀 Quick Start Guide
 
-### 1. Clone & Install
+### 1. Prerequisites
+Ensure you have [Node.js](https://nodejs.org/) installed on your machine.
+
+### 2. Installation
 ```bash
+# Clone the repository
 git clone https://github.com/omarfaruk21221/Style-Decor-Client.git
+
+# Enter the directory
 cd style-decor-client
+
+# Install dependencies
 npm install
 ```
 
-### 2. Environment Configuration
-Create a `.env` in the root and populate:
+### 3. Environment Setup
+Create a `.env` file in the root directory and add your credentials:
 ```env
-VITE_apiKey=your_firebase_key
-VITE_authDomain=your_project.firebaseapp.com
-VITE_projectId=your_project_id
-VITE_storageBucket=your_project.appspot.com
-VITE_messagingSenderId=your_sender_id
-VITE_appId=your_app_id
+VITE_apiKey=your_firebase_apiKey
+VITE_authDomain=your_firebase_authDomain
+VITE_projectId=your_firebase_projectId
+VITE_storageBucket=your_firebase_storageBucket
+VITE_messagingSenderId=your_firebase_messagingSenderId
+VITE_appId=your_firebase_appId
 
-VITE_image_host_key=your_imgbb_key
-VITE_API_URL=https://your-server-url.vercel.app
+VITE_image_host_key=your_imgbb_api_key
+VITE_API_URL=http://localhost:5000 # Your server URL
 ```
 
-### 3. Launch Development
+### 4. Run Development Server
 ```bash
 npm run dev
 ```
 
 ---
 
-## 📁 System Architecture
-```
+## 📁 Project Architecture
+```text
 src/
 ├── Pages/
 │   ├── Dashbaord/
-│   │   ├── AminPages/      # High-level Revenue & Audit tools
-│   │   ├── DecoretorPage/  # Earnings & Schedule visualization
-│   │   └── UserPages/      # Booking & History
-├── Hooks/                  # useAxiosSecure, useAuth, etc.
-├── Component/
-│   └── Spiners/            # Custom RoundedLoader, LogoLoaders
-└── routes/                 # RootRoutes with RBAC Guards
+│   │   ├── AdminPages/      # Financial Analytics & Management
+│   │   ├── DecoratorPage/   # Schedule & Earnings Management
+│   │   └── UserPages/       # Bookings & History
+├── Components/              # Modular UI (Loaders, Nav, Footers)
+├── Hooks/                   # Custom logic (useAxiosSecure, useAuth)
+└── Routes/                  # Secured Route Guards (RBAC)
 ```
 
 ---
 
-## 📈 Roadmap & Innovation
-- [x] Revenue histograms and monthly earnings tracking.
-- [x] Date-specific horizontal schedule grid.
-- [x] Stripe Payment gateway integration.
-- [ ] AI-powered interior design recommendations (Coming Soon).
-- [ ] Live chat between Customer and Decorator.
+## 📍 Roadmap
+- [x] High-performance Dashboard Analytics.
+- [x] Integrated Stripe Payment Gateway.
+- [x] Dynamic Schedule Management for Decorators.
+- [ ] AI-Powered Room Visualizer (Coming Soon).
+- [ ] Real-time Chat System for Client-Decorator interaction.
 
 ---
 
-## 🤝 Support & Contribution
-Built with ❤️ by the Style Decor Team. For critical issues or feature requests, please open an issue in the repository.
+## 🔐 Credentials for Testing
+- **Admin Email**: `admin@gmail.com`
+- **Password**: `Aa1234`
 
-**Style Decor** - *Enhancing your lifestyle, one space at a time.*
+---
 
-**Project Links--**
-Admin Email:admin@gmail.com .
-Admin Password:Aa1234 .
-Live Client URL: https://style-decor-client.vercel.app/ .
-GitHub (Client): https://github.com/omarfaruk21221/Style-Decor-Client .
-GitHub (Server): https://github.com/omarfaruk21221/Style-Decor-Server .
+## 🤝 Contribution & Feedback
+Developed with passion by the **Style Decor Team**. We welcome contributions and feedback! Feel free to open an issue or submit a pull request.
+
+---
+
+<p align="center">
+  <strong>Enhancing your lifestyle, one space at a time.</strong><br>
+  © 2024-2025 Style Decor. All rights reserved.
+</p>
