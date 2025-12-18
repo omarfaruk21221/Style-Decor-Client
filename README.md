@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <img src="./public/assets/banner.png" alt="Style Decor Banner" width="100%" />
+  <img src=".https://i.ibb.co/fYfgJ66M/Screenshot-2025-12-18-130028.png" alt="Style Decor Banner" width="100%" />
 </p>
 
 <p align="center">
