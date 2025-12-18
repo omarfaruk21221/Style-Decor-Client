@@ -206,14 +206,14 @@ const BookServices = () => {
                       className={`badge badge-lg gap-2 font-bold shadow-sm ${
                         booking.status === "confirmed"
                           ? "badge-success text-white"
-                          : booking.status === "completed"
+                          : booking.deliveryStatus === "completed"
                           ? "badge-info text-white"
-                          : booking.status === "pending"
+                          : booking.deliveryStatus === "pending"
                           ? "badge-warning text-white"
                           : "badge-ghost"
                       }`}
                     >
-                      {booking.status}
+                      {booking.deliveryStatus}
                     </div>
                   </td>
                   <td>
