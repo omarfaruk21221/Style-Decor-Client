@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../Component/Logo";
-import logo3 from "../../../public/assets/logo3.png";
+import logo3 from "https://i.ibb.co/kgyP4GbT/logo3.png";
 
 const ForgetPage = () => {
   const [email, setEmail] = useState("");

@@ -5,7 +5,7 @@ const LoaderWithLogo = () => {
     <div className="max-w-full min-h-screen mx-auto flex flex-col justify-center items-center ">
       <img
         className="max-w-90 max-h-90 mx-auto"
-        src="../../../public/assets/logo3.png"
+        src="https://i.ibb.co/kgyP4GbT/logo3.png"
         alt="Style Decore"
       />
       <div className="-mt-20 ">

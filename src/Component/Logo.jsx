@@ -6,7 +6,7 @@ const Logo = () => {
         <div className="flex items-center">
           <img
             className="w-15 h-15 flex items-center pag-4"
-            src="../../public/assets/logo2.png"
+            src="https://i.ibb.co/kV9DDhnv/logo2.png"
             alt="logo"
           />
           <Link

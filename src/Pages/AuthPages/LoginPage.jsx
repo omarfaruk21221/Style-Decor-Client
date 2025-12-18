@@ -1,5 +1,5 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import logo3 from "../../../public/assets/logo3.png";
+import logo3 from "https://i.ibb.co/kgyP4GbT/logo3.png";
 import Logo from "../../Component/Logo";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
