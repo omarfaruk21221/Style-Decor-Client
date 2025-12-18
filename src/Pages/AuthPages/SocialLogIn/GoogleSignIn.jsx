@@ -21,7 +21,7 @@ const GoogleSignIn = () => {
         const data = result.user;
 
         const userInfo = {
-          name: data.name,
+          name: data.displayName,
           email: data.email,
           image: data.photoURL,
           uid: data.uid,
@@ -32,7 +32,7 @@ const GoogleSignIn = () => {
           navigate(location.state?.from || "/", { replace: true });
         });
       })
-      .then((error) => console.log(error));
+      .catch((error) => console.log(error));
   };
   return (
     <button
