@@ -3,6 +3,8 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { FaUser, FaEnvelope, FaIdBadge, FaEdit, FaCamera, FaCalendarAlt, FaShieldAlt } from "react-icons/fa";
+import userPlaceholder from "../../assets/user_placeholder.png";
+import cubesPattern from "../../assets/cubes_pattern.png";
 
 const ProfilePage = () => {
     const { user } = useAuth();
@@ -41,7 +43,7 @@ const ProfilePage = () => {
                     <h1 className="text-3xl text-center pt-10 md:text-5xl font-extrabold text-secondary/70 bg-clip-text bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300">My Profile</h1>
                 </div>
                 {/* Decorative Elements */}
-                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20"></div>
+                <div className="absolute inset-0 opacity-20" style={{ backgroundImage: `url(${cubesPattern})` }}></div>
 
                 <motion.div
                     initial={{ opacity: 0, scale: 0 }}
@@ -72,7 +74,7 @@ const ProfilePage = () => {
                         <div className="relative group">
                             <div className="relative w-36 h-36 md:w-44 md:h-44 rounded-full p-1.5 bg-white dark:bg-gray-800 shadow-xl ring-4 ring-white/50 dark:ring-gray-700/50">
                                 <img
-                                    src={profile?.image || user?.photoURL || "https://i.ibb.co/5GzXkwq/user.png"}
+                                    src={profile?.image || user?.photoURL || userPlaceholder}
                                     alt="Profile"
                                     className="w-full h-full rounded-full object-cover"
                                 />

@@ -1,11 +1,16 @@
-import React from "react";
 import { FaStar, FaAward, FaPaintBrush } from "react-icons/fa";
+
+// Import Local Assets
+import decorator1 from "../../assets/decorator1.jpg";
+import decorator2 from "../../assets/decorator2.jpg";
+import decorator3 from "../../assets/decorator3.jpg";
+import decorator4 from "../../assets/decorator4.jpg";
 
 const DECORATORS = [
     {
         id: 1,
         name: "Elena Richardson",
-        image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&auto=format&fit=crop",
+        image: decorator1,
         specialty: "Modern Minimalist",
         rating: 4.9,
         projects: 124,
@@ -13,7 +18,7 @@ const DECORATORS = [
     {
         id: 2,
         name: "Marcus Chen",
-        image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop",
+        image: decorator2,
         specialty: "Industrial Chic",
         rating: 4.8,
         projects: 98,
@@ -21,7 +26,7 @@ const DECORATORS = [
     {
         id: 3,
         name: "Sarah Jenkins",
-        image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&auto=format&fit=crop",
+        image: decorator3,
         specialty: "Bohemian Luxe",
         rating: 5.0,
         projects: 156,
@@ -29,7 +34,7 @@ const DECORATORS = [
     {
         id: 4,
         name: "David Miller",
-        image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&auto=format&fit=crop",
+        image: decorator4,
         specialty: "Scandanavian",
         rating: 4.7,
         projects: 87,

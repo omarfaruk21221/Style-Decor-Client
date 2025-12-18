@@ -6,6 +6,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import LoaderWithLogo from "../../Component/Spiners/LoaderWithLogo";
 import Swal from "sweetalert2";
 import { useNavigate } from 'react-router-dom';
+import userPlaceholder from "../../assets/user_placeholder.png";
 
 const AssignDecoratorModal = ({ isOpen, onClose, booking, refetch }) => {
     const axiosSecure = useAxiosSecure();
@@ -177,7 +178,7 @@ const AssignDecoratorModal = ({ isOpen, onClose, booking, refetch }) => {
                                                         <div className="flex items-center gap-3">
                                                             <div className="avatar">
                                                                 <div className="mask mask-squircle w-10 h-10">
-                                                                    <img src={decorator.image || "https://i.ibb.co/84hPCXq/user.png"} alt={decorator.name} />
+                                                                    <img src={decorator.image || userPlaceholder} alt={decorator.name} />
                                                                 </div>
                                                             </div>
                                                             <div>

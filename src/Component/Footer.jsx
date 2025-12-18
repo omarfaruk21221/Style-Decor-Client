@@ -10,7 +10,7 @@ import {
   FaLinkedin,
   FaGithub,
 } from "react-icons/fa";
-import bgLogo from "https://i.ibb.co/vxf1cXhK/logo1.png";
+import bgLogo from "../assets/logo_footer.png";
 
 const Footer = () => {
   const socialLinks = [

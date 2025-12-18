@@ -4,10 +4,13 @@ import { FaTimes, FaCalendarAlt, FaLayerGroup, FaTags, FaPhoneAlt } from "react-
 import BookingModal from "./BookingModal";
 import useAuth from "../../Hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
+import userPlaceholder from "../../assets/user_placeholder.png";
+import stock1 from "../../assets/stock_service1.jpg";
+import stock2 from "../../assets/stock_service2.jpg";
 
 const STOCK_IMAGES = [
-    "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=600&auto=format&fit=crop",
+    stock1,
+    stock2,
 ];
 
 const ServiceModal = ({ isOpen, onClose, service }) => {
@@ -168,7 +171,7 @@ const ServiceModal = ({ isOpen, onClose, service }) => {
                                             <div className="flex items-center gap-4">
                                                 <div className="avatar">
                                                     <div className="w-12 h-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                                                        <img src={createdByPhoto || "https://i.ibb.co/84hPCXq/user.png"} alt={createdByName} />
+                                                        <img src={createdByPhoto || userPlaceholder} alt={createdByName} />
                                                     </div>
                                                 </div>
                                                 <div>

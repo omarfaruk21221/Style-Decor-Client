@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Avator from "./Avator";
 import useAuth from "../Hooks/useAuth";
 import { toast } from "react-toastify";
+import avatarPlaceholder from "../assets/avatar_placeholder.png";
 
 const UserMenu = () => {
   const { user, signOutUser } = useAuth();
@@ -60,8 +61,8 @@ const UserMenu = () => {
       {/* Dropdown Menu with Smooth Animation */}
       <div
         className={`absolute right-0 top-full mt-3 transition-all duration-200 origin-top z-50 ${isOpen
-            ? "opacity-100 scale-y-100 visible"
-            : "opacity-0 scale-y-95 invisible"
+          ? "opacity-100 scale-y-100 visible"
+          : "opacity-0 scale-y-95 invisible"
           }`}
       >
         <div className="bg-base-100 rounded-xl shadow-lg border border-base-300 overflow-hidden w-64">
@@ -69,7 +70,7 @@ const UserMenu = () => {
           <div className="bg-gradient-to-r from-primary to-secondary p-4 text-white">
             <div className="flex items-center gap-3">
               <img
-                src={user.photoURL || "https://i.ibb.co/4pDNDk1/avatar.png"}
+                src={user.photoURL || avatarPlaceholder}
                 alt="User"
                 className="w-10 h-10 rounded-full border-2 border-white"
               />

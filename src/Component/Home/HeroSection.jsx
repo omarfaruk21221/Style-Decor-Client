@@ -17,6 +17,11 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 
+// Import Local Assets
+import hero1 from "../../assets/hero1.jpg";
+import hero2 from "../../assets/hero2.jpg";
+import hero3 from "../../assets/hero3.jpg";
+
 const HeroSection = () => {
   return (
     <section className="font-display text-slate-900 dark:text-white">
@@ -47,8 +52,7 @@ const HeroSection = () => {
               <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 hover:scale-105"
                 style={{
-                  backgroundImage:
-                    "url('https://lh3.googleusercontent.com/aida-public/AB6AXuDCO4iTAJyGVQ11P7CNLLghQb9z6gQgAY_yZBo-YXEwxLqk3fUze8lf0AkSxY_tPsgv1_ZVfwugwVR37Iko2BLCHFFhzkbNq7lAP4kQ7m1XBgt3uEjvtHPseCfnR7QHW4O3la8uR_D1zWhBogBZXCevqyPoCYL7r0kWtlTZGVYuGfFg9dcMIyr3JHtTMFdLV-vx1yq6jb4uvDRp5FPGX2N0L56PMmP0CQ_nx9UKSqu8To4In4nvc1_HpnIcG8JWdnTHuUN1Xr5px64')",
+                  backgroundImage: `url(${hero1})`,
                 }}
               ></div>
               <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
@@ -85,8 +89,7 @@ const HeroSection = () => {
               <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 hover:scale-105"
                 style={{
-                  backgroundImage:
-                    "url('https://lh3.googleusercontent.com/aida-public/AB6AXuBBfjtxdJThPRs77jW6oLncQfF-dmN4dZQW0nSfz55Uzu3dPVqYBnxBfZx-5KhlLHX39sjc25cPJ391Uk4R_39200H3UV1SJgJRppIAAJHjHAWV2_3gEW2450iKuG1x9enk-FJYOV_ciCMJg7P9GMrXf-Y_0oFC3O4p-w6199fmOzpNenRB2T8gO9Q6DRI1YVRC0hNRKqu3j0HzFVGYlC_KHVOtX1N4yHHjpYK39JuaO9TOVtHi50xw_pqt9zpCY50i7jynImJlPHI')",
+                  backgroundImage: `url(${hero2})`,
                 }}
               ></div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10"></div>
@@ -117,8 +120,7 @@ const HeroSection = () => {
               <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 hover:scale-105"
                 style={{
-                  backgroundImage:
-                    "url('https://lh3.googleusercontent.com/aida-public/AB6AXuCEK-Ezsz6ZXxpqaDgRXmZ-Yv92lHc84f6kn7pkx47qanhlTaltoSA_HGoed4Nl-W6_zwO-IBMnBnw6t3_-yxWXvRWzX4Ii8CJWuRGV5Do4hnccL5TeSXJJ8WIQvoTHF5kvg8SGBCx3HQOvYMCHFtyB17cwQ36HYto-PY4U1ZcHJjLcpWc2Uk8LoDIA8fUVunVE267vpTEkOwvUkJrYvsmLvrUFGE7ds3bt5CuAarckWQs5-1AAQ9P9Ud4HU-F7ynQwEEUWY9F8TYs')",
+                  backgroundImage: `url(${hero3})`,
                 }}
               ></div>
               <div className="absolute inset-0 bg-black/40"></div>

@@ -1,11 +1,11 @@
-import React from "react";
+import logo from "/assets/logo3.png";
 
 const LoaderWithLogo = () => {
   return (
     <div className="max-w-full min-h-screen mx-auto flex flex-col justify-center items-center ">
       <img
         className="max-w-90 max-h-90 mx-auto"
-        src="https://i.ibb.co/kgyP4GbT/logo3.png"
+        src={logo}
         alt="Style Decore"
       />
       <div className="-mt-20 ">
