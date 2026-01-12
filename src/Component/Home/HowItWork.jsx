@@ -3,14 +3,12 @@ import HowItsWorkDatas from "../../../public/Data/HowItsWorkData.json";
 
 const HowItsWork = () => {
   return (
-    <section className=" bg-base-100 text-black">
+    <section>
       <div className="container mx-auto space-y-10">
         {/* Header */}
         <div className="max-w-3xl mx-auto space-y-6 text-center">
-          <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight">
-            How It Works
-          </h1>
-          <p className="text-black/60 text-lg leading-relaxed">
+          <h1 className="text-4xl font-bold mb-4 ">How It Works</h1>
+          <p className=" text-base-content/86  text-lg leading-relaxed">
             A simple, structured process designed to deliver premium results
             with clarity, precision, and professionalism.
           </p>
@@ -40,7 +38,7 @@ const HowItsWork = () => {
                 {data.title}
               </h2>
               {/* Description */}
-              <p className="text-xs leading-relaxed text-black/70">
+              <p className="text-xs leading-relaxed opacity-75">
                 {data.description}
               </p>
               {/* Minimal Divider */}

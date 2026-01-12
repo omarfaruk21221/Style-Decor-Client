@@ -10,8 +10,8 @@ import {
 } from "react-icons/fa";
 const ContactPage = () => {
   return (
-    <section className=" min-h-screen flex items-center justify-center p-4 sm:p-6 lg:p-8">
-      <div className="w-full max-w-7xl mx-auto my-10">
+    <section className=" min-h-screen flex items-center justify-center px-4 sm:p-6 lg:px-8">
+      <div className="w-full max-w-7xl mx-auto mb-16">
         <header className="text-center mb-12 lg:mb-16">
           <motion.h1
             initial={{ opacity: 0, y: -20 }}

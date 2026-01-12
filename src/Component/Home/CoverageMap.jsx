@@ -34,7 +34,7 @@ const LOCATIONS = [
 
 const CoverageMap = () => {
   return (
-    <section className=" bg-base-200/50">
+    <section>
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">

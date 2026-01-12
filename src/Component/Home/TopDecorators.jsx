@@ -43,10 +43,10 @@ const DECORATORS = [
 
 const TopDecorators = () => {
   return (
-    <section className=" bg-base-100">
+    <section>
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="text-4xl md:text-5xl  font-bold mb-4">
             Top Rated Decorators
           </h2>
           <p className="text-lg text-base-content/60 max-w-2xl mx-auto">
@@ -58,7 +58,7 @@ const TopDecorators = () => {
           {DECORATORS.map((decorator) => (
             <div
               key={decorator.id}
-              className="group relative overflow-hidden rounded-3xl bg-base-200/50 hover:bg-base-200 transition-all duration-300"
+              className="group relative overflow-hidden rounded-3xl bg-base-200 hover:bg-base-300 shadow-md transition-all duration-300"
             >
               {/* Image Container */}
               <div className="h-64 overflow-hidden relative">
