@@ -17,6 +17,8 @@ import useRole from "../../Hooks/useRole";
 import LoaderWithLogo from "../../Component/Spiners/LoaderWithLogo";
 import RevenueMonitoring from "./AminPages/RevenueMonitoring";
 
+import userPlaceholder from "../../assets/user_placeholder.png";
+
 const Dashboard = () => {
   const { user } = useAuth();
   const { role, roleLoading } = useRole();
@@ -124,7 +126,7 @@ const Dashboard = () => {
           <div className="avatar">
             <div className="w-24 h-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
               <img
-                src={user?.photoURL || "https://via.placeholder.com/150"}
+                src={user?.photoURL || userPlaceholder}
                 alt="Profile"
               />
             </div>

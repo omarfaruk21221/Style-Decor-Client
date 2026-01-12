@@ -3,9 +3,12 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import ServiceModal from "../Modals/ServiceModal";
 
+import stock1 from "../../assets/stock_service1.jpg";
+import stock2 from "../../assets/stock_service2.jpg";
+
 const STOCK_IMAGES = [
-  "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=600&auto=format&fit=crop",
+  stock1,
+  stock2,
 ];
 
 export default function ServiceCard({ service }) {

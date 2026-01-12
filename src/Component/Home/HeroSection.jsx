@@ -26,7 +26,7 @@ const HeroSection = () => {
   return (
     <section className="font-display text-slate-900 dark:text-white">
       {/* Hero Slider Section */}
-      <div className="relative w-full h-[600px] md:h-[700px] group">
+      <div className="relative w-full h-[85vh] rounded-xl group">
         <Swiper
           spaceBetween={0}
           centeredSlides={true}
@@ -48,7 +48,7 @@ const HeroSection = () => {
         >
           {/* Slide 1 */}
           <SwiperSlide>
-            <div className="relative w-full h-full">
+            <div className="relative w-full h-full rounded-xl">
               <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 hover:scale-105"
                 style={{
@@ -161,15 +161,15 @@ const HeroSection = () => {
       </div>
 
       {/* Brief Features Section */}
-      <section className="bg-white dark:bg-base-200 py-12 border-b border-slate-100 dark:border-slate-800">
-        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="flex items-start gap-4 p-4 rounded-xl hover:bg-slate-50 dark:hover:bg-base-300/50 transition-colors cursor-pointer group">
+      <section className="  py-12 border-b border-slate-100 dark:border-slate-800">
+        <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 ">
+            <div className="flex items-start bg-base-200 gap-4 p-4  rounded-xl hover:bg-slate-50 dark:hover:bg-base-300 transition-colors cursor-pointer group">
               <div className="size-12 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors shrink-0">
                 <FaCheckCircle className="text-2xl" />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">
+                <h3 className="text-lg font-bold text-primary mb-1">
                   Premium Quality
                 </h3>
                 <p className="text-sm text-slate-500 dark:text-slate-400">
@@ -177,12 +177,12 @@ const HeroSection = () => {
                 </p>
               </div>
             </div>
-            <div className="flex items-start gap-4 p-4 rounded-xl hover:bg-slate-50 dark:hover:bg-base-300/50 transition-colors cursor-pointer group">
+            <div className="flex items-start bg-base-200 gap-4 p-4  rounded-xl hover:bg-slate-50 dark:hover:bg-base-300 transition-colors cursor-pointer group">
               <div className="size-12 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors shrink-0">
                 <FaTruck className="text-2xl" />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">
+                <h3 className="text-lg font-bold text-primary mb-1">
                   Fast Delivery
                 </h3>
                 <p className="text-sm text-slate-500 dark:text-slate-400">
@@ -190,12 +190,12 @@ const HeroSection = () => {
                 </p>
               </div>
             </div>
-            <div className="flex items-start gap-4 p-4 rounded-xl hover:bg-slate-50 dark:hover:bg-base-300/50 transition-colors cursor-pointer group">
+            <div className="flex items-start bg-base-200 gap-4 p-4  rounded-xl hover:bg-slate-50 dark:hover:bg-base-300 transition-colors cursor-pointer group">
               <div className="size-12 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors shrink-0">
                 <FaHeadset className="text-2xl" />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">
+                <h3 className="text-lg font-bold text-primary  mb-1">
                   24/7 Support
                 </h3>
                 <p className="text-sm text-slate-500 dark:text-slate-400">

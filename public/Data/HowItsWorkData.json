@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "icon": "https://cdn-icons-png.flaticon.com/512/7099/7099347.png",
+    "title": "Book a Free Consultation",
+    "description": "Share your style, space photos, and budget so our designer can understand your vision clearly."
+  },
+  {
+    "id": 2,
+    "icon": "https://cdn-icons-png.flaticon.com/512/2921/2921222.png",
+    "title": "Get a Custom Design Concept",
+    "description": "We create mood boards, layout options, and a complete design concept tailored to your home."
+  },
+  {
+    "id": 3,
+    "icon": "https://cdn-icons-png.flaticon.com/512/892/892458.png",
+    "title": "Select Materials & Finishes",
+    "description": "Choose furniture, colors, fabrics, and decor with professional guidance for a cohesive look."
+  },
+  {
+    "id": 4,
+    "icon": "https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/construction-worker-icon.png",
+    "title": "Relax While We Execute",
+    "description": "Our team manages installation, styling, and final touches to transform your space effortlessly."
+  }
+]
