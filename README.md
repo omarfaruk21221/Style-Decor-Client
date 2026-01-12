@@ -139,17 +139,17 @@ src/
 
 - Live Website URL : https://style-decor-client.vercel.app/
 - GitHub Repository Link
-- Frontend: https://github.com/omarfaruk21221/Style-Decor-Client
-- Backend: https://github.com/omarfaruk21221/Style-Decor-Server
+  -- Frontend: https://github.com/omarfaruk21221/Style-Decor-Client
+  -- Backend: https://github.com/omarfaruk21221/Style-Decor-Server
 - Admin
-- Email : admin@gmail.com
-- Password : Aa1234
+  -- Email : admin@gmail.com
+  -- Password : Aa1234
 - User
-- Email : user@gmail.com
-- Password : Aa1234
+  -- Email : user@gmail.com
+  -- Password : Aa1234
 - Decoretor
-- Email : decoretor1@gmail.com
-- Password : Aa1234
+  -- Email : decoretor1@gmail.com
+  -- Password : Aa1234
 
 ---
 
